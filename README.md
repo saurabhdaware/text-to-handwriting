@@ -2,7 +2,7 @@
 
 Hey everyone! I hope the person who is reading this is not my teacher.
 
-I hate writing assignments so I made this tool that converts text to an image with handwritten like font and a paper background 😛
+I hate writing assignments so I made this tool that converts text to an image that looks like handwriting with background of a paper😛
 
 **Link:** https://saurabhdaware.github.io/text-to-handwriting/
 
