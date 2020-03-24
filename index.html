@@ -101,7 +101,10 @@
       
       html2canvas(document.querySelector(".page")).then(canvas => {
         document.querySelector('.output').innerHTML = '';
-        document.querySelector('.output').appendChild(canvas);
+        
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL("image/jpeg");
+        document.querySelector('.output').appendChild(img);
         document.querySelector('.paper').style.backgroundSize = 'unset';
         document.querySelector('.overlay').style.display = 'none';
       });
