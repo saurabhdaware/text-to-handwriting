@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Txt to Handwriting</title>
+  <link href="https://fonts.googleapis.com/css?family=Caveat|Homemade+Apple|Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
+  <style>
+    canvas{
+      display: inline-block;
+    }
+    .page{
+      padding: 10px;
+      position:relative;
+      background: linear-gradient(to right,#eee, #ddd);
+      padding:14px 15px;
+      top: 0px;
+      margin:0px 8px 0px 0px;
+      transform: rotateY(-5deg);
+      width:500px;
+      display: inline-block;
+      height: 600px;
+      box-sizing: border-box;
+      will-change: transform, background-color, box-shadow;
+      transform-origin: 0% 50%;
+      transform-style: preserve-3d;
+      transition: all .7s ease;
+      transition-property: transform, background-color,box-shadow;
+    }
+    .paper{
+      background-image: linear-gradient(#999 0.05em, transparent 0.1em);
+      height: 100%;
+      top: 0;left:0;
+      outline:none;
+      font-family: 'Homemade Apple', cursive;
+      color: #333;
+      padding-top: 0px;
+      line-height: 1.5em;
+    }
+    .overlay{
+      position: absolute;
+      top:0;left:0;
+      height: 100%;
+      width: 100%;
+      display: none;
+      background-image: linear-gradient(to right, #0007, #0001);
+    }
+    .row{
+      display: flex;
+    }
+    .col{
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <label>Handwriting Font</label>
+  <select id="handwriting-font">
+    <option default value="'Homemade Apple', cursive">Homemade Apple</option>
+    <option value="'Caveat', cursive">Caveat</option>
+    <option value="'Liu Jian Mao Cao', cursive">Liu Jian Mao Cao</option>
+  </select><br>
+  <button class="generate-image">Generate Image</button><br>
+  * After clicking generate image button, right click image and click save image or download image<br><br>
+  <div class="row">
+    <div class="col">
+      <div class="page">
+        <div class="paper" contenteditable="true">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis. Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque sed tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu urna.
+
+            r adipiscing elit. Sed sit amet ligula id elit tempus molestie. Ut et lectus faucibus, pharetra augue sed, dictum tellus. Aenean id sem consectetur, interdum nisl tempor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue. Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
+            
+          <div class="overlay">
+      
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col output">
+
+    </div>
+  </div>
+  <script src="http://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script>
+    document.querySelector('#handwriting-font').addEventListener('change', e => {
+      document.querySelector('.paper').style.fontFamily = e.target.value;
+    })
+
+
+    document.querySelector('.generate-image').addEventListener('click', e => {
+      document.querySelector('.overlay').style.display = 'block';
+      document.querySelector('.paper').style.backgroundSize = '100% 1.5em';
+      
+      html2canvas(document.querySelector(".page")).then(canvas => {
+        document.querySelector('.output').innerHTML = '';
+        document.querySelector('.output').appendChild(canvas);
+        document.querySelector('.paper').style.backgroundSize = 'unset';
+        document.querySelector('.overlay').style.display = 'none';
+      });
+    })
+  </script>
+</body>
+</html>
