@@ -5,6 +5,8 @@ html, body{
   margin: 0px;
   width: 100%;
   overflow-x: hidden;
+  background-color: #fff;
+  color: #333;
 }
 
 
@@ -43,6 +45,8 @@ html, body{
   padding-top: 0px;
   line-height: 1.5em;
   box-sizing: border-box;
+  letter-spacing: unset !important;
+  word-spacing: 3px;
 }
 .overlay{
   position: absolute;
@@ -68,9 +72,15 @@ html, body{
 .form-container input, .form-container select{
   display: block;
   width: 100%;
-  background-color: #eee;
+  background-color: #fff;
   border: none;
+  border: 1px solid #ddd;
   padding: 10px;
+}
+
+.form-container input[type="number"] {
+  display: inline-block;
+  width: unset;
 }
 .form-container button{
   border: none;
