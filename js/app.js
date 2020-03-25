@@ -4,6 +4,19 @@ const pageContainerEl = document.querySelector('.page');
 const textareaEl = document.querySelector('.page > .textarea');
 const overlayEl = document.querySelector('.page > .textarea > .overlay');
 
+function readFile(fileObj) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    const newFont = new FontFace('temp-font', e.target.result);
+    newFont.load()
+      .then(loadedFace => {
+        document.fonts.add(loadedFace);
+        textareaEl.style.fontFamily = 'temp-font';
+      })
+  }
+  reader.readAsArrayBuffer(fileObj)
+}
+
 
 function applyPaperStyles() {
   overlayEl.style.display = 'block';
@@ -43,7 +56,10 @@ async function generateImage() {
 
   // Now remove styles to get textarea back to normal
   removePaperStyles();
-  smoothlyScrollTo('#output');
+
+  if(isMobile) {
+    smoothlyScrollTo('#output');
+  }
 }
 
 
@@ -54,6 +70,22 @@ document.querySelector('select#handwriting-font').addEventListener('change', e =
 
 document.querySelector('select#ink-color').addEventListener('change', e => {
   textareaEl.style.color = e.target.value;
+})
+
+document.querySelector('input#font-size').addEventListener('change', e => {
+  textareaEl.style.fontSize = e.target.value + 'pt';
+})
+
+document.querySelector('input#top-padding').addEventListener('change', e => {
+  textareaEl.style.paddingTop = e.target.value + 'px';
+})
+
+document.querySelector('input#word-spacing').addEventListener('change', e => {
+  textareaEl.style.wordSpacing = e.target.value + 'px';
+})
+
+document.querySelector('#font-file').addEventListener('change', e => {
+  readFile(e.target.files[0])
 })
 
 document.querySelector('.generate-image').addEventListener('click', generateImage)
