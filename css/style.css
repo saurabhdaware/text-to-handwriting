@@ -1,3 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+html, body{
+  margin: 0px;
+  width: 100%;
+  overflow-x: hidden;
+}
 .page{
   padding: 10px;
   position:relative;
@@ -13,7 +21,6 @@
   will-change: transform, background-color, box-shadow;
   transform-origin: 0% 50%;
   transform-style: preserve-3d;
-  transition: all .7s ease;
   transition-property: transform, background-color,box-shadow;
 }
 .paper{
@@ -74,6 +81,9 @@
   .row{display: block;}
   .output{
     margin-top: 20px;
+  }
+  .page{
+    transform: scale(0.6);
   }
   img{
     width: 300px;

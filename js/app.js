@@ -1,18 +1,38 @@
-async function generateImage() {
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+function applyPaperStyles() {
   document.querySelector('.overlay').style.display = 'block';
   document.querySelector('.paper').classList.remove('paper-holder');
+  if(isMobile) {
+    document.querySelector('.page').style.transform = 'scale(1)';
+  }
+}
+
+function removePaperStyles() {
+  document.querySelector('.overlay').style.display = 'none';
+  document.querySelector('.paper').classList.add('paper-holder');
+  if(isMobile) {
+    document.querySelector('.page').style.transform = 'scale(0.6)';
+  }
+}
+
+
+async function generateImage() {
+  // apply extra styles to textarea to make it look like paper
+  applyPaperStyles();
 
   const canvas = await html2canvas(document.querySelector(".page"), {
       scrollX: 0,
       scrollY: -window.scrollY
-  })
+    })
   
   document.querySelector('.output').innerHTML = '';
   const img = document.createElement('img');
   img.src = canvas.toDataURL("image/jpeg");
   document.querySelector('.output').appendChild(img);
-  document.querySelector('.paper').classList.add('paper-holder');
-  document.querySelector('.overlay').style.display = 'none';
+
+  // Now remove styles to get textarea back to normal
+  removePaperStyles();
   location.href = '#output';
 }
 
