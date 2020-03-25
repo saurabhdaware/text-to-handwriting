@@ -1,18 +1,23 @@
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
+const pageContainerEl = document.querySelector('.page');
+const textareaEl = document.querySelector('.page > .textarea');
+const overlayEl = document.querySelector('.page > .textarea > .overlay');
+
+
 function applyPaperStyles() {
-  document.querySelector('.overlay').style.display = 'block';
-  document.querySelector('.paper').classList.remove('paper-holder');
+  overlayEl.style.display = 'block';
+  textareaEl.classList.add('paper');
   if(isMobile) {
-    document.querySelector('.page').style.transform = 'scale(1)';
+    pageContainerEl.style.transform = 'scale(1)';
   }
 }
 
 function removePaperStyles() {
-  document.querySelector('.overlay').style.display = 'none';
-  document.querySelector('.paper').classList.add('paper-holder');
+  overlayEl.style.display = 'none';
+  textareaEl.classList.remove('paper');
   if(isMobile) {
-    document.querySelector('.page').style.transform = 'scale(0.6)';
+    pageContainerEl.style.transform = 'scale(0.6)';
   }
 }
 
@@ -21,29 +26,54 @@ async function generateImage() {
   // apply extra styles to textarea to make it look like paper
   applyPaperStyles();
 
-  const canvas = await html2canvas(document.querySelector(".page"), {
-      scrollX: 0,
-      scrollY: -window.scrollY
-    })
-  
-  document.querySelector('.output').innerHTML = '';
-  const img = document.createElement('img');
-  img.src = canvas.toDataURL("image/jpeg");
-  document.querySelector('.output').appendChild(img);
+  try{
+    const canvas = await html2canvas(document.querySelector(".page"), {
+        scrollX: 0,
+        scrollY: -window.scrollY
+      })
+    
+    document.querySelector('.output').innerHTML = '';
+    const img = document.createElement('img');
+    img.src = canvas.toDataURL("image/jpeg");
+    document.querySelector('.output').appendChild(img);
+  }catch(err) {
+    alert("Something went wrong :(");
+    console.error(err);
+  }
 
   // Now remove styles to get textarea back to normal
   removePaperStyles();
-  location.href = '#output';
+  smoothlyScrollTo('#output');
 }
 
 
 
-document.querySelector('#handwriting-font').addEventListener('change', e => {
-  document.querySelector('.paper').style.fontFamily = e.target.value;
+document.querySelector('select#handwriting-font').addEventListener('change', e => {
+  textareaEl.style.fontFamily = e.target.value;
 })
 
-document.querySelector('#ink-color').addEventListener('change', e => {
-  document.querySelector('.paper').style.color = e.target.value;
+document.querySelector('select#ink-color').addEventListener('change', e => {
+  textareaEl.style.color = e.target.value;
 })
 
 document.querySelector('.generate-image').addEventListener('click', generateImage)
+
+
+function smoothlyScrollTo(hashval) {
+  let target = document.querySelector(hashval)
+  target.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  })
+  history.pushState(null, null, hashval)
+}
+// Smooth scroll
+const anchorlinks = document.querySelectorAll('a[href^="#"]');
+
+for (let item of anchorlinks) { // relitere 
+  item.addEventListener('click', (e)=> {
+    let hashval = item.getAttribute('href')
+    smoothlyScrollTo(hashval);
+    e.preventDefault()
+  })
+}

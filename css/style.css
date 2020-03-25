@@ -6,6 +6,8 @@ html, body{
   width: 100%;
   overflow-x: hidden;
 }
+
+
 .page{
   padding: 10px;
   position:relative;
@@ -25,6 +27,14 @@ html, body{
 }
 .paper{
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
+  background-color: unset !important;
+  line-height: 1.5em;
+  background-size: 100% 1.5em;
+  padding: unset;
+}
+
+.textarea{
+  background-color: #fff;
   height: 100%;
   top: 0;left:0;
   outline:none;
@@ -32,13 +42,6 @@ html, body{
   color: #000F55;
   padding-top: 0px;
   line-height: 1.5em;
-  background-size: 100% 1.5em;
-  padding: unset;
-}
-.paper-holder{
-  background-size: unset;
-  background-color: #fff;
-  background-image: none;
   box-sizing: border-box;
 }
 .overlay{
