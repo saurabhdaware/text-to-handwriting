@@ -11,6 +11,11 @@ Also, I am trying to make this look more realisic and if you can help with it, d
 ## This is how output looks currently
 ![Sample image of output](sample.jpeg)
 
+
+## Contributing
+
+Checkout [Contribution Guide](CONTRIBUTING.md) for local setup and contribution guide.
+
 ---
 bye!
 Have fun 🦄

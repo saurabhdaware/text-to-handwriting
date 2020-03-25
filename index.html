@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Txt to Handwriting</title>
   <link href="https://fonts.googleapis.com/css?family=Caveat|Homemade+Apple|Liu+Jian+Mao+Cao&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <main class="form-container">
@@ -43,34 +43,6 @@
     </div>
   </main>
   <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-  <script>
-    document.querySelector('#handwriting-font').addEventListener('change', e => {
-      document.querySelector('.paper').style.fontFamily = e.target.value;
-    })
-
-    document.querySelector('#ink-color').addEventListener('change', e => {
-      document.querySelector('.paper').style.color = e.target.value;
-    })
-
-    document.querySelector('.generate-image').addEventListener('click', e => {
-      document.querySelector('.overlay').style.display = 'block';
-      document.querySelector('.paper').classList.remove('paper-holder');
-
-      html2canvas(document.querySelector(".page"), {
-          scrollX: 0,
-          scrollY: -window.scrollY
-      })
-      .then(canvas => {
-        document.querySelector('.output').innerHTML = '';
-        
-        const img = document.createElement('img');
-        img.src = canvas.toDataURL("image/jpeg");
-        document.querySelector('.output').appendChild(img);
-        document.querySelector('.paper').classList.add('paper-holder');
-        document.querySelector('.overlay').style.display = 'none';
-        location.href = '#output';
-      });
-    })
-  </script>
+  <script src="js/app.js"></script>
 </body>
 </html>
