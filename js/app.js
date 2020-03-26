@@ -19,6 +19,8 @@ function readFile(fileObj) {
 
 
 function applyPaperStyles() {
+  pageContainerEl.style.border = '1px solid #ccc';
+  pageContainerEl.style.background = 'linear-gradient(to right,#eee, #ddd)';
   overlayEl.style.display = 'block';
   textareaEl.classList.add('paper');
   if(isMobile) {
@@ -27,6 +29,8 @@ function applyPaperStyles() {
 }
 
 function removePaperStyles() {
+  pageContainerEl.style.border = '1px solid #ccc';
+  pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
   if(isMobile) {

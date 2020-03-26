@@ -17,8 +17,9 @@ html, body{
 .page{
   padding: 10px;
   position:relative;
-  background: linear-gradient(to right,#eee, #ddd);
-  padding:14px 15px;
+  background: linear-gradient(to right,#fff, #fff);
+  padding:15px;
+  border: 1px solid #ccc;
   top: 0px;
   margin:0px 8px 0px 0px;
   transform: rotateY(-5deg);
