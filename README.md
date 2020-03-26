@@ -6,7 +6,7 @@ I hate writing assignments so I made this tool that converts text to an image th
 
 **Link:** https://saurabhdaware.github.io/text-to-handwriting/
 
-Also, I am trying to make this look more realisic and if you can help with it, do contribute 🌻
+Also, I am trying to make this look more realistic and I would love to have people contribute in it🌻
 
 ## This is how output will look
 ![Sample image of output](sample.jpeg)
