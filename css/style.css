@@ -9,6 +9,10 @@ html, body{
   color: #333;
 }
 
+/* @font-face {
+  font-family: 'sa';
+  src: url('../fonts/Saurabh-Regular.ttf');
+} */
 
 .page{
   padding: 10px;
@@ -45,7 +49,6 @@ html, body{
   padding-top: 0px;
   line-height: 1.5em;
   box-sizing: border-box;
-  letter-spacing: unset !important;
   word-spacing: 3px;
 }
 .overlay{
