@@ -24,9 +24,6 @@ function applyPaperStyles() {
   overlayEl.style.background = `linear-gradient(${Math.random()*360}deg, #0008, #0000)`
   overlayEl.style.display = 'block';
   textareaEl.classList.add('paper');
-  // if(isMobile) {
-  //   pageContainerEl.style.transform = 'scale(1)';
-  // }
 }
 
 // applyPaperStyles();
@@ -36,9 +33,6 @@ function removePaperStyles() {
   pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
-  // if(isMobile) {
-  //   pageContainerEl.style.transform = 'scale(0.6)';
-  // }
 }
 
 
@@ -74,19 +68,6 @@ async function generateImage() {
     smoothlyScrollTo('#output');
   }
 }
-
-// function strip(html){
-//   html = html.replace(/<style([\s\S]*?)<\/style>/gi, '');
-//   html = html.replace(/<script([\s\S]*?)<\/script>/gi, '');
-//   html = html.replace(/<\/div>/ig, '\n');
-//   html = html.replace(/<\/li>/ig, '\n');
-//   html = html.replace(/<li>/ig, '  *  ');
-//   html = html.replace(/<\/ul>/ig, '\n');
-//   html = html.replace(/<\/p>/ig, '\n');
-//   html = html.replace(/<br\s*[\/]?>/gi, "\n");
-//   html = html.replace(/<[^>]+>/ig, '');
-//   }
-
 
 // Convert copied text to plaintext
 document.querySelector("#note").addEventListener('paste', (event) => {
