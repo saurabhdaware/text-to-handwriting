@@ -2,7 +2,7 @@ const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 const pageContainerEl = document.querySelector('.page');
 const textareaEl = document.querySelector('.page > .textarea');
-const overlayEl = document.querySelector('.page > .textarea > .overlay');
+const overlayEl = document.querySelector('.page > .overlay');
 
 function readFile(fileObj) {
   const reader = new FileReader();
@@ -19,23 +19,26 @@ function readFile(fileObj) {
 
 
 function applyPaperStyles() {
-  pageContainerEl.style.border = '1px solid #ccc';
+  pageContainerEl.style.border = 'none';
   pageContainerEl.style.background = 'linear-gradient(to right,#eee, #ddd)';
+  overlayEl.style.background = `linear-gradient(${Math.random()*360}deg, #0008, #0000)`
   overlayEl.style.display = 'block';
   textareaEl.classList.add('paper');
-  if(isMobile) {
-    pageContainerEl.style.transform = 'scale(1)';
-  }
+  // if(isMobile) {
+  //   pageContainerEl.style.transform = 'scale(1)';
+  // }
 }
+
+// applyPaperStyles();
 
 function removePaperStyles() {
   pageContainerEl.style.border = '1px solid #ccc';
   pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
-  if(isMobile) {
-    pageContainerEl.style.transform = 'scale(0.6)';
-  }
+  // if(isMobile) {
+  //   pageContainerEl.style.transform = 'scale(0.6)';
+  // }
 }
 
 
@@ -53,6 +56,12 @@ async function generateImage() {
     const img = document.createElement('img');
     img.src = canvas.toDataURL("image/jpeg");
     document.querySelector('.output').appendChild(img);
+
+    document.querySelectorAll('a.download-button').forEach(a => {
+      a.href = img.src;
+      a.download = 'assignment';
+      a.classList.remove('disabled');
+    })
   }catch(err) {
     alert("Something went wrong :(");
     console.error(err);
@@ -110,6 +119,10 @@ document.querySelector('input#word-spacing').addEventListener('change', e => {
 
 document.querySelector('#font-file').addEventListener('change', e => {
   readFile(e.target.files[0])
+})
+
+document.querySelector('#paper-margin-toggle').addEventListener('change', e => {
+  document.querySelector('.page').classList.toggle('margined-page');
 })
 
 document.querySelector('.generate-image').addEventListener('click', generateImage)

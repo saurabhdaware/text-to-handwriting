@@ -18,19 +18,15 @@ html, body{
   padding: 10px;
   position:relative;
   background: linear-gradient(to right,#fff, #fff);
-  padding:15px;
+  padding:0px;
   border: 1px solid #ccc;
   top: 0px;
   margin:0px 8px 0px 0px;
-  transform: rotateY(-5deg);
+  transform: rotateZ(0deg);
   width:500px;
   display: inline-block;
   /* height: 600px; */
   box-sizing: border-box;
-  will-change: transform, background-color, box-shadow;
-  transform-origin: 0% 50%;
-  transform-style: preserve-3d;
-  transition-property: transform, background-color,box-shadow;
 }
 .paper{
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
@@ -51,6 +47,7 @@ html, body{
   line-height: 1.5em;
   box-sizing: border-box;
   word-spacing: 3px;
+  position: relative;
 }
 .overlay{
   position: absolute;
@@ -58,8 +55,72 @@ html, body{
   height: 100%;
   width: 100%;
   display: none;
-  background-image: linear-gradient(to right, #0007, #0001);
+  background-image: linear-gradient(10deg, #0008, #0000);
 }
+.page:not(.margined-page){
+  padding: 15px;
+}
+.page:not(.margined-page) .paper-content{
+  padding: 0px;
+}
+/* Page with margin */
+.margined-page{
+  width: 550px;
+  height: 700px;
+  overflow: hidden;
+}
+
+.paper-margin-left-line{
+  display: none;
+}
+.paper-margin-top-line{
+  display: none;
+}
+
+.margined-page .paper-margin-left-line{
+  display: inline-block;
+  width: 80px;
+  border-right: 2px solid pink;
+  height: 200%;
+  top: -100%;
+  position: relative;
+}
+
+.margined-page .paper-margin-top-line{
+  display: block;
+  color: #000F55;
+  font-family: 'Homemade Apple', cursive;
+  width: 100%;
+  border-bottom: 2px solid pink;
+  height: 80px;
+}
+.date-container{
+  padding: 10px;
+  border: 1px solid #d68f9b;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10pt;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.margined-page .paper-content{
+  position: relative;
+  top: 0px;
+  left: 0px;
+  flex: 1;
+  padding-left: 10px;
+  display: inline-block;
+  top: 0px;
+}
+
+.margined-page .textarea{
+  height: calc(100% - 80px);
+}
+
+
+
+
 .row{
   display: flex;
 }
@@ -69,6 +130,7 @@ html, body{
 .form-container{
   padding: 60px 100px;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-y: hidden;
 }
 .form-container label{
   font-weight: bold;
@@ -94,18 +156,95 @@ html, body{
   font-weight: bold;
   cursor: pointer;
 }
+
+/* Switch */
+.switch-toggle {
+	position: relative;
+  display: block;
+  margin-top: 6px;
+  cursor: pointer;
+	width: 40px;
+	height: 20px;
+	border-radius: 25px;
+	background-color: #eee;
+}
+
+.switch-toggle input {
+	display: none;
+}
+
+.switch-toggle div {
+	position: absolute;
+	border-radius: 50%;
+	background-color: #DFDFDF;
+	transition: .1s ease;
+}
+
+.switch-toggle input:checked + div {
+	left: 50%;
+	background-color: #09f;
+}
+
+.switch-toggle.rect {
+	border-radius: 0;
+}
+
+.switch-toggle.rect div {
+	border-radius: 0;
+}
+
+.switch-toggle.inner div {
+	width: 18px;
+	height: 18px;
+	top: 1px;
+	left: 1px;
+	
+}
+
+.switch-toggle.outer div {
+	width: 23px;
+	height: 23px;
+	top: -1.5px;
+	left: -1.5px;
+	
+}
+.download-button{
+  display: inline-block;
+  text-decoration: none;
+  background-color: #09f;
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 10pt;
+}
+.disabled{
+  cursor: not-allowed !important;
+  opacity: .5;
+}
+.hide-pc{
+  display: none;
+}
+.hide-mobile{
+  display: initial;
+}
 @media (max-width: 768px){
-  .row{display: block;}
+  .row.responsive-row{display: block;}
   .output{
     margin-top: 20px;
   }
-  .page{
-    transform: scale(0.6);
+  .output-grid .col:first-child{
+    overflow-x: scroll;
   }
   img{
-    width: 300px;
+    width: 100%;
+  }
+  .hide-pc{
+    display: initial;
   }
   .form-container{
     padding: 40px 10px;
+  }
+  .hide-mobile{
+    display: none;
   }
 }
