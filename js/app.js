@@ -56,6 +56,12 @@ async function generateImage() {
     const img = document.createElement('img');
     img.src = canvas.toDataURL("image/jpeg");
     document.querySelector('.output').appendChild(img);
+
+    document.querySelectorAll('a.download-button').forEach(a => {
+      a.href = img.src;
+      a.download = 'assignment';
+      a.classList.remove('disabled');
+    })
   }catch(err) {
     alert("Something went wrong :(");
     console.error(err);

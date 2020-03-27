@@ -65,7 +65,7 @@ html, body{
 }
 /* Page with margin */
 .margined-page{
-  width: 600px;
+  width: 550px;
   height: 700px;
   overflow: hidden;
 }
@@ -208,6 +208,25 @@ html, body{
 	left: -1.5px;
 	
 }
+.download-button{
+  display: inline-block;
+  text-decoration: none;
+  background-color: #09f;
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 10pt;
+}
+.disabled{
+  cursor: not-allowed !important;
+  opacity: .5;
+}
+.hide-pc{
+  display: none;
+}
+.hide-mobile{
+  display: initial;
+}
 @media (max-width: 768px){
   .row.responsive-row{display: block;}
   .output{
@@ -219,7 +238,13 @@ html, body{
   img{
     width: 100%;
   }
+  .hide-pc{
+    display: initial;
+  }
   .form-container{
     padding: 40px 10px;
+  }
+  .hide-mobile{
+    display: none;
   }
 }
