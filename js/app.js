@@ -106,6 +106,8 @@ document.querySelector('#paper-margin-toggle').addEventListener('change', e => {
   document.querySelector('.page').classList.toggle('margined-page');
 })
 
+document.querySelector('#year').innerHTML = new Date().getFullYear();
+
 document.querySelector('.generate-image').addEventListener('click', generateImage)
 
 
