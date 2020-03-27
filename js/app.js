@@ -75,6 +75,26 @@ async function generateImage() {
   }
 }
 
+// function strip(html){
+//   html = html.replace(/<style([\s\S]*?)<\/style>/gi, '');
+//   html = html.replace(/<script([\s\S]*?)<\/script>/gi, '');
+//   html = html.replace(/<\/div>/ig, '\n');
+//   html = html.replace(/<\/li>/ig, '\n');
+//   html = html.replace(/<li>/ig, '  *  ');
+//   html = html.replace(/<\/ul>/ig, '\n');
+//   html = html.replace(/<\/p>/ig, '\n');
+//   html = html.replace(/<br\s*[\/]?>/gi, "\n");
+//   html = html.replace(/<[^>]+>/ig, '');
+//   }
+
+
+// Convert copied text to plaintext
+document.querySelector("#note").addEventListener('paste', (event) => {
+  event.preventDefault();
+  var text = event.clipboardData.getData("text/plain");
+  document.execCommand("insertHTML", false, text);
+})
+
 
 
 document.querySelector('select#handwriting-font').addEventListener('change', e => {
