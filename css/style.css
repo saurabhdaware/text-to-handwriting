@@ -25,7 +25,7 @@ html, body{
   transform: rotateY(-5deg);
   width:500px;
   display: inline-block;
-  height: 600px;
+  /* height: 600px; */
   box-sizing: border-box;
   will-change: transform, background-color, box-shadow;
   transform-origin: 0% 50%;
