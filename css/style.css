@@ -25,7 +25,7 @@ html, body{
   transform: rotateZ(0deg);
   width:500px;
   display: inline-block;
-  /* height: 600px; */
+  height: 600px;
   box-sizing: border-box;
 }
 .paper{
