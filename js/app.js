@@ -71,9 +71,11 @@ async function generateImage() {
 
 // Convert copied text to plaintext
 document.querySelector("#note").addEventListener('paste', (event) => {
-  event.preventDefault();
-  var text = event.clipboardData.getData("text/plain");
-  document.execCommand("insertHTML", false, text);
+  if(!event.clipboardData.types.includes('Files')) {
+    event.preventDefault();
+    var text = event.clipboardData.getData("text/plain");
+    document.execCommand("insertHTML", false, text);
+  }
 })
 
 
