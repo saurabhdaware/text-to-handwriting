@@ -5,7 +5,7 @@
 
 </p>
 
-## 🌠 This is how output will look
+## 🌠 Output
 ![Sample image of output](sample.jpeg)
 
 
