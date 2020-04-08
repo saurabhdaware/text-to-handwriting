@@ -208,7 +208,7 @@ html, body{
 	left: -1.5px;
 	
 }
-.download-button{
+.blue-button{
   display: inline-block;
   text-decoration: none;
   background-color: #09f;
@@ -216,7 +216,9 @@ html, body{
   padding: 10px 15px;
   font-weight: bold;
   font-size: 10pt;
+  cursor: pointer;
 }
+
 .disabled{
   cursor: not-allowed !important;
   opacity: .5;
@@ -226,6 +228,22 @@ html, body{
 }
 .hide-mobile{
   display: initial;
+}
+
+.output-container{
+  position: relative;
+}
+.output-options{
+  position: absolute;
+  top:10px;
+  left: 0px;
+  width: 100%;
+  color: #fff;
+  display: none;
+}
+
+.output-container:hover .output-options{
+  display: block;
 }
 @media (max-width: 768px){
   .row.responsive-row{display: block;}

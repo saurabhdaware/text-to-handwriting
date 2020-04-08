@@ -28,12 +28,12 @@ async function generateImage() {
       })
     
     document.querySelector('.output').innerHTML = '';
-    const img = document.createElement('img');
-    img.src = canvas.toDataURL("image/jpeg");
-    document.querySelector('.output').appendChild(img);
+    // const img = document.createElement('img');
+    // img.src = canvas.toDataURL("image/jpeg");
+    document.querySelector('.output').appendChild(canvas);
 
     document.querySelectorAll('a.download-button').forEach(a => {
-      a.href = img.src;
+      a.href = canvas.toDataURL('image/jpeg');
       a.download = 'assignment';
       a.classList.remove('disabled');
     })

@@ -56,16 +56,11 @@
     </div>
     <br/>
     <button class="generate-image">Generate Image</button>
-    <a class="download-button disabled hide-mobile">Download Image</a> <br/>
-    * After clicking generate image button, right click image and click save image or download image to download<br><br>
     
     <div class="row output-grid responsive-row">
       <div class="col">
         <div class="page">
           <div class="paper-margin-top-line" contenteditable="true">
-            <!-- <span class="date-container">
-              Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </span> -->
           </div>
           <div class="textarea row">
             <div class="paper-margin-left-line"></div>
@@ -78,12 +73,15 @@
           <div class="overlay"></div>
         </div>
       </div>
-  
-      <div id="output" class="col output">
-        
+      <div class="col output-container">
+        <div id="output" class="output"></div>
+        <div class="output-options">
+          <a class="blue-button download-button disabled hide-mobile">Download Image</a>
+          <a class="blue-button hide-mobile">Draw over Image</a>
+        </div>
       </div>
     </div>
-    <br/><a class="download-button disabled hide-pc">Download Image</a> <br/>
+    <br/><a class="blue-button download-button disabled hide-pc">Download Image</a> <br/>
     <div class="guide" id="how-to-add-handwriting">
       <h2>How to add your own handwriting?</h2>
       <ul>
