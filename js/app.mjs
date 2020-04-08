@@ -8,13 +8,13 @@ import {
 const textareaEl = document.querySelector('.page > .textarea');
 
 /**
- * f generateImage() Algorithm:
- * 
- * 1. Apply CSS Styles that make text field look like paper
- * 2. Use html2canvas library to turn the HTML DOM to Canvas 
- * 3. Get image out of canvas and render new <img> tag
- * 4. Enable download image buttons
- * 5. Remove the previously applied CSS Styles.
+ * @method generateImage()
+ * @description
+ *    1. Apply CSS Styles that make text field look like paper
+ *    2. Use html2canvas library to turn the HTML DOM to Canvas 
+ *    3. Get image out of canvas and render new <img> tag
+ *    4. Enable download image buttons
+ *    5. Remove the previously applied CSS Styles.
  */
 async function generateImage() {
   // apply extra styles to textarea to make it look like paper
