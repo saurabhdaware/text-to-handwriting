@@ -16,7 +16,6 @@ const textareaEl = document.querySelector('.page > .textarea');
  * 4. Enable download image buttons
  * 5. Remove the previously applied CSS Styles.
  */
-
 async function generateImage() {
   // apply extra styles to textarea to make it look like paper
   applyPaperStyles();
