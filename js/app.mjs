@@ -14,6 +14,13 @@ import {
 
 const textareaEl = document.querySelector('.page > .textarea');
 
+
+function draw() {
+  document.querySelector('#draw-container').classList.add('show');
+  console.log("lets draw!!");
+}
+
+
 /**
  * @method generateImage()
  * @description
@@ -34,12 +41,12 @@ async function generateImage() {
       })
     
     document.querySelector('.output').innerHTML = '';
-    // const img = document.createElement('img');
-    // img.src = canvas.toDataURL("image/jpeg");
-    document.querySelector('.output').appendChild(canvas);
+    const img = document.createElement('img');
+    img.src = canvas.toDataURL("image/jpeg");
+    document.querySelector('.output').appendChild(img);
 
     document.querySelectorAll('a.download-button').forEach(a => {
-      a.href = canvas.toDataURL('image/jpeg');
+      a.href = img.src;
       a.download = 'assignment';
       a.classList.remove('disabled');
     })
@@ -96,9 +103,12 @@ document.querySelector('#paper-margin-toggle')
   )
 
 
-// Generate Image button click listener.
-document.querySelector('.generate-image')
-  .addEventListener('click', generateImage)
+// Generate image on form submit
+document.querySelector('form#generate-image-form')
+  .addEventListener('submit', e => {
+    e.preventDefault(); // prevents reloading
+    generateImage();
+  })
 
 
 /***
