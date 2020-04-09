@@ -5,19 +5,20 @@ import {
   addFontFromFile
 } from './helpers.mjs'
 
-/**
- * @todo
- * 1. Draw button
- * 2. Opens a draw window where you can draw and add that as image in page
- * 3. DONE! PARTY! Dhanak tatar dhanak tatar
- */
 
 const textareaEl = document.querySelector('.page > .textarea');
 
 
-function draw() {
-  document.querySelector('#draw-container').classList.add('show');
-  console.log("lets draw!!");
+function toggleDrawCanvas() {
+  const drawContainer = document.querySelector('.draw-container');
+  if(drawContainer.classList.contains('show')) {
+    // draw canvas is currently shown
+    document.querySelector('.form-container').style.filter = 'blur(0px)';
+  } else {
+    document.querySelector('.form-container').style.filter = 'blur(3px)';
+  }
+
+  drawContainer.classList.toggle('show');
 }
 
 
@@ -102,6 +103,11 @@ document.querySelector('#paper-margin-toggle')
     document.querySelector('.page').classList.toggle('margined-page')
   )
 
+document.querySelector('button#draw-diagram-button')
+  .addEventListener('click', toggleDrawCanvas)
+
+document.querySelector('.draw-container .close-button')
+  .addEventListener('click', toggleDrawCanvas)
 
 // Generate image on form submit
 document.querySelector('form#generate-image-form')

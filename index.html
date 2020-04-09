@@ -26,7 +26,9 @@
 </head>
 <body>
   <main class="form-container">
-    <h1>Text to Handwriting</h1><br/><br/>
+    <h1 style="margin-bottom: 7px;">Text to Handwriting</h1>
+    <img src="https://img.shields.io/github/package-json/v/saurabhdaware/text-to-handwriting?style=flat-square" />
+    <br/><br/>
     <section>
       <form id="generate-image-form">
         <label for="handwriting-font">Handwriting Font</label>
@@ -74,7 +76,9 @@
           </div>
         </div>
         <br/>
-        <button type="submit" class="generate-image">Generate Image</button>
+        <button type="button" style="background-color: #444;" id="draw-diagram-button">Draw Diagrams</button>
+        <button type="submit" class="generate-image">Generate Image</button> 
+        <br/><br/>
       </form>
       <div class="row output-grid responsive-row">
         <div class="col">
@@ -83,7 +87,7 @@
             </div>
             <div class="textarea row">
               <div class="paper-margin-left-line"></div>
-              <div class="paper-content" id="note" contenteditable="true">
+              <div class="paper-content" id="note" contenteditable="true" autofocus>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis. Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque sed tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu urna.
     
                 empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue. Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
@@ -94,9 +98,8 @@
         </div>
         <div class="col output-container">
           <div id="output" class="output"></div>
-          <div class="output-options">
+          <div style="text-align: center;padding-top: 20px;">
             <a class="blue-button download-button disabled hide-mobile">Download Image</a>
-            <a class="blue-button hide-mobile">Draw over Image</a>
           </div>
         </div>
       </div>
@@ -118,7 +121,15 @@
 
   <!-- Fixed Elements -->
   <section class="draw-container">
-
+    <button class="close-button">&times;</button>
+    <div class="row">
+      <canvas id="diagram-canvas" style="background-color: #fff;" height="300px" width="600px"></canvas>
+      <div class="col buttons-container">
+        <button class="blue-button" style="border: none;">Add to Paper</button>
+        <button class="blue-button" style="border: none;">Copy Image</button>
+        <button class="blue-button" style="border: none;">Download Image</button>
+      </div>
+    </div>
   </section>
   <!-- GitHub Corner logo -->
   <a href="https://github.com/saurabhdaware/text-to-handwriting" target="_blank" class="github-corner" aria-label="View source on GitHub">
