@@ -5,21 +5,12 @@ import {
   addFontFromFile
 } from './helpers.mjs'
 
+import {
+  setInkColor, 
+  toggleDrawCanvas
+} from './draw.mjs';
 
 const textareaEl = document.querySelector('.page > .textarea');
-
-
-function toggleDrawCanvas() {
-  const drawContainer = document.querySelector('.draw-container');
-  if(drawContainer.classList.contains('show')) {
-    // draw canvas is currently shown
-    document.querySelector('.form-container').style.filter = 'blur(0px)';
-  } else {
-    document.querySelector('.form-container').style.filter = 'blur(3px)';
-  }
-
-  drawContainer.classList.toggle('show');
-}
 
 
 /**
@@ -82,7 +73,10 @@ document.querySelector('select#handwriting-font')
   .addEventListener('change', e => textareaEl.style.fontFamily = e.target.value)
 
 document.querySelector('select#ink-color')
-  .addEventListener('change', e => textareaEl.style.color = e.target.value)
+  .addEventListener('change', e => {
+    textareaEl.style.color = e.target.value;
+    setInkColor(e.target.value);
+  })
 
 document.querySelector('input#font-size')
   .addEventListener('change', e => textareaEl.style.fontSize = e.target.value + 'pt')
