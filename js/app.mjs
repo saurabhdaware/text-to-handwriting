@@ -5,7 +5,13 @@ import {
   addFontFromFile
 } from './helpers.mjs'
 
+import {
+  setInkColor, 
+  toggleDrawCanvas
+} from './draw.mjs';
+
 const textareaEl = document.querySelector('.page > .textarea');
+
 
 /**
  * @method generateImage()
@@ -67,7 +73,10 @@ document.querySelector('select#handwriting-font')
   .addEventListener('change', e => textareaEl.style.fontFamily = e.target.value)
 
 document.querySelector('select#ink-color')
-  .addEventListener('change', e => textareaEl.style.color = e.target.value)
+  .addEventListener('change', e => {
+    textareaEl.style.color = e.target.value;
+    setInkColor(e.target.value);
+  })
 
 document.querySelector('input#font-size')
   .addEventListener('change', e => textareaEl.style.fontSize = e.target.value + 'pt')
@@ -88,10 +97,18 @@ document.querySelector('#paper-margin-toggle')
     document.querySelector('.page').classList.toggle('margined-page')
   )
 
+document.querySelector('button#draw-diagram-button')
+  .addEventListener('click', toggleDrawCanvas)
 
-// Generate Image button click listener.
-document.querySelector('.generate-image')
-  .addEventListener('click', generateImage)
+document.querySelector('.draw-container .close-button')
+  .addEventListener('click', toggleDrawCanvas)
+
+// Generate image on form submit
+document.querySelector('form#generate-image-form')
+  .addEventListener('submit', e => {
+    e.preventDefault(); // prevents reloading
+    generateImage();
+  })
 
 
 /***

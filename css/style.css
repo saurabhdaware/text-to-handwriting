@@ -208,7 +208,7 @@ html, body{
 	left: -1.5px;
 	
 }
-.download-button{
+.blue-button{
   display: inline-block;
   text-decoration: none;
   background-color: #09f;
@@ -216,6 +216,10 @@ html, body{
   padding: 10px 15px;
   font-weight: bold;
   font-size: 10pt;
+  cursor: pointer;
+}
+.download-button.disabled{
+  opacity: 0 !important;
 }
 .disabled{
   cursor: not-allowed !important;
@@ -227,6 +231,14 @@ html, body{
 .hide-mobile{
   display: initial;
 }
+
+.output-container{
+  position: relative;
+}
+
+
+.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
+
 @media (max-width: 768px){
   .row.responsive-row{display: block;}
   .output{
@@ -235,7 +247,7 @@ html, body{
   .output-grid .col:first-child{
     overflow-x: scroll;
   }
-  img{
+  .output img{
     width: 100%;
   }
   .hide-pc{
@@ -246,5 +258,69 @@ html, body{
   }
   .hide-mobile{
     display: none;
+  }
+}
+
+
+/* DRAW  */
+.draw-container{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000d;
+  z-index: 10;
+  color: #ddd;
+  padding: 100px;
+  display: none;
+}
+
+.draw-container.show{
+  display: block;
+}
+
+.draw-container .close-button{
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  padding: 20px 30px;
+  cursor: pointer;
+  color: #ddd;
+  background-color:transparent;
+  border: none;
+  font-size: 50pt;
+  font-weight: bold;
+}
+.draw-container .close-button:hover{
+  color: #fff;
+  transition: color .5s ease;
+}
+#diagram-canvas{
+  cursor: url('../images/favicon-32x32.png'), crosshair;
+}
+.draw-container .buttons-container > .blue-button{
+  display: block;
+  margin-bottom: 6px;
+  width: 150px;
+} 
+.buttons-container{
+  padding: 0px 20px;
+}
+
+@media (max-width: 768px) {
+  .draw-container{
+    padding: 100px 10px;
+  }
+  .buttons-container{
+    padding: 0px 0px;
+  }
+
+  .draw-container .close-button{
+    font-size: 30pt;
+  }
+
+  .draw-container .buttons-container > .blue-button{
+    display: inline-block;
   }
 }
