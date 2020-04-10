@@ -27,7 +27,7 @@
 <body>
   <main class="form-container">
     <h1 style="margin-bottom: 7px;">Text to Handwriting</h1>
-    <img src="https://img.shields.io/github/package-json/v/saurabhdaware/text-to-handwriting?style=flat-square" />
+    <img width="100" src="https://img.shields.io/github/package-json/v/saurabhdaware/text-to-handwriting?style=flat-square" />
     <br/><br/>
     <section>
       <form id="generate-image-form">
@@ -40,7 +40,7 @@
 
         <br>or<br><br>
 
-        <label for="font-file">Upload your handwriting font (BETA) <small>(<a target="_blank" rel="noopener noreferer" href="#how-to-add-handwriting">Guide to create font from your handwriting</a>)</small></label>
+        <label for="font-file">Upload your handwriting font <small>(Beta) (<a target="_blank" rel="noopener noreferer" href="#how-to-add-handwriting">Guide to create font from your handwriting</a>)</small></label>
         <input type="file" id="font-file" />
         <br>
         
@@ -76,7 +76,7 @@
           </div>
         </div>
         <br/>
-        <button type="button" style="background-color: #444;" id="draw-diagram-button">Draw Diagrams</button>
+        <button type="button" style="background-color: #444;" id="draw-diagram-button">Draw Diagram <small>(Beta)</small></button><br/><br/>
         <button type="submit" class="generate-image">Generate Image</button> 
         <br/><br/>
       </form>
@@ -122,13 +122,13 @@
   <!-- Fixed Elements -->
   <section class="draw-container">
     <button class="close-button">&times;</button>
-    <div class="row">
+    <div class="row responsive-row">
       <canvas id="diagram-canvas" style="background-color: #fff;" height="300px" width="600px"></canvas>
       <div class="col buttons-container">
         <button class="blue-button" id="add-to-paper-button" style="border: none;">Add to Paper</button>
         <button class="blue-button" id="draw-download-button" style="border: none;">Download Image</button>
         <br/><br/>
-        <button id="clear-draw-canvas" class="blue-button" style="border: none;">Clear Canvas</button>
+        <button id="clear-draw-canvas" class="blue-button" style="border: none;background-color: #f30;">Clear Canvas</button>
       </div>
     </div>
   </section>

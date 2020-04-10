@@ -247,7 +247,7 @@ html, body{
   .output-grid .col:first-child{
     overflow-x: scroll;
   }
-  img{
+  .output img{
     width: 100%;
   }
   .hide-pc{
@@ -306,4 +306,21 @@ html, body{
 } 
 .buttons-container{
   padding: 0px 20px;
+}
+
+@media (max-width: 768px) {
+  .draw-container{
+    padding: 100px 10px;
+  }
+  .buttons-container{
+    padding: 0px 0px;
+  }
+
+  .draw-container .close-button{
+    font-size: 30pt;
+  }
+
+  .draw-container .buttons-container > .blue-button{
+    display: inline-block;
+  }
 }

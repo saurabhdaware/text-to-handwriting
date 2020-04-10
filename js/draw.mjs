@@ -1,11 +1,18 @@
+import { isMobile } from './helpers.mjs';
+
 let inkColor = '#000f55';
-let pointSize = 1;
+let pointSize = isMobile ? .5 : 1;
 var lastX, lastY;
 
 const drawCanvas = document.querySelector('canvas#diagram-canvas');
 const ctx = drawCanvas.getContext('2d');
 ctx.fillStyle = "transparent";
 ctx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
+// Set smaller canvas on mobiles
+if(isMobile) {
+  drawCanvas.height = 150
+  drawCanvas.width = 300
+}
 
 function setInkColor(color) {
   inkColor = color;
@@ -15,7 +22,17 @@ function drawPoint(x, y) {
   const canvasRect = drawCanvas.getBoundingClientRect();
   
   function fixPositions(eventX, eventY) {
-    return [eventX - canvasRect.left, eventY - canvasRect.top + 32];
+    if(isMobile) {
+      return [
+        eventX - canvasRect.left, 
+        eventY - canvasRect.top
+      ];
+    }
+
+    return [
+      eventX - canvasRect.left, 
+      eventY - canvasRect.top + 32
+    ];
   }
 
   if (lastX && lastY && (x !== lastX || y !== lastY)) {
@@ -37,7 +54,7 @@ function drawPoint(x, y) {
     Math.PI * 2, 
     true
   ); // Draw a point using the arc function of the canvas with a point structure.
-  
+
   ctx.fill(); // Close 
 
   lastX = x;
@@ -79,33 +96,69 @@ function addToPaper() {
   toggleDrawCanvas();
 }
 
+var isMouseDown = false;
+
+const onMouseDown = e => {
+  isMouseDown = true;
+  lastX = e.clientX;
+  lastY = e.clientY;
+  drawPoint(e.clientX, e.clientY);
+}
+
+
+const onMouseUp = e => {
+  isMouseDown = false;
+  lastX = 0;
+  lastY = 0;
+}
+
+const onMouseMove = e => {
+  if(isMouseDown){
+    drawPoint(e.clientX, e.clientY)
+  }
+}
+
+const onTouchStart = e => {
+  isMouseDown = true;
+  const touchX = e.touches[0].clientX;
+  const touchY = e.touches[0].clientY;
+
+  lastX = touchX;
+  lastY = touchY;
+  drawPoint(touchX, touchY);
+}
+
+const onTouchEnd = e => {
+  isMouseDown = false;
+  lastX = 0;
+  lastY = 0;
+}
+
+const onTouchMove = e => {
+  e.preventDefault();
+  const touchX = e.touches[0].clientX;
+  const touchY = e.touches[0].clientY;
+
+  drawPoint(touchX, touchY);
+}
+
+
+
 /* Event listeners */
 document.querySelector('#clear-draw-canvas').addEventListener('click', clear);
 document.querySelector('#add-to-paper-button').addEventListener('click', addToPaper);
 document.querySelector('#draw-download-button').addEventListener('click', downloadFile);
 
-var isMouseDown = false;
-drawCanvas
-  .addEventListener('mousedown', e => {
-    isMouseDown = true;
-    lastX = e.clientX;
-    lastY = e.clientY;
-    drawPoint(e.clientX, e.clientY);
-  }, false)
+if(isMobile) {
+  drawCanvas.addEventListener('touchstart', onTouchStart, false);
+  drawCanvas.addEventListener('touchend', onTouchEnd, false);
+  drawCanvas.addEventListener('touchmove', onTouchMove, false);
+} else {
+  drawCanvas.addEventListener('mousedown', onMouseDown, false)
+  drawCanvas.addEventListener('mouseup', onMouseUp, false)
+  drawCanvas.addEventListener('mousemove', onMouseMove, false)
+}
 
-drawCanvas
-  .addEventListener('mouseup', e => {
-    isMouseDown = false;
-    lastX = 0;
-    lastY = 0;
-  }, false)
-
-drawCanvas
-  .addEventListener('mousemove', e => {
-    if(isMouseDown){
-      drawPoint(e.clientX, e.clientY)
-    }
-  }, false)
 
 export {
   setInkColor,
