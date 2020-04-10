@@ -1,8 +1,8 @@
 {
   "name": "text-to-handwriting",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Hey everyone! text-to-handwriting is a tool that lets you generate image that looks like handwriting from text.",
-  "main": "index.js",
+  "main": "js/app.js",
   "directories": {
     "lib": "lib"
   },
