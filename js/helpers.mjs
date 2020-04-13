@@ -2,9 +2,9 @@ const pageContainerEl = document.querySelector('.page');
 const textareaEl = document.querySelector('.page > .textarea');
 const overlayEl = document.querySelector('.page > .overlay');
 
-export const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-export const applyPaperStyles = () => {
+const applyPaperStyles = () => {
   pageContainerEl.style.border = 'none';
   pageContainerEl.style.background = 'linear-gradient(to right,#eee, #ddd)';
   overlayEl.style.background = `linear-gradient(${
@@ -14,14 +14,14 @@ export const applyPaperStyles = () => {
   textareaEl.classList.add('paper');
 };
 
-export const removePaperStyles = () => {
+const removePaperStyles = () => {
   pageContainerEl.style.border = '1px solid #ccc';
   pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
 };
 
-export const addFontFromFile = (fileObj) => {
+const addFontFromFile = (fileObj) => {
   const reader = new FileReader();
   reader.onload = (e) => {
     const newFont = new FontFace('temp-font', e.target.result);
@@ -37,7 +37,7 @@ export const addFontFromFile = (fileObj) => {
  *
  * @param {string} hashval
  */
-export const smoothlyScrollTo = (hashval) => {
+const smoothlyScrollTo = (hashval) => {
   let target = document.querySelector(hashval);
   target.scrollIntoView({
     behavior: 'smooth',
@@ -46,18 +46,10 @@ export const smoothlyScrollTo = (hashval) => {
   history.pushState(null, null, hashval);
 };
 
-/**
- *
- * @param {string} _
- */
-export const $ = (_) => document.querySelector(_);
-
-/**
- *
- * @param {string} selector
- * @param {string} eventName
- * @param {function} callback
- */
-export const addEvent = (selector, eventName, callback) => {
-  document.querySelector(selector).addEventListener(eventName, callback);
+export {
+  isMobile,
+  applyPaperStyles,
+  removePaperStyles,
+  addFontFromFile,
+  smoothlyScrollTo,
 };

@@ -1,14 +1,13 @@
 import {
-  $,
   isMobile,
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
-  addEvent,
 } from './helpers.mjs';
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 
-const textareaEl = $('.page > .textarea');
+const textareaEl = document.querySelector('.page > .textarea');
+const page = document.querySelector('.page');
 
 /**
  * @method generateImage()
@@ -24,12 +23,12 @@ async function generateImage() {
   applyPaperStyles();
 
   try {
-    const canvas = await html2canvas($('.page'), {
+    const canvas = await html2canvas(page, {
       scrollX: 0,
       scrollY: -window.scrollY,
     });
 
-    const output = $('.output');
+    const output = document.querySelector('.output');
     const img = new Image();
     img.src = canvas.toDataURL('image/jpeg');
     output.innerHTML = '';
@@ -54,7 +53,7 @@ async function generateImage() {
 }
 
 // Convert copied text to plaintext
-addEvent('#note', 'paste', (event) => {
+document.querySelector('#note').addEventListener('paste', (event) => {
   if (!event.clipboardData.types.includes('Files')) {
     event.preventDefault();
     const text = event.clipboardData.getData('text/plain');
@@ -65,15 +64,6 @@ addEvent('#note', 'paste', (event) => {
 /**
  * Event listeners on input fields
  */
-const ID = {
-  HANDWRITING: '#handwriting-font',
-  PEN_COLOR: '#ink-color',
-  FONT_SIZE: '#font-size',
-  TOP_PADDING: '#top-padding',
-  WORD_SPACING: '#word-spacing',
-  FONT_FILE: '#font-file',
-  TOGGLE_MARGIN: '#paper-margin-toggle',
-};
 
 /**
  *
@@ -84,54 +74,61 @@ const setStyle = (attrib, v) => {
   textareaEl.style[attrib] = v;
 };
 
-/**
- *
- * @param {ChangeEvent} e
- */
-const handleToolEvents = (e) => {
-  e.preventDefault();
-
-  const id = '#' + e.target.getAttribute('id');
-  switch (id) {
-    case ID.HANDWRITING:
-      setStyle('fontFamily', e.target.value);
-      break;
-    case ID.FONT_SIZE:
-      setStyle('fontSize', e.target.value + 'pt');
-      break;
-    case ID.TOP_PADDING:
-      setStyle('paddingTop', e.target.value + 'px');
-      break;
-    case ID.WORD_SPACING:
-      setStyle('wordSpacing', e.target.value + 'px');
-      break;
-    case ID.FONT_FILE:
-      addFontFromFile(e.target.files[0]);
-      break;
-    case ID.TOGGLE_MARGIN:
-      $('.page').classList.toggle('margined-page');
-      break;
-    case ID.PEN_COLOR:
+const EVENT_MAP = {
+  '#handwriting-font': {
+    on: 'change',
+    action: (e) => setStyle('fontFamily', e.target.value),
+  },
+  '#font-size': {
+    on: 'change',
+    action: (e) => setStyle('fontSize', e.target.value + 'pt'),
+  },
+  '#word-spacing': {
+    on: 'change',
+    action: (e) => setStyle('wordSpacing', e.target.value + 'px'),
+  },
+  '#top-padding': {
+    on: 'change',
+    action: (e) => setStyle('paddingTop', e.target.value + 'px'),
+  },
+  '#font-file': {
+    on: 'change',
+    action: (e) => addFontFromFile(e.target.files[0]),
+  },
+  '#ink-color': {
+    on: 'change',
+    action: (e) => {
       setStyle('color', e.target.value);
       setInkColor(e.target.value);
-      break;
-    default:
-      return;
-  }
+    },
+  },
+  '#paper-margin-toggle': {
+    on: 'change',
+    action: () => page.classList.toggle('margined-page'),
+  },
+  '#draw-diagram-button': {
+    on: 'click',
+    action: toggleDrawCanvas,
+  },
+  '.draw-container .close-button': {
+    on: 'click',
+    action: toggleDrawCanvas,
+  },
+  '#generate-image-form': {
+    on: 'submit',
+    action: (e) => {
+      e.preventDefault();
+      generateImage();
+    },
+  },
 };
 
-// form change events
-document
-  .querySelector('#generate-image-form')
-  .addEventListener('change', handleToolEvents);
-
-// click events
-addEvent('#draw-diagram-button', 'click', toggleDrawCanvas);
-addEvent('.draw-container .close-button', 'click', toggleDrawCanvas);
-addEvent('#generate-image-form', 'submit', (e) => {
-  e.preventDefault();
-  generateImage();
-});
+for (const event in EVENT_MAP) {
+  console.log(event, EVENT_MAP[event]);
+  document
+    .querySelector(event)
+    .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
+}
 
 // Too lazy to change year in footer every year soo...
-$('#year').innerHTML = new Date().getFullYear();
+document.querySelector('#year').innerHTML = new Date().getFullYear();
