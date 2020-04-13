@@ -4,7 +4,7 @@ const overlayEl = document.querySelector('.page > .overlay');
 
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-const applyPaperStyles = () => {
+function applyPaperStyles() {
   pageContainerEl.style.border = 'none';
   pageContainerEl.style.background = 'linear-gradient(to right,#eee, #ddd)';
   overlayEl.style.background = `linear-gradient(${
@@ -14,14 +14,14 @@ const applyPaperStyles = () => {
   textareaEl.classList.add('paper');
 };
 
-const removePaperStyles = () => {
+function removePaperStyles() {
   pageContainerEl.style.border = '1px solid #ccc';
   pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
 };
 
-const addFontFromFile = (fileObj) => {
+function addFontFromFile(fileObj) {
   const reader = new FileReader();
   reader.onload = (e) => {
     const newFont = new FontFace('temp-font', e.target.result);
@@ -37,6 +37,7 @@ const addFontFromFile = (fileObj) => {
  *
  * @param {string} hashval
  */
+
 const smoothlyScrollTo = (hashval) => {
   let target = document.querySelector(hashval);
   target.scrollIntoView({
@@ -51,5 +52,5 @@ export {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
-  smoothlyScrollTo,
+  smoothlyScrollTo
 };

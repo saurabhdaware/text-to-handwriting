@@ -3,7 +3,9 @@ import {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
+  smoothlyScrollTo
 } from './helpers.mjs';
+
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 
 const textareaEl = document.querySelector('.page > .textarea');
@@ -54,6 +56,7 @@ async function generateImage() {
 
 // Convert copied text to plaintext
 document.querySelector('#note').addEventListener('paste', (event) => {
+  // If type is NOT "Files" then only convert to plain text or else copy as it is.
   if (!event.clipboardData.types.includes('Files')) {
     event.preventDefault();
     const text = event.clipboardData.getData('text/plain');
@@ -70,26 +73,27 @@ document.querySelector('#note').addEventListener('paste', (event) => {
  * @param {string} attrib
  * @param {any} value
  */
-const setStyle = (attrib, v) => {
+const setTextareaStyle = (attrib, v) => {
   textareaEl.style[attrib] = v;
 };
+
 
 const EVENT_MAP = {
   '#handwriting-font': {
     on: 'change',
-    action: (e) => setStyle('fontFamily', e.target.value),
+    action: (e) => setTextareaStyle('fontFamily', e.target.value),
   },
   '#font-size': {
     on: 'change',
-    action: (e) => setStyle('fontSize', e.target.value + 'pt'),
+    action: (e) => setTextareaStyle('fontSize', e.target.value + 'pt'),
   },
   '#word-spacing': {
     on: 'change',
-    action: (e) => setStyle('wordSpacing', e.target.value + 'px'),
+    action: (e) => setTextareaStyle('wordSpacing', e.target.value + 'px'),
   },
   '#top-padding': {
     on: 'change',
-    action: (e) => setStyle('paddingTop', e.target.value + 'px'),
+    action: (e) => setTextareaStyle('paddingTop', e.target.value + 'px'),
   },
   '#font-file': {
     on: 'change',
@@ -98,7 +102,7 @@ const EVENT_MAP = {
   '#ink-color': {
     on: 'change',
     action: (e) => {
-      setStyle('color', e.target.value);
+      setTextareaStyle('color', e.target.value);
       setInkColor(e.target.value);
     },
   },
@@ -124,7 +128,6 @@ const EVENT_MAP = {
 };
 
 for (const event in EVENT_MAP) {
-  console.log(event, EVENT_MAP[event]);
   document
     .querySelector(event)
     .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
