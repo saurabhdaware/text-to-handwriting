@@ -54,15 +54,15 @@ async function generateImage() {
   }
 }
 
-// Convert copied text to plaintext
-document.querySelector('#note').addEventListener('paste', (event) => {
-  // If type is NOT "Files" then only convert to plain text or else copy as it is.
-  if (!event.clipboardData.types.includes('Files')) {
-    event.preventDefault();
-    const text = event.clipboardData.getData('text/plain');
-    document.execCommand('insertHTML', false, text);
-  }
-});
+// // Convert copied text to plaintext
+// document.querySelector('#note').addEventListener('paste', (event) => {
+//   // If type is NOT "Files" then only convert to plain text or else copy as it is.
+//   if (!event.clipboardData.types.includes('Files')) {
+//     event.preventDefault();
+//     const text = event.clipboardData.getData('text/plain');
+//     document.execCommand('insertHTML', false, text);
+//   }
+// });
 
 /**
  * Event listeners on input fields
