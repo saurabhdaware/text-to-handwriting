@@ -61,9 +61,11 @@ html, body{
 .page:not(.margined-page){
   padding: 15px;
 }
+.paper-content{
+  width: 100%;
+}
 .page:not(.margined-page) .paper-content{
   padding: 0px;
-  width: 100%;
 }
 /* Page with margin */
 .margined-page{
