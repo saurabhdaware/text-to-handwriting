@@ -28,6 +28,7 @@ html, body{
   display: inline-block;
   height: 600px;
   box-sizing: border-box;
+  overflow: hidden;
 }
 .paper{
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
