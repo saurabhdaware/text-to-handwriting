@@ -1,7 +1,8 @@
 * {
   box-sizing: border-box;
 }
-html, body{
+html,
+body {
   margin: 0px;
   width: 100%;
   overflow-x: hidden;
@@ -15,74 +16,82 @@ html, body{
   src: url('../fonts/Saurabh-Regular.ttf');
 } */
 
-.page{
+.page {
   padding: 10px;
-  position:relative;
-  background: linear-gradient(to right,#fff, #fff);
-  padding:0px;
+  position: relative;
+  background: linear-gradient(to right, #fff, #fff);
+  padding: 0px;
   border: 1px solid #ccc;
   top: 0px;
-  margin:0px 8px 0px 0px;
+  margin: 0px 8px 0px 0px;
   transform: rotateZ(0deg);
-  width:500px;
+  width: 500px;
   display: inline-block;
   height: 600px;
   box-sizing: border-box;
   overflow: hidden;
 }
-.paper{
-  background-image: linear-gradient(#999 0.05em, transparent 0.1em);
-  background-color: unset !important;
-  line-height: 1.5em;
-  background-size: 100% 1.5em;
-  padding: unset;
-}
 
-.textarea{
+.textarea {
   background-color: #fff;
   height: 100%;
-  top: 0;left:0;
-  outline:none;
+  top: 0;
+  left: 0;
+  outline: none;
   font-family: 'Homemade Apple', cursive;
-  color: #000F55;
+  color: #000f55;
   padding-top: 0px;
   line-height: 1.5em;
   box-sizing: border-box;
   word-spacing: 3px;
   position: relative;
 }
-.overlay{
+.paper {
+  background-color: unset !important;
+  line-height: 1.5em;
+  background-size: 100% 1.5em;
+  padding: unset;
+}
+.lines {
+  background-image: linear-gradient(#999 0.05em, transparent 0.1em);
+  background-color: unset !important;
+  line-height: 1.5em;
+  background-size: 100% 1.5em;
+  padding: unset;
+}
+.overlay {
   position: absolute;
-  top:0;left:0;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   display: none;
   background-image: linear-gradient(10deg, #0008, #0000);
 }
-.page:not(.margined-page){
+.page:not(.margined-page) {
   padding: 15px;
 }
-.paper-content{
+.paper-content {
   width: 100%;
 }
-.page:not(.margined-page) .paper-content{
+.page:not(.margined-page) .paper-content {
   padding: 0px;
 }
 /* Page with margin */
-.margined-page{
+.margined-page {
   width: 550px;
   height: 700px;
   overflow: hidden;
 }
 
-.paper-margin-left-line{
+.paper-margin-left-line {
   display: none;
 }
-.paper-margin-top-line{
+.paper-margin-top-line {
   display: none;
 }
 
-.margined-page .paper-margin-left-line{
+.margined-page .paper-margin-left-line {
   display: inline-block;
   width: 80px;
   border-right: 2px solid pink;
@@ -91,15 +100,15 @@ html, body{
   position: relative;
 }
 
-.margined-page .paper-margin-top-line{
+.margined-page .paper-margin-top-line {
   display: block;
-  color: #000F55;
+  color: #000f55;
   font-family: 'Homemade Apple', cursive;
   width: 100%;
   border-bottom: 2px solid pink;
   height: 80px;
 }
-.date-container{
+.date-container {
   padding: 10px;
   border: 1px solid #d68f9b;
   border-radius: 10px;
@@ -109,7 +118,7 @@ html, body{
   margin-right: 20px;
 }
 
-.margined-page .paper-content{
+.margined-page .paper-content {
   position: relative;
   top: 0px;
   left: 0px;
@@ -119,28 +128,26 @@ html, body{
   top: 0px;
 }
 
-.margined-page .textarea{
+.margined-page .textarea {
   height: calc(100% - 80px);
 }
 
-
-
-
-.row{
+.row {
   display: flex;
 }
-.col{
+.col {
   flex: 1;
 }
-.form-container{
+.form-container {
   padding: 60px 100px;
   font-family: Arial, Helvetica, sans-serif;
   overflow-y: hidden;
 }
-.form-container label{
+.form-container label {
   font-weight: bold;
 }
-.form-container input, .form-container select{
+.form-container input,
+.form-container select {
   display: block;
   width: 100%;
   background-color: #fff;
@@ -149,11 +156,11 @@ html, body{
   padding: 10px;
 }
 
-.form-container input[type="number"] {
+.form-container input[type='number'] {
   display: inline-block;
   width: unset;
 }
-.form-container button{
+.form-container button {
   border: none;
   background-color: #09f;
   padding: 10px;
@@ -164,56 +171,54 @@ html, body{
 
 /* Switch */
 .switch-toggle {
-	position: relative;
+  position: relative;
   display: block;
   margin-top: 6px;
   cursor: pointer;
-	width: 40px;
-	height: 20px;
-	border-radius: 25px;
-	background-color: #eee;
+  width: 40px;
+  height: 20px;
+  border-radius: 25px;
+  background-color: #eee;
 }
 
 .switch-toggle input {
-	display: none;
+  display: none;
 }
 
 .switch-toggle div {
-	position: absolute;
-	border-radius: 50%;
-	background-color: #DFDFDF;
-	transition: .1s ease;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #dfdfdf;
+  transition: 0.1s ease;
 }
 
 .switch-toggle input:checked + div {
-	left: 50%;
-	background-color: #09f;
+  left: 50%;
+  background-color: #09f;
 }
 
 .switch-toggle.rect {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 .switch-toggle.rect div {
-	border-radius: 0;
+  border-radius: 0;
 }
 
 .switch-toggle.inner div {
-	width: 18px;
-	height: 18px;
-	top: 1px;
-	left: 1px;
-	
+  width: 18px;
+  height: 18px;
+  top: 1px;
+  left: 1px;
 }
 
 .switch-toggle.outer div {
-	width: 23px;
-	height: 23px;
-	top: -1.5px;
-	left: -1.5px;
-	
+  width: 23px;
+  height: 23px;
+  top: -1.5px;
+  left: -1.5px;
 }
-.blue-button{
+.blue-button {
   display: inline-block;
   text-decoration: none;
   background-color: #09f;
@@ -223,52 +228,76 @@ html, body{
   font-size: 10pt;
   cursor: pointer;
 }
-.download-button.disabled{
+.download-button.disabled {
   opacity: 0 !important;
 }
-.disabled{
+.disabled {
   cursor: not-allowed !important;
-  opacity: .5;
+  opacity: 0.5;
 }
-.hide-pc{
+.hide-pc {
   display: none;
 }
-.hide-mobile{
+.hide-mobile {
   display: initial;
 }
 
-.output-container{
+.output-container {
   position: relative;
 }
 
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+@keyframes octocat-wave {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+    animation: none;
+  }
+  .github-corner .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
 
-.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
-
-@media (max-width: 768px){
-  .row.responsive-row{display: block;}
-  .output{
+@media (max-width: 768px) {
+  .row.responsive-row {
+    display: block;
+  }
+  .output {
     margin-top: 20px;
   }
-  .output-grid .col:first-child{
+  .output-grid .col:first-child {
     overflow-x: scroll;
   }
-  .output img{
+  .output img {
     width: 100%;
   }
-  .hide-pc{
+  .hide-pc {
     display: initial;
   }
-  .form-container{
+  .form-container {
     padding: 40px 10px;
   }
-  .hide-mobile{
+  .hide-mobile {
     display: none;
   }
 }
 
-
 /* DRAW  */
-.draw-container{
+.draw-container {
   position: fixed;
   top: 0;
   left: 0;
@@ -281,51 +310,51 @@ html, body{
   display: none;
 }
 
-.draw-container.show{
+.draw-container.show {
   display: block;
 }
 
-.draw-container .close-button{
+.draw-container .close-button {
   position: fixed;
   top: 0px;
   right: 0px;
   padding: 20px 30px;
   cursor: pointer;
   color: #ddd;
-  background-color:transparent;
+  background-color: transparent;
   border: none;
   font-size: 50pt;
   font-weight: bold;
 }
-.draw-container .close-button:hover{
+.draw-container .close-button:hover {
   color: #fff;
-  transition: color .5s ease;
+  transition: color 0.5s ease;
 }
-#diagram-canvas{
+#diagram-canvas {
   cursor: url('../images/favicon-32x32.png'), crosshair;
 }
-.draw-container .buttons-container > .blue-button{
+.draw-container .buttons-container > .blue-button {
   display: block;
   margin-bottom: 6px;
   width: 150px;
-} 
-.buttons-container{
+}
+.buttons-container {
   padding: 0px 20px;
 }
 
 @media (max-width: 768px) {
-  .draw-container{
+  .draw-container {
     padding: 100px 10px;
   }
-  .buttons-container{
+  .buttons-container {
     padding: 0px 0px;
   }
 
-  .draw-container .close-button{
+  .draw-container .close-button {
     font-size: 30pt;
   }
 
-  .draw-container .buttons-container > .blue-button{
+  .draw-container .buttons-container > .blue-button {
     display: inline-block;
   }
 }

@@ -12,14 +12,14 @@ function applyPaperStyles() {
   }deg, #0008, #0000)`;
   overlayEl.style.display = 'block';
   textareaEl.classList.add('paper');
-};
+}
 
 function removePaperStyles() {
   pageContainerEl.style.border = '1px solid #ccc';
   pageContainerEl.style.background = 'linear-gradient(to right,#fff, #fff)';
   overlayEl.style.display = 'none';
   textareaEl.classList.remove('paper');
-};
+}
 
 function addFontFromFile(fileObj) {
   const reader = new FileReader();
@@ -31,7 +31,7 @@ function addFontFromFile(fileObj) {
     });
   };
   reader.readAsArrayBuffer(fileObj);
-};
+}
 
 /**
  *
@@ -52,5 +52,5 @@ export {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
-  smoothlyScrollTo
+  smoothlyScrollTo,
 };
