@@ -3,7 +3,7 @@ import {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
-  smoothlyScrollTo
+  smoothlyScrollTo,
 } from './helpers.mjs';
 
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
@@ -77,7 +77,6 @@ const setTextareaStyle = (attrib, v) => {
   textareaEl.style[attrib] = v;
 };
 
-
 const EVENT_MAP = {
   '#handwriting-font': {
     on: 'change',
@@ -113,6 +112,10 @@ const EVENT_MAP = {
   '#paper-margin-toggle': {
     on: 'change',
     action: () => page.classList.toggle('margined-page'),
+  },
+  '#paper-line-toggle': {
+    on: 'change',
+    action: () => textareaEl.classList.toggle('lines'),
   },
   '#draw-diagram-button': {
     on: 'click',
