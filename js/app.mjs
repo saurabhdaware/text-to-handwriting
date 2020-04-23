@@ -86,6 +86,10 @@ const EVENT_MAP = {
     on: 'change',
     action: (e) => setTextareaStyle('fontSize', e.target.value + 'pt'),
   },
+  '#letter-spacing': {
+    on: 'change',
+    action: (e) => setTextareaStyle('letterSpacing', e.target.value + 'pt'),
+  },
   '#word-spacing': {
     on: 'change',
     action: (e) => setTextareaStyle('wordSpacing', e.target.value + 'px'),
