@@ -36,7 +36,7 @@ html, body{
   background-size: 100% 1.5em;
   padding: unset;
 }
-.lines {
+.paper.lines {
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
   background-color: unset !important;
   line-height: 1.5em;

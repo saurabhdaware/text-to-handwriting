@@ -140,5 +140,9 @@ for (const event in EVENT_MAP) {
     .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
 }
 
+
+// Set paper lines to true on init
+EVENT_MAP['#paper-line-toggle'].action();
+
 // Too lazy to change year in footer every year soo...
 document.querySelector('#year').innerHTML = new Date().getFullYear();
