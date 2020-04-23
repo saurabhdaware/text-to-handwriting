@@ -8,8 +8,11 @@ import {
 
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 
+import { createPDF } from './pdf.mjs';
+
 const textareaEl = document.querySelector('.page > .textarea');
 const page = document.querySelector('.page');
+var images = new Array();
 
 /**
  * @method generateImage()
@@ -35,6 +38,9 @@ async function generateImage() {
     img.src = canvas.toDataURL('image/jpeg');
     output.innerHTML = '';
     output.appendChild(img);
+
+    images.push(img.src);
+    document.querySelector('#image-count').innerHTML = images.length.toString();
 
     document.querySelectorAll('a.download-button').forEach((a) => {
       a.href = img.src;
@@ -129,6 +135,12 @@ const EVENT_MAP = {
       generateImage();
     },
   },
+  '#generate-pdf': {
+    on: 'click',
+    action: (e) => {
+      createPDF(images);
+    }
+  }
 };
 
 for (const event in EVENT_MAP) {
