@@ -134,6 +134,10 @@ const EVENT_MAP = {
   '#generate-pdf': {
     on: 'click',
     action: (e) => {
+      if(generatedImages.length <= 0) {
+        alert("No generated images found.");
+        return;
+      }
       createPDF(generatedImages);
     }
   }
