@@ -247,6 +247,29 @@ html, body{
   position: relative;
 }
 
+.contributor-profile{
+  display: inline-block;
+  margin: 10px 5px;
+  text-align: center;
+  background-color: #fff;
+  padding:10px;
+  width: 130px;
+  overflow: hidden;
+  height: 160px;
+  box-shadow: 4px 3px 16px -3px #777;
+}
+img.contributor-avatar{
+  width: 100%;
+}
+.contributor-profile a{
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  font-size: 10pt;
+}
+.contributor-username{
+  margin-top: 7px;
+}
 
 .github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}
 
@@ -269,6 +292,19 @@ html, body{
   }
   .hide-mobile{
     display: none;
+  }
+  .project-contributors{
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+  .contributor-profile{
+    width: 30%;
+    height: 130px;
+  }
+  .contributor-username{
+    font-size: 9pt;
   }
 }
 

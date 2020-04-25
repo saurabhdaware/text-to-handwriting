@@ -153,5 +153,20 @@ for (const event in EVENT_MAP) {
 // Set paper lines to true on init
 EVENT_MAP['#paper-line-toggle'].action();
 
+// Fetch and set contributors
+fetch('https://api.github.com/repos/saurabhdaware/text-to-handwriting/contributors')
+  .then(res => res.json())
+  .then(res => {
+    document.querySelector('#project-contributors')
+      .innerHTML = res.map(contributor => /* html */`
+        <div class="contributor-profile shadow">
+          <a href="${contributor.html_url}">
+            <img class="contributor-avatar" src="${contributor.avatar_url}" />
+            <div class="contributor-username">${contributor.login}</div>
+          </a>
+        </div>
+      ` ).join('');
+  })
+
 // Too lazy to change year in footer every year soo...
 document.querySelector('#year').innerHTML = new Date().getFullYear();
