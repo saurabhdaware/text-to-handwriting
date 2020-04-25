@@ -3,13 +3,16 @@ import {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
+  createPDF,
   smoothlyScrollTo,
 } from './helpers.mjs';
 
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 
+
 const textareaEl = document.querySelector('.page > .textarea');
 const page = document.querySelector('.page');
+var generatedImages = [];
 
 /**
  * @method generateImage()
@@ -41,6 +44,11 @@ async function generateImage() {
       a.download = 'assignment';
       a.classList.remove('disabled');
     });
+
+    // Push image to generated images to create PDF
+    generatedImages.push(img.src);
+    document.querySelector('#image-count').innerHTML = generatedImages.length;
+
   } catch (err) {
     alert('Something went wrong :(');
     console.error(err);
@@ -54,15 +62,6 @@ async function generateImage() {
   }
 }
 
-// // Convert copied text to plaintext
-// document.querySelector('#note').addEventListener('paste', (event) => {
-//   // If type is NOT "Files" then only convert to plain text or else copy as it is.
-//   if (!event.clipboardData.types.includes('Files')) {
-//     event.preventDefault();
-//     const text = event.clipboardData.getData('text/plain');
-//     document.execCommand('insertHTML', false, text);
-//   }
-// });
 
 /**
  * Event listeners on input fields
@@ -132,6 +131,16 @@ const EVENT_MAP = {
       generateImage();
     },
   },
+  '#generate-pdf': {
+    on: 'click',
+    action: (e) => {
+      if(generatedImages.length <= 0) {
+        alert("No generated images found.");
+        return;
+      }
+      createPDF(generatedImages);
+    }
+  }
 };
 
 for (const event in EVENT_MAP) {

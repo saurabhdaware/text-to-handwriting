@@ -105,6 +105,7 @@
         <br/>
         <button type="button" style="background-color: #444;" id="draw-diagram-button">Draw Diagram <small>(Beta)</small></button><br/><br/>
         <button type="submit" class="generate-image">Generate Image</button> 
+        <button id="generate-pdf" style="background-color: #444;" type="button">Download as PDF <span style="background-color: #ddd;padding: 5px; color: #333;border-radius: 10px;font-size: 7pt;"><span id="image-count">0</span> Pages</span></button>
         <br/><br/>
       </form>
 
@@ -167,5 +168,6 @@
   </a>
   <script defer src="./lib/html2canvas.min.js" crossorigin="anonymous"></script>
   <script defer src="./js/app.mjs" type="module" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
 </body>
 </html>
