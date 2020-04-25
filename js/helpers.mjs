@@ -34,6 +34,28 @@ function addFontFromFile(fileObj) {
 }
 
 /**
+ * @method createPDF
+ * @param imgs array of images (in base64)
+ * @description
+ * Creates PDF from list of given images
+ */
+function createPDF(imgs) {
+
+  const doc = new jsPDF('p', 'pt', 'a4');
+  const width = doc.internal.pageSize.width;
+  const height = doc.internal.pageSize.height;
+  for (let i in imgs) {
+    doc.text(10, 20, 'Scanned by Anonymous Scanner');
+    doc.addImage(imgs[i], 'JPEG', 25, 50, width - 50, (height - 80), "image-"+i);
+    if (i != imgs.length - 1) {
+      doc.addPage();
+    }
+  }
+  doc.save();
+}
+
+
+/**
  *
  * @param {string} hashval
  */
@@ -52,5 +74,6 @@ export {
   applyPaperStyles,
   removePaperStyles,
   addFontFromFile,
+  createPDF,
   smoothlyScrollTo,
 };
