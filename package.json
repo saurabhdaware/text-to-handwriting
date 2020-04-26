@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cypress run",
+    "cy": "cypress open",
     "dev": "serve ."
   },
   "repository": {
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/saurabhdaware/text-to-handwriting#readme",
   "devDependencies": {
+    "cypress": "^4.4.1",
     "serve": "^11.3.0"
   }
 }
