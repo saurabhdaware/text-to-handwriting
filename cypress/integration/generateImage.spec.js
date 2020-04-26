@@ -16,4 +16,12 @@ context('Generate Image', () => {
     cy.get('.paper-margin-top-line').should('be.visible');
   })
 
+  it('should have lines class when paper lines toggle is on', () => {
+    cy.get('.page > .textarea').should('have.class', "lines");
+    cy.get("label[for='paper-line-toggle']").click();
+    cy.get('.page > .textarea').should('not.have.class', "lines");
+    cy.get("label[for='paper-line-toggle']").click();
+    cy.get('.page > .textarea').should('have.class', "lines");
+  })
+
 })
