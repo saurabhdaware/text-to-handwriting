@@ -198,7 +198,8 @@ html, body {
 }
 
 .switch-toggle input {
-  display: none;
+  position: relative;
+  z-index: -1;
 }
 
 .switch-toggle div {
@@ -208,9 +209,12 @@ html, body {
   transition: 0.1s ease;
 }
 
+.switch-toggle input:focus + div {
+  border: 2px solid #09f;
+}
 .switch-toggle input:checked + div {
   left: 50%;
-  background-color: #09f;
+  background-color: var(--color-primary);
 }
 
 .switch-toggle.rect {

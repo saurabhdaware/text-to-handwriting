@@ -150,13 +150,13 @@ document.querySelector('#add-to-paper-button').addEventListener('click', addToPa
 document.querySelector('#draw-download-button').addEventListener('click', downloadFile);
 
 if(isMobile) {
-  drawCanvas.addEventListener('touchstart', onTouchStart, false);
-  drawCanvas.addEventListener('touchend', onTouchEnd, false);
-  drawCanvas.addEventListener('touchmove', onTouchMove, false);
+  drawCanvas.addEventListener('touchstart', onTouchStart, {passive: true});
+  drawCanvas.addEventListener('touchend', onTouchEnd, {passive: true});
+  drawCanvas.addEventListener('touchmove', onTouchMove, {passive: true});
 } else {
-  drawCanvas.addEventListener('mousedown', onMouseDown, false)
-  drawCanvas.addEventListener('mouseup', onMouseUp, false)
-  drawCanvas.addEventListener('mousemove', onMouseMove, false)
+  drawCanvas.addEventListener('mousedown', onMouseDown, {passive: true})
+  drawCanvas.addEventListener('mouseup', onMouseUp, {passive: true})
+  drawCanvas.addEventListener('mousemove', onMouseMove, {passive: true})
 }
 
 
