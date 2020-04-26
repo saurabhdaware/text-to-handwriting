@@ -10,3 +10,5 @@ jobs:
       # and run all Cypress tests
       - name: Cypress run
         uses: cypress-io/github-action@v1
+        with:
+          start: npm run dev
