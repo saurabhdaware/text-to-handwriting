@@ -53,48 +53,61 @@
     <br/><br/>
     <section>
       <form id="generate-image-form">
-        <label for="handwriting-font">Handwriting Font</label>
-        <select id="handwriting-font">
-          <option default value="'Homemade Apple', cursive">Homemade Apple</option>
-          <option value="'Caveat', cursive">Caveat</option>
-          <option value="'Liu Jian Mao Cao', cursive">Liu Jian Mao Cao</option>
-        </select>
 
-        <br>or<br><br>
-
-        <label for="font-file">Upload your handwriting font <small>(Beta) (<a href="#how-to-add-handwriting">Guide to create font from your handwriting</a>)</small></label>
-        <input type="file" id="font-file" />
-        <br>
+        <div class="row responsive-row">
+          <div class="col">
+            <label for="handwriting-font">Handwriting Font</label>
+            <select id="handwriting-font">
+              <option default value="'Homemade Apple', cursive">Homemade Apple</option>
+              <option value="'Caveat', cursive">Caveat</option>
+              <option value="'Liu Jian Mao Cao', cursive">Liu Jian Mao Cao</option>
+            </select>
+          </div>
+          <div style="padding: 30px 20px;">or</div>
+          <div class="col">
+            <label for="font-file">Upload your handwriting font <small>(Beta) (<a href="#how-to-add-handwriting">Guide to create font from your handwriting</a>)</small></label>
+            <input type="file" id="font-file" />
+            <br>
+          </div>
+        </div>
         
-        <label>Pen Ink Color</label>
+
+        
+        <label for="ink=color">Pen Ink Color</label>
         <select id="ink-color">
           <option default value="#000F55">Blue</option>
           <option value="#333">Black</option>
         </select><br>
 
         <div class="row responsive-row">
+
           <div class="col">
-            <label for="font-size">fontSize</label><br>
+            <label for="font-size">Font Size</label><br>
             <input type="number" min="0" value="12" id="font-size" />&nbsp; pt
             <br><br>
           </div>
+
           <div class="col">
             <label for="top-padding">Vertical position of text</label><br>
             <input type="number" min="0" value="0" id="top-padding" />&nbsp; px
             <br><br>
           </div>
+
           <div class="col">
             <label for="word-spacing">Word Spacing</label><br>
             <input type="number" min="0" value="3" id="word-spacing" />&nbsp; px
             <br><br>
           </div>
+
         </div>
         <div class="row responsive-row">
+
           <div class="col">
             <label for="letter-spacing">Letter Spacing</label><br>
             <input type="number" value="0" id="letter-spacing" />&nbsp; pt
             <br><br>
           </div>
+
           <div class="col">
             <label for="paper-margin-toggle">Paper Margin</label>
             <label class="switch-toggle outer">
@@ -103,6 +116,7 @@
             </label>
             <br><br>
           </div>
+
           <div class="col">
             <label for="paper-line-toggle">Paper Lines</label>
             <label class="switch-toggle outer">
@@ -111,11 +125,12 @@
             </label>
             <br /><br />
           </div>
+
         </div>
         <br/>
-        <button type="button" style="background-color: #444;" id="draw-diagram-button">Draw Diagram <small>(Beta)</small></button><br/><br/>
-        <button type="submit" class="generate-image">Generate Image</button> 
-        <button id="generate-pdf" style="background-color: #444;" type="button">Download as PDF <span style="background-color: #ddd;padding: 5px; color: #333;border-radius: 10px;font-size: 7pt;"><span id="image-count">0</span> Pages</span></button>
+        <button type="button" class="secondary-button" id="draw-diagram-button">Draw Diagram <small>(Beta)</small></button><br/><br/>
+        <button type="submit" class="primary-button" class="generate-image">Generate Image</button> 
+        <button type="button" class="secondary-button" id="generate-pdf">Download as PDF <span style="background-color: #ccc;padding: 5px; color: #000;border-radius: 10px;font-size: 7pt;"><span id="image-count">0</span> Pages</span></button>
         <br/><br/>
       </form>
 
