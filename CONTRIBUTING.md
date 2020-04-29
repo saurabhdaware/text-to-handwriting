@@ -4,7 +4,12 @@ The project is built with basic web setup (HTML, CSS, and JavaScript) without an
 ## 🐨 Local Setup
 - [Fork](https://github.com/saurabhdaware/text-to-handwriting/fork) this repository.
 - Clone your fork `git clone https://github.com/:yourusername/text-to-handwriting`
-- Open folder `text-to-handwriting` and open `index.html` with browser. (Or you can use any npm module to run static server).
+- Open folder `text-to-handwriting` and run `index.html` with a [static server](#run-local-static-server).
+
+## 💻 Run Local Static Server
+- There are npm packages like [serve] that help you in creating static server.
+- You can `npm install -g serve` to install serve
+- Then from project's directory, You can run `serve .` to run a static server.
 
 ## 🤗 Hello First-time Contributors
 There are lot of resources (articles, courses, videos) available for getting started with git and GitHub you can search and follow any of the resource you like.
