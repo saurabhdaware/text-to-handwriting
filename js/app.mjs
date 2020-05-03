@@ -153,6 +153,26 @@ for (const event in EVENT_MAP) {
 // Set paper lines to true on init
 EVENT_MAP['#paper-line-toggle'].action();
 
+/**
+ * i18n for China
+ */
+fetch('http://ip-api.com/json')
+  .then(res => res.json())
+  .then(response => {
+    if(response.country === 'China') {
+      // Set default language to the one that supports mandarin
+      // change the lorem ipsum text to chinese text
+
+
+      const chineseSupportFont = "'Liu Jian Mao Cao', cursive"
+      setTextareaStyle('fontFamily', chineseSupportFont)
+      document.querySelector('#handwriting-font').value = chineseSupportFont;
+
+      // set chinese lorem ipsum
+      document.querySelector('#note').innerText = "嗨，您好！多谢您尝试文字转笔迹。该网站的流量一直很高，我很乐意让其他语言的人们可以访问该网站，因此，如果您有任何建议或可以帮助我使您所在国家的人们可以访问该网站。在GitHub上让我知道还是向我发送电子邮件（在GitHub中提到的电子邮件ID）";
+    }
+  });
+
 // Fetch and set contributors
 fetch('https://api.github.com/repos/saurabhdaware/text-to-handwriting/contributors')
   .then(res => res.json())

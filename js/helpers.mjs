@@ -57,7 +57,7 @@ function createPDF(imgs) {
 
 /**
  *
- * @param {string} hashval
+ * @param {string} hashval - id of a tag to scroll to (e.g #container)
  */
 
 const smoothlyScrollTo = (hashval) => {
