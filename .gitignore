@@ -1,0 +1,3 @@
+node_modules/
+# Add .npmrc when you have multiple node binaries.
+.npmrc
