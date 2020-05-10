@@ -1,0 +1,29 @@
+{
+  "name": "text-to-handwriting",
+  "version": "1.0.0-beta.1",
+  "description": "Hey everyone! text-to-handwriting is a tool that lets you generate image that looks like handwriting from text.",
+  "main": "js/app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "cy": "cypress open",
+    "dev": "serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saurabhdaware/text-to-handwriting.git"
+  },
+  "keywords": [],
+  "author": "Saurabh Daware <saurabhdaware99@gmail.com> (https://saurabhdaware.in/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/saurabhdaware/text-to-handwriting/issues"
+  },
+  "homepage": "https://github.com/saurabhdaware/text-to-handwriting#readme",
+  "devDependencies": {
+    "cypress": "^4.4.1",
+    "serve": "^11.3.0"
+  }
+}

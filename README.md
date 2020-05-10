@@ -1,25 +1,16 @@
-# Text-to-Handwriting
+<p align="center">
+<img alt="Text-to-handwriting title image" src="https://res.cloudinary.com/saurabhdaware/image/upload/w_400/v1586015094/saurabh2019/text-to-handwriting-title.png" /> 
+<br/><b><a href="https://saurabhdaware.github.io/text-to-handwriting/">https://saurabhdaware.github.io/text-to-handwriting/</a></b><br/><br/><img alt="NPM Version" src="https://img.shields.io/github/package-json/v/saurabhdaware/text-to-handwriting?style=flat-square" /> <a href="#contributing"><img alt="Contributions Welcome" src="https://img.shields.io/badge/contributions-welcome-brightgreen?style=flat-square"></a> <img alt="GitHub License MIT" src="https://img.shields.io/github/license/saurabhdaware/text-to-handwriting?style=flat-square"> <a href="https://twitter.com/saurabhcodes"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/saurabhcodes?style=social"></a><br/><br/> I hate writing assignments so I made this tool that converts text to an image that looks like handwriting😛
 
-Hey everyone! I hope the person who is reading this is not my teacher.
 
-I hate writing assignments so I made this tool that converts text to an image that looks like handwriting with background of a paper😛
+</p>
 
-**Link:** https://saurabhdaware.github.io/text-to-handwriting/
-
-Also, I am trying to make this look more realistic and I would love to have people contribute in it🌻
-
-## This is how output will look
+## 🌠 Output
 ![Sample image of output](sample.jpeg)
 
 
 
-## How to add your own handwriting?
-- To use your handwriting, you will have to generate font of your handwriting. 
-- You can do that using [Calligraphr](https://www.calligraphr.com/en/)
-- Once you get .ttf file of your handwriting, just upload it from upload button and boom! you will have your handwriting in the image.
-
-
-## Contributing
+## 🤗 Contributing
 
 Checkout [Contribution Guide](CONTRIBUTING.md) for local setup and contribution guide.
 
