@@ -4,74 +4,60 @@ const pageContainerEl = document.querySelector('.page');
 const textareaEl = document.querySelector('.page > .textarea');
 const overlayEl = document.querySelector('.page > .overlay');
 
+var warped_image = document.getElementById('warped_image'),
+	  warp_canvas  = document.createElement('canvas'),
+    warp_context = warp_canvas.getContext('2d');
 
+var warp_percentage_input = 0.1;
 
-function distortion(outputCanvas) {
-  const ctx = outputCanvas.getContext('2d');
-  const distortWidth = outputCanvas.width;
-  const distortHeight = outputCanvas.height*1.3;
-  const x = 0;
-  const y = -100;
-
-  var imgData = ctx.getImageData(x, y, distortWidth, distortHeight);
-      pixels = imgData.data,
-      pixelsCopy = [], index = 0, h = distortHeight, w = distortWidth;
-  
-  for (var i = 0; i <= pixels.length; i+=4) {
-      pixelsCopy[index] = [pixels[i], pixels[i+1], pixels[i+2], pixels[i+3]];
-      index++;
-  }
-  console.log(pixelsCopy);
-  var result = fisheye(pixelsCopy, w, h);
-  
-  for(var i = 0; i < result.length; i++) {
-      index = 4*i;
-      if (result[i] != undefined) {
-          pixels[index + 0] = result[i][0];
-          pixels[index + 1] = result[i][1];
-          pixels[index + 2] = result[i][2]; 
-          pixels[index + 3] = result[i][3];
-      }
-  }
-  
-  ctx.putImageData(imgData, x, y);
+function getQuadraticBezierXYatT(start_point, control_point, end_point, T) {
+  var pow1minusTsquared = Math.pow(1 - T, 2), powTsquared = Math.pow(T, 2);
+  var x = pow1minusTsquared * start_point.x + 2 * (1 - T) * T * control_point.x + powTsquared * end_point.x,
+      y = pow1minusTsquared * start_point.y + 2 * (1 - T) * T * control_point.y + powTsquared * end_point.y; 
+  return {
+    x: x,
+    y: y
+  };
 }
 
-function fisheye(srcpixels, w, h) {
-
-  var dstpixels = srcpixels.slice();            
-  for (var y = 0; y < h; y++) {                                
-
-      var ny = ((2*y)/h)-1;                        
-      var ny2 = ny*ny;                                
-
-      for (var x = 0; x < w; x++) {                            
-
-          var nx = ((2*x)/w)-1;                    
-          var nx2 = nx*nx;
-          var r = Math.sqrt(nx2+ny2); // Calculates radius        
-
-          if (0.0 <= r && r <= 1.0) {                            
-              var nr = Math.sqrt(1.0-r*r);            
-              nr = (r + (1.0-nr)) / 2.0;
-
-              if (nr <= 1.0) {
-                  
-                  var theta = Math.atan2(ny,nx);         
-                  var nxn = nr*Math.cos(theta);        
-                  var nyn = nr*Math.sin(theta);        
-                  var x2 = parseInt(((nxn+1)*w)/2);        
-                  var y2 = parseInt(((nyn+1)*h)/2);        
-                  var srcpos = parseInt(y2*w+x2);            
-                  if (srcpos >= 0 & srcpos < w*h) {
-                      dstpixels[parseInt(y*w+x)] = srcpixels[srcpos];    
-                  }
-              }
-          }
-      }
+function warpVertically (image_to_warp, invert_curve) {
+  var image_width  = image_to_warp.width,
+    image_height = image_to_warp.height,
+    warp_percentage = parseFloat(warp_percentage_input, 10),
+    warp_y_offset = warp_percentage * image_height;
+    console.log(image_height, image_width);
+  warp_canvas.width  = image_width;
+  warp_canvas.height = image_height + Math.ceil(warp_y_offset * 2); 
+  var start_point = {
+    x: 0,
+    y: 0
+  };
+  var control_point = {
+    x: image_width / 2,
+    y: invert_curve ? warp_y_offset : -warp_y_offset
+  };
+  var end_point = {
+    x: image_width,
+    y: 0
+  };  
+  var offset_y_points = [],
+    t = 0;
+  for ( ; t < image_width; t = t + 0.95) {
+    var xyAtT = getQuadraticBezierXYatT(start_point, control_point, end_point, t / image_width),
+        y = parseInt(xyAtT.y);
+    offset_y_points.push(y);
   }
-  return dstpixels;
-} 
+  warp_context.clearRect(0, 0, warp_canvas.width, warp_canvas.height);
+  var x = 0;
+  for ( ; x < image_width; x = x + 1) {
+    warp_context.drawImage(image_to_warp,
+      // clip 1 pixel wide slice from the image
+      x, 0, 1, image_height + warp_y_offset,
+      // draw that slice with a y-offset
+      x, warp_y_offset + offset_y_points[x], 1, image_height + warp_y_offset
+    );
+  }
+}
 
 
 function readFile(fileObj) {
@@ -107,6 +93,10 @@ function removePaperStyles() {
 
 
 async function generateImage() {
+  document.querySelectorAll('a.download-button').forEach(a => {
+    a.classList.add('disabled');
+  }) // to disable the Download button everytime the User tries to generate an image.
+
   // apply extra styles to textarea to make it look like paper
   applyPaperStyles();
 
@@ -115,19 +105,32 @@ async function generateImage() {
         scrollX: 0,
         scrollY: -window.scrollY
       })
-
-    distortion(canvas);
-    
+    var download_source;
     document.querySelector('.output').innerHTML = '';
-    const img = document.createElement('img');
-    img.src = canvas.toDataURL("image/jpeg");
-    document.querySelector('.output').appendChild(img);
-
-    document.querySelectorAll('a.download-button').forEach(a => {
-      a.href = img.src;
-      a.download = 'assignment';
-      a.classList.remove('disabled');
-    })
+    var img = new Image();
+    if ( document.querySelector('#paper-curve-toggle').checked ){
+      img.onload = function(){
+        warpVertically(img, 0);
+        warped_image.src = warp_canvas.toDataURL("image/png");
+      }
+      img.src = canvas.toDataURL("image/jpeg");
+      document.querySelector('.output').appendChild(warped_image);
+      console.log(document.getElementById('warped_image'));	
+      setTimeout( function(){
+        download_source = document.getElementById('warped_image').src;
+      } ,400);
+    } else {
+      img.src = canvas.toDataURL("image/jpeg");
+      document.querySelector('.output').appendChild(img);
+      download_source = canvas.toDataURL("image/jpeg");
+    }
+    setTimeout( function(){
+      document.querySelectorAll('a.download-button').forEach(a => {
+        a.download = 'assignment.png';
+        a.href = 	download_source;
+        a.classList.remove('disabled');
+      })
+    } , 500);
   }catch(err) {
     alert("Something went wrong :(");
     console.error(err);
