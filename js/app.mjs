@@ -131,6 +131,8 @@ const setTextareaStyle = (attrib, v) => {
   textareaEl.style[attrib] = v;
 };
 
+let popup = '';
+
 const EVENT_MAP = {
   '#handwriting-font': {
     on: 'change',
@@ -173,19 +175,31 @@ const EVENT_MAP = {
   },
   '#draw-diagram-button': {
     on: 'click',
-    action: toggleDrawCanvas,
+    action: () => {
+      toggleDrawCanvas();
+      popup = 'draw';
+    },
   },
   '.draw-container .close-button': {
     on: 'click',
-    action: toggleDrawCanvas,
+    action: () => {
+      toggleDrawCanvas();
+      popup = '';
+    },
   },
   '#pdf-preview-button': {
     on: 'click',
-    action: togglePDFPreview,
+    action: () => {
+      togglePDFPreview();
+      popup = 'pdfpreview'
+    },
   },
   '.pdf-preview-container .close-button': {
     on: 'click',
-    action: togglePDFPreview,
+    action: () => {
+      togglePDFPreview();
+      popup = '';
+    },
   },
   '#generate-image-form': {
     on: 'submit',
@@ -211,6 +225,16 @@ for (const event in EVENT_MAP) {
     .querySelector(event)
     .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
 }
+
+window.addEventListener('keyup', e => {
+  if (e.code === 'Escape') {
+    if (popup === 'pdfpreview') {
+      togglePDFPreview();
+    } else if (popup === 'draw') {
+      toggleDrawCanvas();
+    }
+  }
+})
 
 
 // Set paper lines to true on init
