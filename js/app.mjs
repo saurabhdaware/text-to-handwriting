@@ -4,7 +4,7 @@ import {
   removePaperStyles,
   addFontFromFile,
   createPDF,
-  smoothlyScrollTo,
+  smoothlyScrollTo
 } from './helpers.mjs';
 
 import { setInkColor, toggleDrawCanvas } from './draw.mjs';
@@ -13,7 +13,7 @@ import { warpVertically, warp_canvas } from './curvature.mjs';
 
 const textareaEl = document.querySelector('.page > .textarea');
 const page = document.querySelector('.page');
-const warped_image = document.getElementById("warped_image");
+const warpedImage = document.getElementById("warped-image");
 
 var generatedImages = [];
 
@@ -33,6 +33,43 @@ function setOutputImage(imageEl) {
   generatedImages.push(imageEl.src);
   setDownloadSource(imageEl.src);
   document.querySelector('#image-count').innerHTML = generatedImages.length;
+}
+
+function setPDFPreviews() {
+  document.querySelector('.preview-holder').innerHTML = generatedImages.map((imageb64, index) => {
+    return `
+    <div class="preview-image image-${index}">
+      <button data-removeindex="${index}" class="close-image">&times;</button>
+      <img src="${imageb64}">
+    </div>
+    `
+  }).join('');
+
+  document.querySelector('#image-count').innerHTML = generatedImages.length;
+
+
+  document.querySelectorAll('.preview-holder .close-image')
+    .forEach(closeButton => 
+      closeButton.addEventListener('click', e => {
+        generatedImages.splice(Number(closeButton.dataset.removeindex), 1);
+        setPDFPreviews();
+      })
+    )
+}
+
+function togglePDFPreview() {
+  const pdfPreviewContainer = document.querySelector('.pdf-preview-container');
+  if(pdfPreviewContainer.classList.contains('show')) {
+    // draw canvas is currently shown
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('footer').style.display = 'block';
+  } else {
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('footer').style.display = 'none';
+    setPDFPreviews();
+  }
+
+  pdfPreviewContainer.classList.toggle('show');
 }
 
 /**
@@ -58,8 +95,8 @@ async function generateImage() {
     if (document.querySelector('#paper-curve-toggle').checked){
       img.onload = function(){
         warpVertically(img, 0);
-        warped_image.src = warp_canvas.toDataURL("image/png");
-        setOutputImage(warped_image);
+        warpedImage.src = warp_canvas.toDataURL("image/png");
+        setOutputImage(warpedImage);
       }
       img.src = canvas.toDataURL("image/jpeg");
     } else {
@@ -93,6 +130,8 @@ async function generateImage() {
 const setTextareaStyle = (attrib, v) => {
   textareaEl.style[attrib] = v;
 };
+
+let popup = '';
 
 const EVENT_MAP = {
   '#handwriting-font': {
@@ -136,11 +175,31 @@ const EVENT_MAP = {
   },
   '#draw-diagram-button': {
     on: 'click',
-    action: toggleDrawCanvas,
+    action: () => {
+      toggleDrawCanvas();
+      popup = 'draw';
+    },
   },
   '.draw-container .close-button': {
     on: 'click',
-    action: toggleDrawCanvas,
+    action: () => {
+      toggleDrawCanvas();
+      popup = '';
+    },
+  },
+  '#pdf-preview-button': {
+    on: 'click',
+    action: () => {
+      togglePDFPreview();
+      popup = 'pdfpreview'
+    },
+  },
+  '.pdf-preview-container .close-button': {
+    on: 'click',
+    action: () => {
+      togglePDFPreview();
+      popup = '';
+    },
   },
   '#generate-image-form': {
     on: 'submit',
@@ -166,6 +225,16 @@ for (const event in EVENT_MAP) {
     .querySelector(event)
     .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
 }
+
+window.addEventListener('keyup', e => {
+  if (e.code === 'Escape') {
+    if (popup === 'pdfpreview') {
+      togglePDFPreview();
+    } else if (popup === 'draw') {
+      toggleDrawCanvas();
+    }
+  }
+})
 
 
 // Set paper lines to true on init

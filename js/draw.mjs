@@ -66,9 +66,11 @@ function toggleDrawCanvas() {
   const drawContainer = document.querySelector('.draw-container');
   if(drawContainer.classList.contains('show')) {
     // draw canvas is currently shown
-    document.querySelector('.form-container').style.filter = 'blur(0px)';
+    document.querySelector('main').style.display = 'block';
+    document.querySelector('footer').style.display = 'block';
   } else {
-    document.querySelector('.form-container').style.filter = 'blur(3px)';
+    document.querySelector('main').style.display = 'none';
+    document.querySelector('footer').style.display = 'none';
   }
 
   drawContainer.classList.toggle('show');

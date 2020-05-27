@@ -69,6 +69,7 @@ const smoothlyScrollTo = (hashval) => {
   history.pushState(null, null, hashval);
 };
 
+
 export {
   isMobile,
   applyPaperStyles,
