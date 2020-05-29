@@ -98,6 +98,9 @@ function addToPaper() {
   toggleDrawCanvas();
 }
 
+function addImageToPaper(){
+
+}
 var isMouseDown = false;
 
 const onMouseDown = e => {
