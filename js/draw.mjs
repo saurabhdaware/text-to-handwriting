@@ -5,6 +5,8 @@ let pointSize = isMobile ? .5 : 1;
 var lastX, lastY;
 
 const drawCanvas = document.querySelector('canvas#diagram-canvas');
+const previewImage=document.querySelector('#preview-image');
+const imagePath=document.querySelector('#real-image');
 const ctx = drawCanvas.getContext('2d');
 ctx.fillStyle = "transparent";
 ctx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
@@ -79,6 +81,8 @@ function toggleDrawCanvas() {
 
 function clear() {
   ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
+  drawCanvas.style.display='block';
+  previewImage.style.display='none';
 }
 
 function downloadFile() {
@@ -91,15 +95,47 @@ function downloadFile() {
 }
 
 function addToPaper() {
+
+  if(drawCanvas.style.display==='none')
+  {
+    const src=previewImage.src;
+    document.querySelector('#note').innerHTML = /* html */`
+    <img style="width: 40%;" src="`+src+`" />
+    `+ document.querySelector('#note').innerHTML;
+  }
+  else{
+    
   document.querySelector('#note').innerHTML = /* html */`
     <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
   ` + document.querySelector('#note').innerHTML;
+  }
 
   toggleDrawCanvas();
 }
 
 function addImageToPaper(){
+  imagePath.value="";
+  imagePath.click();
+  imagePath.addEventListener('change',function(){
+    const file=this.files[0];
+    if(file){
+      const reader=new FileReader();
+      previewImage.style.display='block';
+      drawCanvas.style.display='none';
+      reader.addEventListener('load',function(){
+        previewImage.setAttribute("src",this.result);
+      });
+    reader.readAsDataURL(file)
 
+    }
+  })
+
+
+//   document.querySelector('#note').innerHTML = /* html */`
+//   <img style="width: 50%;" src="`+imagePath.value+`" />
+// ` + document.querySelector('#note').innerHTML;
+
+// toggleDrawCanvas();
 }
 var isMouseDown = false;
 
@@ -153,6 +189,9 @@ const onTouchMove = e => {
 document.querySelector('#clear-draw-canvas').addEventListener('click', clear);
 document.querySelector('#add-to-paper-button').addEventListener('click', addToPaper);
 document.querySelector('#draw-download-button').addEventListener('click', downloadFile);
+
+
+document.querySelector('#add-new-image-button').addEventListener('click',addImageToPaper);
 
 if(isMobile) {
   drawCanvas.addEventListener('touchstart', onTouchStart, {passive: true});

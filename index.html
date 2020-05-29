@@ -209,9 +209,12 @@
     <button class="close-button">&times;</button>
     <div class="row responsive-row">
       <canvas id="diagram-canvas" style="background-color: #fff;" height="300px" width="600px"></canvas>
+      <img id="preview-image" src="" height="300px" width="600px" style="display: none;">
       <div class="col buttons-container">
         <button class="blue-button" id="add-to-paper-button">Add to Paper</button>
         <button class="blue-button" id="draw-download-button">Download Image</button>
+
+        <input type="file" id="real-image"accept="image/x-png,image/gif,image/jpeg" hidden="hidden">
         <button class="blue-button" id="add-new-image-button">Add a New Image</button>
         <br/><br/>
         <button id="clear-draw-canvas" class="blue-button" style="background-color: #f30;">Clear Canvas</button>
