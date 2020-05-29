@@ -86,28 +86,38 @@ function clear() {
 }
 
 function downloadFile() {
-  const a = document.createElement('a');
-  a.style.display = 'none';
-  a.href = drawCanvas.toDataURL('image/png');
-  a.download = 'diagram.png';
-  document.body.appendChild(a);
-  a.click();
+  if(drawCanvas.style.display==='none'){
+    const a = document.createElement('a');
+    a.style.display = 'none';
+    a.href = previewImage.src;
+    a.download = 'diagram.png';
+    document.body.appendChild(a);
+    a.click(); 
+  }
+  else{
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = drawCanvas.toDataURL('image/png');
+      a.download = 'diagram.png';
+      document.body.appendChild(a);
+      a.click();
+  }
 }
 
 function addToPaper() {
 
   if(drawCanvas.style.display==='none')
   {
-    const src=previewImage.src;
-    document.querySelector('#note').innerHTML = /* html */`
-    <img style="width: 40%;" src="`+src+`" />
-    `+ document.querySelector('#note').innerHTML;
+        const src=previewImage.src;
+        document.querySelector('#note').innerHTML = /* html */`
+        <img style="width: 40%;" src="`+src+`" />
+        `+ document.querySelector('#note').innerHTML;
   }
   else{
-    
-  document.querySelector('#note').innerHTML = /* html */`
-    <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
-  ` + document.querySelector('#note').innerHTML;
+        
+        document.querySelector('#note').innerHTML = /* html */`
+        <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
+      ` + document.querySelector('#note').innerHTML;
   }
 
   toggleDrawCanvas();
@@ -126,16 +136,8 @@ function addImageToPaper(){
         previewImage.setAttribute("src",this.result);
       });
     reader.readAsDataURL(file)
-
     }
   })
-
-
-//   document.querySelector('#note').innerHTML = /* html */`
-//   <img style="width: 50%;" src="`+imagePath.value+`" />
-// ` + document.querySelector('#note').innerHTML;
-
-// toggleDrawCanvas();
 }
 var isMouseDown = false;
 
