@@ -5,7 +5,6 @@ let pointSize = isMobile ? .5 : 1;
 var lastX, lastY;
 
 const drawCanvas = document.querySelector('canvas#diagram-canvas');
-const previewImage=document.querySelector('#preview-image');
 const imagePath=document.querySelector('#real-image');
 const ctx = drawCanvas.getContext('2d');
 ctx.fillStyle = "transparent";
@@ -81,59 +80,39 @@ function toggleDrawCanvas() {
 
 function clear() {
   ctx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
-  drawCanvas.style.display='block';
-  previewImage.style.display='none';
 }
 
 function downloadFile() {
-  if(drawCanvas.style.display==='none'){
-    const a = document.createElement('a');
-    a.style.display = 'none';
-    a.href = previewImage.src;
-    a.download = 'diagram.png';
-    document.body.appendChild(a);
-    a.click(); 
-  }
-  else{
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = drawCanvas.toDataURL('image/png');
       a.download = 'diagram.png';
       document.body.appendChild(a);
       a.click();
-  }
 }
 
 function addToPaper() {
-
-  if(drawCanvas.style.display==='none')
-  {
-        const src=previewImage.src;
-        document.querySelector('#note').innerHTML = /* html */`
-        <img style="width: 40%;" src="`+src+`" />
-        `+ document.querySelector('#note').innerHTML;
-  }
-  else{
-        
         document.querySelector('#note').innerHTML = /* html */`
         <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
       ` + document.querySelector('#note').innerHTML;
-  }
-
   toggleDrawCanvas();
 }
 
 function addImageToPaper(){
+  
+  const tempImage = new Image();
   imagePath.value="";
   imagePath.click();
   imagePath.addEventListener('change',function(){
     const file=this.files[0];
     if(file){
       const reader=new FileReader();
-      previewImage.style.display='block';
-      drawCanvas.style.display='none';
       reader.addEventListener('load',function(){
-        previewImage.setAttribute("src",this.result);
+        tempImage.src=this.result;
+        tempImage.onload=function(){
+        ctx.drawImage(tempImage,0,0,drawCanvas.width,drawCanvas.height);
+      }
+        console.log(drawCanvas);
       });
     reader.readAsDataURL(file)
     }
