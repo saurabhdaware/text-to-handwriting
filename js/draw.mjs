@@ -97,21 +97,6 @@ function addToPaper() {
   toggleDrawCanvas();
 }
 
-/**
- * cH = 200
- * cW = 100
- * iH = 800
- * iW = 1300
- * 
- * iH = 200
- * iW = ?
- * 
- * iH = cH 
- * iW   cW
- * 
- * iW = cW*iH/cH
- * 
- */
 function addImageToPaper() {
   const imagePath = document.querySelector('#image-to-add-in-canvas');
   const tempImage = new Image();
