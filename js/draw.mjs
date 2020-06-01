@@ -5,7 +5,6 @@ let pointSize = isMobile ? .5 : 1;
 var lastX, lastY;
 
 const drawCanvas = document.querySelector('canvas#diagram-canvas');
-const imagePath=document.querySelector('#real-image');
 const ctx = drawCanvas.getContext('2d');
 ctx.fillStyle = "transparent";
 ctx.fillRect(0, 0, drawCanvas.width, drawCanvas.height);
@@ -83,38 +82,57 @@ function clear() {
 }
 
 function downloadFile() {
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = drawCanvas.toDataURL('image/png');
-      a.download = 'diagram.png';
-      document.body.appendChild(a);
-      a.click();
+  const a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = drawCanvas.toDataURL('image/png');
+  a.download = 'diagram.png';
+  document.body.appendChild(a);
+  a.click();
 }
 
 function addToPaper() {
-        document.querySelector('#note').innerHTML = /* html */`
-        <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
-      ` + document.querySelector('#note').innerHTML;
+  document.querySelector('#note').innerHTML = /* html */`
+    <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
+  ` + document.querySelector('#note').innerHTML;
   toggleDrawCanvas();
 }
 
-function addImageToPaper(){
-  
+/**
+ * cH = 200
+ * cW = 100
+ * iH = 800
+ * iW = 1300
+ * 
+ * iH = 200
+ * iW = ?
+ * 
+ * iH = cH 
+ * iW   cW
+ * 
+ * iW = cW*iH/cH
+ * 
+ */
+function addImageToPaper() {
+  const imagePath = document.querySelector('#image-to-add-in-canvas');
   const tempImage = new Image();
-  imagePath.value="";
+  imagePath.value = '';
   imagePath.click();
-  imagePath.addEventListener('change',function(){
-    const file=this.files[0];
-    if(file){
-      const reader=new FileReader();
-      reader.addEventListener('load',function(){
-        tempImage.src=this.result;
-        tempImage.onload=function(){
-        ctx.drawImage(tempImage,0,0,drawCanvas.width,drawCanvas.height);
-      }
-        console.log(drawCanvas);
+  imagePath.addEventListener('change', function() {
+    const file = this.files[0];
+    if(file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        tempImage.src = this.result;
+        tempImage.onload = function() {
+          if (tempImage.width > tempImage.height) {
+            ctx.drawImage(tempImage, 0, 0, drawCanvas.width, drawCanvas.height*tempImage.width/drawCanvas.width);
+          } else {
+            const newWidth = drawCanvas.height*tempImage.width/tempImage.height;
+            ctx.drawImage(tempImage, drawCanvas.width/2 - newWidth/2, 0, newWidth, drawCanvas.height);
+          }
+        }
       });
-    reader.readAsDataURL(file)
+      reader.readAsDataURL(file)
     }
   })
 }
