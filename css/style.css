@@ -274,7 +274,7 @@ html, body {
   padding: 10px;
   width: 130px;
   overflow: hidden;
-  height: 160px;
+  height: 170px;
   box-shadow: 4px 3px 16px -3px #777;
 }
 img.contributor-avatar {
@@ -346,8 +346,8 @@ img.contributor-avatar {
     white-space: nowrap;
   }
   .contributor-profile {
-    width: 30%;
-    height: 130px;
+    width: 7.5em;
+    height: 150px;
   }
   .contributor-username {
     font-size: 9pt;
