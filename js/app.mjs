@@ -240,6 +240,12 @@ window.addEventListener('keyup', e => {
 // Set paper lines to true on init
 EVENT_MAP['#paper-line-toggle'].action();
 
+document.querySelector("#note").addEventListener('paste', (event) => {
+  event.preventDefault();
+  const text = event.clipboardData.getData("text/plain").replace(/\n/g, '<br/>');
+  document.execCommand("insertHTML", false, text);
+})
+
 /**
  * i18n for China
  */
