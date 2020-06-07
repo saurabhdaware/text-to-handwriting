@@ -94,10 +94,33 @@ function addToPaper() {
   document.querySelector('#note').innerHTML = /* html */`
     <img style="width: 100%;" src="${drawCanvas.toDataURL('image/png')}" />
   ` + document.querySelector('#note').innerHTML;
-
   toggleDrawCanvas();
 }
 
+function addImageToPaper() {
+  const imagePath = document.querySelector('#image-to-add-in-canvas');
+  const tempImage = new Image();
+  imagePath.value = '';
+  imagePath.click();
+  imagePath.addEventListener('change', function() {
+    const file = this.files[0];
+    if(file) {
+      const reader = new FileReader();
+      reader.addEventListener('load', function() {
+        tempImage.src = this.result;
+        tempImage.onload = function() {
+          if (tempImage.width > tempImage.height) {
+            ctx.drawImage(tempImage, 0, 0, drawCanvas.width, drawCanvas.height*tempImage.width/drawCanvas.width);
+          } else {
+            const newWidth = drawCanvas.height*tempImage.width/tempImage.height;
+            ctx.drawImage(tempImage, drawCanvas.width/2 - newWidth/2, 0, newWidth, drawCanvas.height);
+          }
+        }
+      });
+      reader.readAsDataURL(file)
+    }
+  })
+}
 var isMouseDown = false;
 
 const onMouseDown = e => {
@@ -150,6 +173,9 @@ const onTouchMove = e => {
 document.querySelector('#clear-draw-canvas').addEventListener('click', clear);
 document.querySelector('#add-to-paper-button').addEventListener('click', addToPaper);
 document.querySelector('#draw-download-button').addEventListener('click', downloadFile);
+
+
+document.querySelector('#add-new-image-button').addEventListener('click',addImageToPaper);
 
 if(isMobile) {
   drawCanvas.addEventListener('touchstart', onTouchStart, {passive: true});
