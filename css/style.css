@@ -98,10 +98,6 @@ html, body {
   padding: unset;
 }
 
-@font-face {
-  font-family: 'Hindi Font';
-  src: url(../fonts/hindi.ttf);
-}
 .textarea {
   background-color: #fff;
   height: 100%;
