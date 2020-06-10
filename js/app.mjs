@@ -15,8 +15,12 @@ const textareaEl = document.querySelector('.page > .textarea');
 const textareaInner = document.querySelector('.page > .textarea > .paper-content');
 const page = document.querySelector('.page');
 const warpedImage = document.getElementById("warped-image");
+const output = document.querySelector('.output');
+const currentPageNo = document.querySelector('#current-page-no');
 
 var generatedImages = [];
+var previewImages = [];
+let currentPage = 0;
 
 function setDownloadSource(imageSource) {
   document.querySelectorAll('a.download-button').forEach((a) => {
@@ -24,16 +28,27 @@ function setDownloadSource(imageSource) {
     a.download = 'assignment';
     a.classList.remove('disabled');
   });
+  document.querySelector('#nav').style.display = 'block';
+}
+
+function disableDownloadSource(){
+  document.querySelectorAll('a.download-button').forEach((a) => {
+    a.classList.add('disabled');
+  });
+  document.querySelector('#nav').style.display = 'none';
 }
 
 function setOutputImage(imageEl) {
-  const output = document.querySelector('.output');
   output.innerHTML = '';
   output.appendChild(imageEl);
+  previewImages.push(imageEl);
   // Push image to generated images to create PDF
   generatedImages.push(imageEl.src);
   setDownloadSource(imageEl.src);
   document.querySelector('#image-count').innerHTML = generatedImages.length;
+  document.querySelector('#total-page-count').innerHTML = generatedImages.length;
+  currentPage = generatedImages.length;
+  currentPageNo.innerHTML = currentPage;
 }
 
 function setPDFPreviews() {
@@ -47,13 +62,16 @@ function setPDFPreviews() {
   }).join('');
 
   document.querySelector('#image-count').innerHTML = generatedImages.length;
+  document.querySelector('#total-page-count').innerHTML = generatedImages.length;
 
 
   document.querySelectorAll('.preview-holder .close-image')
-    .forEach(closeButton => 
+    .forEach(closeButton =>
       closeButton.addEventListener('click', e => {
         generatedImages.splice(Number(closeButton.dataset.removeindex), 1);
+        previewImages.splice(Number(closeButton.dataset.removeindex), 1);
         setPDFPreviews();
+        setNavPage(generatedImages.length);
       })
     )
 }
@@ -71,6 +89,18 @@ function togglePDFPreview() {
   }
 
   pdfPreviewContainer.classList.toggle('show');
+}
+
+function setNavPage(pageNo) {
+  output.innerHTML = '';
+  if(pageNo>0){
+    output.appendChild(previewImages[pageNo - 1]);
+    setDownloadSource(previewImages[pageNo - 1].src);
+    currentPageNo.innerHTML = pageNo;
+  }else{
+    currentPageNo.innerHTML = 0;
+    disableDownloadSource();
+  }
 }
 
 /**
@@ -98,7 +128,7 @@ async function generateImage() {
       textareaInner.innerText = '';
       let pageStringList = [];
       let pageString = '';
-      while(textareaInner.offsetHeight <= pageHeight && wordNo < fullString.length){
+      while(textareaInner.offsetHeight <= pageHeight && wordNo <= fullString.length) {
         pageString = pageStringList.join(' ');
         pageStringList.push(fullString[wordNo]);
         textareaInner.innerText = pageStringList.join(' ');
@@ -137,6 +167,23 @@ async function generateImage() {
     smoothlyScrollTo('#output');
   }
 }
+
+/**
+ * Event listeners preview page navigation buttons
+ */
+
+document.querySelector('#page-nav-right').addEventListener('click', () => {
+  if (currentPage < previewImages.length) {
+    currentPage++;
+  }
+  setNavPage(currentPage);
+});
+document.querySelector('#page-nav-left').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+  }
+  setNavPage(currentPage);
+});
 
 
 /**
@@ -275,7 +322,7 @@ if(navigator.language.slice(0, 2) === 'zh') {
   const chineseSupportFont = "'Liu Jian Mao Cao', cursive"
   setTextareaStyle('fontFamily', chineseSupportFont)
   document.querySelector('#handwriting-font').value = chineseSupportFont;
-  
+
   // set chinese lorem ipsum
   document.querySelector('#note').innerText = "嗨，您好！多谢您尝试文字转笔迹。该网站的流量一直很高，我很乐意让其他语言的人们可以访问该网站，因此，如果您有任何建议或可以帮助我使您所在国家的人们可以访问该网站。在GitHub上让我知道还是向我发送电子邮件（在GitHub中提到的电子邮件ID）";
 }
