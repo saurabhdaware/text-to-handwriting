@@ -12,6 +12,7 @@ import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 import { warpVertically, warp_canvas } from './curvature.mjs';
 
 const textareaEl = document.querySelector('.page > .textarea');
+const textareaInner = document.querySelector('.page > .textarea > .paper-content');
 const page = document.querySelector('.page');
 const warpedImage = document.getElementById("warped-image");
 
@@ -84,26 +85,46 @@ function togglePDFPreview() {
 async function generateImage() {
   // apply extra styles to textarea to make it look like paper
   applyPaperStyles();
-
+  let pageHeight = 570;
+  if(page.classList.contains('margined-page')){
+    pageHeight = 622;
+  }
+  let totalPages = Math.ceil(textareaInner.offsetHeight / pageHeight);
   try {
-    const canvas = await html2canvas(page, {
-      scrollX: 0,
-      scrollY: -window.scrollY,
-    });
-
-    const img = new Image();
-    if (document.querySelector('#paper-curve-toggle').checked){
-      img.onload = function(){
-        warpVertically(img, 0);
-        warpedImage.src = warp_canvas.toDataURL("image/png");
-        setOutputImage(warpedImage);
+    let originalString = textareaInner.innerText;
+    let fullString = originalString.split(/(\s+)/);;
+    let wordNo = 0;
+    for(let i=0; i<totalPages; i++){
+      textareaInner.innerText = '';
+      let pageStringList = [];
+      let pageString = '';
+      while(textareaInner.offsetHeight <= pageHeight && wordNo < fullString.length){
+        pageString = pageStringList.join(' ');
+        pageStringList.push(fullString[wordNo]);
+        textareaInner.innerText = pageStringList.join(' ');
+        wordNo++;
       }
-      img.src = canvas.toDataURL("image/jpeg");
-    } else {
-      img.src = canvas.toDataURL('image/jpeg');
-      setOutputImage(img);
+      textareaInner.innerText = pageString;
+      wordNo--;
+      const canvas = await html2canvas(page, {
+        scrollX: 0,
+        scrollY: -window.scrollY,
+      });
+
+      const img = new Image();
+      if (document.querySelector('#paper-curve-toggle').checked){
+        img.onload = function(){
+          warpVertically(img, 0);
+          warpedImage.src = warp_canvas.toDataURL("image/png");
+          setOutputImage(warpedImage);
+        }
+        img.src = canvas.toDataURL("image/jpeg");
+      } else {
+        img.src = canvas.toDataURL('image/jpeg');
+        setOutputImage(img);
+      }
     }
-    
+    textareaInner.innerText = originalString;
   } catch (err) {
     alert('Something went wrong :(');
     console.error(err);

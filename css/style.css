@@ -100,7 +100,7 @@ html, body {
 
 .textarea {
   background-color: #fff;
-  height: 100%;
+  min-height: 100%;
   top: 0;
   left: 0;
   outline: none;
@@ -133,7 +133,7 @@ html, body {
 /* Page with margin */
 .margined-page {
   width: 550px;
-  height: 700px;
+  min-height: 700px;
   overflow: hidden;
 }
 
@@ -148,9 +148,10 @@ html, body {
   display: inline-block;
   width: 80px;
   border-right: 2px solid pink;
-  height: 200%;
-  top: -100%;
-  position: relative;
+  height: 700px;
+  top: -80px;
+  position: absolute;
+  left: 0;
 }
 
 .margined-page .paper-margin-top-line {
@@ -182,7 +183,8 @@ html, body {
 }
 
 .margined-page .textarea {
-  height: calc(100% - 80px);
+  min-height: 620px;
+  padding-left: 80px;
 }
 
 /* Switch */
