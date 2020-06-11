@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125454191-4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'UA-125454191-4');
@@ -13,22 +14,27 @@
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <meta name="theme-color" content="#09f" />
-  <meta name="description" content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
-  <meta name="keywords" content="text to handwriting, text-to-handwrting, saurabh text to handwriting, convert text to image, write assignment online" >
+  <meta name="description"
+    content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
+  <meta name="keywords"
+    content="text to handwriting, text-to-handwrting, saurabh text to handwriting, convert text to image, write assignment online">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="author" content="Saurabh Daware" />
   <meta name="copyright" content="Saurabh Daware" />
-  <meta name="robots" content="follow"/>
+  <meta name="robots" content="follow" />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Text to Handwriting">
   <meta property="og:url" content="https://saurabhdaware.github.io/text-to-handwriting" />
-  <meta property="og:description" content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
+  <meta property="og:description"
+    content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
   <meta property="og:site_name" content="Text to Handwriting">
 
-  <meta property="og:image:secure_url" itemprop="image" content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
-  <meta property="og:image" itemprop="image" content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
+  <meta property="og:image:secure_url" itemprop="image"
+    content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
+  <meta property="og:image" itemprop="image"
+    content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
   <meta property="og:image:width" content="600" />
   <meta property="og:image:height" content="337" />
 
@@ -41,16 +47,24 @@
   <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
   <link rel="manifest" href="./manifest.json" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Homemade+Apple&display=swap" />
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Caveat|Liu+Jian+Mao+Cao&display=swap" as="style" onload="this.rel = 'stylesheet'; this.onload = null;" />
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Caveat|Liu+Jian+Mao+Cao&display=swap" as="style"
+    onload="this.rel = 'stylesheet'; this.onload = null;" />
   <link rel="stylesheet" href="./css/style.css" />
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin-frontend.min.css" />
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" />
 
 
 
 </head>
+
 <body>
   <main class="form-container">
     <h1 style="margin-bottom: 7px;">Text to Handwriting</h1>
-    <br/><br/>
+    <br /><br />
     <section>
       <form id="generate-image-form">
 
@@ -58,28 +72,22 @@
           <div class="col">
             <label for="handwriting-font">Handwriting Font</label>
             <select id="handwriting-font">
-              <option default
-                style="font-family: 'Homemade Apple'" 
-                value="'Homemade Apple', cursive"
-              >Homemade Apple</option>
-              <option 
-                style="font-family: 'Caveat', cursive; font-size: 13pt;" 
-                value="'Caveat', cursive"
-              >Caveat</option>
-              <option 
-                style="font-family: 'Liu Jian Mao Cao'; font-size: 13pt;" 
-                value="'Liu Jian Mao Cao', cursive"
-              >Liu Jian Mao Cao (支持汉字)</option>
+              <option default style="font-family: 'Homemade Apple'" value="'Homemade Apple', cursive">Homemade Apple
+              </option>
+              <option style="font-family: 'Caveat', cursive; font-size: 13pt;" value="'Caveat', cursive">Caveat</option>
+              <option style="font-family: 'Liu Jian Mao Cao'; font-size: 13pt;" value="'Liu Jian Mao Cao', cursive">Liu
+                Jian Mao Cao (支持汉字)</option>
             </select>
           </div>
           <div style="padding: 30px 20px;">or</div>
           <div class="col">
-            <label for="font-file">Upload your handwriting font <small>(Beta) (<a href="#how-to-add-handwriting">Guide to create font from your handwriting</a>)</small></label>
+            <label for="font-file">Upload your handwriting font <small>(Beta) (<a href="#how-to-add-handwriting">Guide
+                  to create font from your handwriting</a>)</small></label>
             <input type="file" id="font-file" />
             <br>
           </div>
         </div>
-        
+
         <label for="ink-color">Pen Ink Color</label>
         <select id="ink-color">
           <option default value="#000F55">Blue</option>
@@ -140,13 +148,16 @@
               <div></div>
             </label>
           </div>
-          
+
         </div>
-        <br/>
-        <button type="button" class="secondary-button" id="draw-diagram-button">Draw Diagram <small>(Beta)</small></button><br/><br/>
-        <button type="submit" class="primary-button" class="generate-image">Generate Image</button> 
-        <button type="button" class="secondary-button" id="pdf-preview-button">Download as PDF <span style="background-color: #ccc;padding: 5px; color: #000;border-radius: 10px;font-size: 7pt;"><span id="image-count">0</span> Pages</span></button>
-        <br/><br/>
+        <br />
+        <button type="button" class="secondary-button" id="draw-diagram-button">Draw Diagram
+          <small>(Beta)</small></button><br /><br />
+        <button type="submit" class="primary-button" class="generate-image">Generate Image</button>
+        <button type="button" class="secondary-button" id="pdf-preview-button">Download as PDF <span
+            style="background-color: #ccc;padding: 5px; color: #000;border-radius: 10px;font-size: 7pt;"><span
+              id="image-count">0</span> Pages</span></button>
+        <br /><br />
       </form>
 
       <!-- Editor -->
@@ -161,9 +172,18 @@
             <div class="textarea row">
               <div class="paper-margin-left-line"></div>
               <div role="textbox" class="paper-content" id="note" contenteditable="true">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis. Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque sed tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu urna.
-    
-                empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue. Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis.
+                Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque sed
+                tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam
+                faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu
+                augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu
+                urna.
+
+                empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim
+                aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin
+                interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus
+                convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue.
+                Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
               </div>
             </div>
             <div class="overlay"></div>
@@ -176,7 +196,7 @@
           </div>
         </div>
       </div>
-      <br/><a class="blue-button download-button disabled hide-pc">Download Image</a> <br/>
+      <br /><a class="blue-button download-button disabled hide-pc">Download Image</a> <br />
     </section>
 
     <section class="guide" id="how-to-add-handwriting">
@@ -184,7 +204,8 @@
       <ul>
         <li>To use your handwriting, you will have to generate font of your handwriting.</li>
         <li>There are websites like <a href="https://www.calligraphr.com/en/">Calligraphr</a> that let you do that.</li>
-        <li>Once you get .ttf file of your handwriting, upload it from upload button and boom! You will have your handwriting in the image.</li>
+        <li>Once you get .ttf file of your handwriting, upload it from upload button and boom! You will have your
+          handwriting in the image.</li>
       </ul>
     </section>
 
@@ -192,8 +213,10 @@
     <section class="dependencies" style="margin-top: 60px;">
       <h2>🤗 Sponsor Links</h2>
       <p style="padding: 20px 5px;">
-        <a href="https://www.patreon.com/bePatron?u=31891872"><img alt="Buy me a Coffee Button" width=200 src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a> &nbsp; 
-        <a href="https://www.buymeacoffee.com/saurabhdaware"><img alt="Buy me a Coffee Button" width=200 src="https://cdn.buymeacoffee.com/buttons/default-yellow.png"></a>
+        <a href="https://www.patreon.com/bePatron?u=31891872"><img alt="Buy me a Coffee Button" width=200
+            src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a> &nbsp;
+        <a href="https://www.buymeacoffee.com/saurabhdaware"><img alt="Buy me a Coffee Button" width=200
+            src="https://cdn.buymeacoffee.com/buttons/default-yellow.png"></a>
       </p>
     </section>
 
@@ -203,17 +226,30 @@
 
       </div>
       <div style="padding: 20px 5px;">
-        Want to contribute as well? Check out <a href="https://github.com/saurabhdaware/text-to-handwriting/blob/master/CONTRIBUTING.md">CONTRIBUTING.md on GitHub</a>
+        Want to contribute as well? Check out <a
+          href="https://github.com/saurabhdaware/text-to-handwriting/blob/master/CONTRIBUTING.md">CONTRIBUTING.md on
+          GitHub</a>
       </div>
     </section>
     <!-- GitHub Corner logo -->
-    <a href="https://github.com/saurabhdaware/text-to-handwriting" rel="noopener noreferrer" target="_blank" class="github-corner" aria-label="View source on GitHub">
-      <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
+    <a href="https://github.com/saurabhdaware/text-to-handwriting" rel="noopener noreferrer" target="_blank"
+      class="github-corner" aria-label="View source on GitHub">
+      <svg width="80" height="80" viewBox="0 0 250 250"
+        style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="currentColor" class="octo-body"></path>
+      </svg>
     </a>
   </main>
   <img id="warped-image" />
   <footer style="background-color: #222; color: #ddd;padding: 24px 30px; text-align: right;font-weight: bold;">
-    © <span id="year"></span> <a style="text-decoration: none; color: #ddd;" href="https://saurabhdaware.in">Saurabh Daware 🌻</a>
+    © <span id="year"></span> <a style="text-decoration: none; color: #ddd;" href="https://saurabhdaware.in">Saurabh
+      Daware 🌻</a>
   </footer>
 
   <!-- Fixed Elements -->
@@ -226,12 +262,12 @@
         <button class="blue-button" id="draw-download-button">Download Image</button>
         <br>
         <input type="file" id="image-to-add-in-canvas" accept="image/x-png,image/gif,image/jpeg" hidden="hidden">
-        <button class="blue-button"  id="add-new-image-button">Add bg image</button>
-        <br/><br/>
+        <button class="blue-button" id="add-new-image-button">Add bg image</button>
+        <br /><br />
         <button id="clear-draw-canvas" class="blue-button" style="background-color: #f30;">Clear Canvas</button>
       </div>
     </div>
-  </section>  
+  </section>
 
   <section class="pdf-preview-container popup-container">
     <button class="close-button">&times;</button>
@@ -250,5 +286,30 @@
   <script defer src="./lib/html2canvas.min.js" crossorigin="anonymous"></script>
   <script defer src="./js/app.mjs" type="module" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.12/handlebars.runtime.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sortable/0.9.13/jquery-sortable-min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery.ui.widget@1.10.3/jquery.ui.widget.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery.iframe-transport/1.0.1/jquery.iframe-transport.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/9.28.0/js/jquery.fileupload.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/js/medium-editor-insert-plugin.min.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      var editor = new MediumEditor('#note', {
+        toolbar: {
+          buttons: ['bold', 'italic', 'underline', 'h2', 'h3', 'h4']
+        }
+      });
+
+      $('#note').mediumInsert({
+        editor: editor
+      });
+    })
+  </script>
 </body>
+
 </html>
