@@ -56,6 +56,8 @@
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor-insert-plugin/2.5.0/css/medium-editor-insert-plugin.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/themes/default.min.css"
+    integrity="sha256-DgQRuG4nycOqe3n7p3kTXH+MmZ9JLRcx9+jOAhLVj/0=" crossorigin="anonymous" />
 
 
 
@@ -306,7 +308,12 @@
       });
 
       $('#note').mediumInsert({
-        editor: editor
+        editor: editor,
+        addons: {
+          embeds: {
+            label: ''
+          }
+        }
       });
     })
   </script>

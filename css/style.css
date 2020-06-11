@@ -2,7 +2,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0px;
   width: 100%;
   overflow-x: hidden;
@@ -416,7 +417,7 @@ img.contributor-avatar {
   height: 100%;
   margin-right: 20px;
 }
-.preview-holder > .preview-image img{
+.preview-holder > .preview-image img {
   height: 100%;
 }
 
@@ -448,4 +449,8 @@ img.contributor-avatar {
   .popup-container .buttons-container > .blue-button {
     display: inline-block;
   }
+}
+
+.medium-insert-buttons-addons > li:nth-child(2) > button:nth-child(1) {
+  display: none;
 }
