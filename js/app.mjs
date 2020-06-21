@@ -12,10 +12,15 @@ import { setInkColor, toggleDrawCanvas } from './draw.mjs';
 import { warpVertically, warp_canvas } from './curvature.mjs';
 
 const textareaEl = document.querySelector('.page > .textarea');
+const textareaInner = document.querySelector('.page > .textarea > .paper-content');
 const page = document.querySelector('.page');
 const warpedImage = document.getElementById("warped-image");
+const output = document.querySelector('.output');
+const currentPageNo = document.querySelector('#current-page-no');
 
 var generatedImages = [];
+var previewImages = [];
+let currentPage = 0;
 
 function setDownloadSource(imageSource) {
   document.querySelectorAll('a.download-button').forEach((a) => {
@@ -23,16 +28,27 @@ function setDownloadSource(imageSource) {
     a.download = 'assignment';
     a.classList.remove('disabled');
   });
+  document.querySelector('#nav').style.display = 'block';
+}
+
+function disableDownloadSource(){
+  document.querySelectorAll('a.download-button').forEach((a) => {
+    a.classList.add('disabled');
+  });
+  document.querySelector('#nav').style.display = 'none';
 }
 
 function setOutputImage(imageEl) {
-  const output = document.querySelector('.output');
   output.innerHTML = '';
   output.appendChild(imageEl);
+  previewImages.push(imageEl);
   // Push image to generated images to create PDF
   generatedImages.push(imageEl.src);
   setDownloadSource(imageEl.src);
   document.querySelector('#image-count').innerHTML = generatedImages.length;
+  document.querySelector('#total-page-count').innerHTML = generatedImages.length;
+  currentPage = generatedImages.length;
+  currentPageNo.innerHTML = currentPage;
 }
 
 function setPDFPreviews() {
@@ -46,13 +62,16 @@ function setPDFPreviews() {
   }).join('');
 
   document.querySelector('#image-count').innerHTML = generatedImages.length;
+  document.querySelector('#total-page-count').innerHTML = generatedImages.length;
 
 
   document.querySelectorAll('.preview-holder .close-image')
-    .forEach(closeButton => 
+    .forEach(closeButton =>
       closeButton.addEventListener('click', e => {
         generatedImages.splice(Number(closeButton.dataset.removeindex), 1);
+        previewImages.splice(Number(closeButton.dataset.removeindex), 1);
         setPDFPreviews();
+        setNavPage(generatedImages.length);
       })
     )
 }
@@ -72,6 +91,18 @@ function togglePDFPreview() {
   pdfPreviewContainer.classList.toggle('show');
 }
 
+function setNavPage(pageNo) {
+  output.innerHTML = '';
+  if(pageNo>0){
+    output.appendChild(previewImages[pageNo - 1]);
+    setDownloadSource(previewImages[pageNo - 1].src);
+    currentPageNo.innerHTML = pageNo;
+  }else{
+    currentPageNo.innerHTML = 0;
+    disableDownloadSource();
+  }
+}
+
 /**
  * @method generateImage()
  * @description
@@ -84,26 +115,46 @@ function togglePDFPreview() {
 async function generateImage() {
   // apply extra styles to textarea to make it look like paper
   applyPaperStyles();
-
+  let pageHeight = 570;
+  if(page.classList.contains('margined-page')){
+    pageHeight = 622;
+  }
+  let totalPages = Math.ceil(textareaInner.offsetHeight / pageHeight);
   try {
-    const canvas = await html2canvas(page, {
-      scrollX: 0,
-      scrollY: -window.scrollY,
-    });
-
-    const img = new Image();
-    if (document.querySelector('#paper-curve-toggle').checked){
-      img.onload = function(){
-        warpVertically(img, 0);
-        warpedImage.src = warp_canvas.toDataURL("image/png");
-        setOutputImage(warpedImage);
+    let originalString = textareaInner.innerText;
+    let fullString = originalString.split(/(\s+)/);;
+    let wordNo = 0;
+    for(let i=0; i<totalPages; i++){
+      textareaInner.innerText = '';
+      let pageStringList = [];
+      let pageString = '';
+      while(textareaInner.offsetHeight <= pageHeight && wordNo <= fullString.length) {
+        pageString = pageStringList.join(' ');
+        pageStringList.push(fullString[wordNo]);
+        textareaInner.innerText = pageStringList.join(' ');
+        wordNo++;
       }
-      img.src = canvas.toDataURL("image/jpeg");
-    } else {
-      img.src = canvas.toDataURL('image/jpeg');
-      setOutputImage(img);
+      textareaInner.innerText = pageString;
+      wordNo--;
+      const canvas = await html2canvas(page, {
+        scrollX: 0,
+        scrollY: -window.scrollY,
+      });
+
+      const img = new Image();
+      if (document.querySelector('#paper-curve-toggle').checked){
+        img.onload = function(){
+          warpVertically(img, 0);
+          warpedImage.src = warp_canvas.toDataURL("image/png");
+          setOutputImage(warpedImage);
+        }
+        img.src = canvas.toDataURL("image/jpeg");
+      } else {
+        img.src = canvas.toDataURL('image/jpeg');
+        setOutputImage(img);
+      }
     }
-    
+    textareaInner.innerText = originalString;
   } catch (err) {
     alert('Something went wrong :(');
     console.error(err);
@@ -116,6 +167,23 @@ async function generateImage() {
     smoothlyScrollTo('#output');
   }
 }
+
+/**
+ * Event listeners preview page navigation buttons
+ */
+
+document.querySelector('#page-nav-right').addEventListener('click', () => {
+  if (currentPage < previewImages.length) {
+    currentPage++;
+  }
+  setNavPage(currentPage);
+});
+document.querySelector('#page-nav-left').addEventListener('click', () => {
+  if (currentPage > 1) {
+    currentPage--;
+  }
+  setNavPage(currentPage);
+});
 
 
 /**
@@ -254,7 +322,7 @@ if(navigator.language.slice(0, 2) === 'zh') {
   const chineseSupportFont = "'Liu Jian Mao Cao', cursive"
   setTextareaStyle('fontFamily', chineseSupportFont)
   document.querySelector('#handwriting-font').value = chineseSupportFont;
-  
+
   // set chinese lorem ipsum
   document.querySelector('#note').innerText = "嗨，您好！多谢您尝试文字转笔迹。该网站的流量一直很高，我很乐意让其他语言的人们可以访问该网站，因此，如果您有任何建议或可以帮助我使您所在国家的人们可以访问该网站。在GitHub上让我知道还是向我发送电子邮件（在GitHub中提到的电子邮件ID）";
 }
