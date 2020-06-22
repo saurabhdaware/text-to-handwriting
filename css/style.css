@@ -296,6 +296,11 @@ img.contributor-avatar {
   animation: octocat-wave 560ms ease-in-out;
 }
 
+.page-navigate {
+  font-size: 14pt;
+  margin: 0px 10px;
+}
+
 @keyframes octocat-wave {
   0%,
   100% {

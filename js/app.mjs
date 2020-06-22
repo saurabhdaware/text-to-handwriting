@@ -19,7 +19,6 @@ const output = document.querySelector('.output');
 const currentPageNo = document.querySelector('#current-page-no');
 
 var generatedImages = [];
-var previewImages = [];
 let currentPage = 0;
 
 function setDownloadSource(imageSource) {
@@ -28,20 +27,12 @@ function setDownloadSource(imageSource) {
     a.download = 'assignment';
     a.classList.remove('disabled');
   });
-  document.querySelector('#nav').style.display = 'block';
-}
-
-function disableDownloadSource(){
-  document.querySelectorAll('a.download-button').forEach((a) => {
-    a.classList.add('disabled');
-  });
-  document.querySelector('#nav').style.display = 'none';
+  document.querySelector('#page-nav').style.display = 'block';
 }
 
 function setOutputImage(imageEl) {
   output.innerHTML = '';
   output.appendChild(imageEl);
-  previewImages.push(imageEl);
   // Push image to generated images to create PDF
   generatedImages.push(imageEl.src);
   setDownloadSource(imageEl.src);
@@ -69,7 +60,6 @@ function setPDFPreviews() {
     .forEach(closeButton =>
       closeButton.addEventListener('click', e => {
         generatedImages.splice(Number(closeButton.dataset.removeindex), 1);
-        previewImages.splice(Number(closeButton.dataset.removeindex), 1);
         setPDFPreviews();
         setNavPage(generatedImages.length);
       })
@@ -93,13 +83,10 @@ function togglePDFPreview() {
 
 function setNavPage(pageNo) {
   output.innerHTML = '';
-  if(pageNo>0){
-    output.appendChild(previewImages[pageNo - 1]);
-    setDownloadSource(previewImages[pageNo - 1].src);
+  if(pageNo > 0) {
+    output.innerHTML = `<img alt="Output image" src="${generatedImages[pageNo - 1]}" />`;
+    setDownloadSource(generatedImages[pageNo - 1]);
     currentPageNo.innerHTML = pageNo;
-  }else{
-    currentPageNo.innerHTML = 0;
-    disableDownloadSource();
   }
 }
 
@@ -124,11 +111,11 @@ async function generateImage() {
     let originalString = textareaInner.innerText;
     let fullString = originalString.split(/(\s+)/);;
     let wordNo = 0;
-    for(let i=0; i<totalPages; i++){
+    for (let i = 0; i < totalPages; i++) {
       textareaInner.innerText = '';
       let pageStringList = [];
       let pageString = '';
-      while(textareaInner.offsetHeight <= pageHeight && wordNo <= fullString.length) {
+      while (textareaInner.offsetHeight <= pageHeight && wordNo <= fullString.length) {
         pageString = pageStringList.join(' ');
         pageStringList.push(fullString[wordNo]);
         textareaInner.innerText = pageStringList.join(' ');
@@ -136,6 +123,7 @@ async function generateImage() {
       }
       textareaInner.innerText = pageString;
       wordNo--;
+
       const canvas = await html2canvas(page, {
         scrollX: 0,
         scrollY: -window.scrollY,
@@ -173,7 +161,7 @@ async function generateImage() {
  */
 
 document.querySelector('#page-nav-right').addEventListener('click', () => {
-  if (currentPage < previewImages.length) {
+  if (currentPage < generatedImages.length) {
     currentPage++;
   }
   setNavPage(currentPage);
