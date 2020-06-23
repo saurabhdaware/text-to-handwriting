@@ -2,13 +2,20 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   margin: 0px;
   width: 100%;
   overflow-x: hidden;
   background-color: #fff;
   color: #333;
   scroll-behavior: smooth;
+}
+
+.dark-mode {
+  background-color: #333333;
+  color: white;
+  --color-primary: #090d10;
 }
 
 :root {
@@ -423,7 +430,7 @@ img.contributor-avatar {
   height: 100%;
   margin-right: 20px;
 }
-.preview-holder > .preview-image img{
+.preview-holder > .preview-image img {
   height: 100%;
 }
 
