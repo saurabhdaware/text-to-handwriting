@@ -91,7 +91,7 @@ body {
 
 .form-container button.secondary-button {
   background-color: var(--elevation-background);
-  color: var(--color-text);
+  color: var(--font-color-primary);
 }
 
 .page {
