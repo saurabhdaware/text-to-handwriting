@@ -7,26 +7,37 @@ body {
   margin: 0px;
   width: 100%;
   overflow-x: hidden;
-  background-color: #fff;
-  color: #333;
   scroll-behavior: smooth;
 }
 
-.dark-mode {
-  background-color: #090d10;
-  color: #ffffff;
-  --color-secondary: #222;
-  --color-text: #ccc;
-  --color-background: #222;
-  --color-value: #ccc;
+body {
+  --background-primary: #fff;
+  --side-nav-background: #f3f3f3;
+  --font-color-primary: #333;
+  --elevation-background: #f3f3f3;
+  --code-background: #f3f3f3;
+  --footer-background: #f9f9f9;
+  --link-color: #006EB8;
+  --font-family-primary: 'Roboto Condensed', sans-serif;
+  --primary: #2c3e50;
 }
 
-:root {
-  --color-primary: #2c3e50;
-  --color-secondary: #eee;
-  --color-text: #222;
-  --color-background: #fff;
-  --color-value: #090d10;
+.dark-mode {
+  --background-primary: #121212;
+  --font-color-primary: #ccc; 
+  --elevation-background: #1D1D1D;
+  --code-background: #222;
+  --footer-background: #0f0f0f;
+  --side-nav-background: #0f0f0f;
+  --link-color: #09f;
+}
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+body {
+  background-color: var(--background-primary);
+  color: var(--font-color-primary);
 }
 
 .row {
@@ -51,14 +62,16 @@ body {
 .form-container select {
   display: block;
   width: 100%;
-  background-color: var(--color-background);
+  background-color: var(--elevation-background);
   border: none;
-  border: 1px solid #ddd;
+  border: 1px solid var(--elevation-background);
   padding: 10px;
   margin-top: 5px;
-  color: var(--color-value);
+  color: var(--font-color-primary);
 }
-
+.form-container input {
+  background-color: transparent;
+}
 .form-container input[type="number"] {
   display: inline-block;
   width: unset;
@@ -72,12 +85,12 @@ body {
 }
 
 .form-container button.primary-button {
-  background-color: var(--color-primary);
+  background-color: var(--primary);
   color: #fff;
 }
 
 .form-container button.secondary-button {
-  background-color: var(--color-secondary);
+  background-color: var(--elevation-background);
   color: var(--color-text);
 }
 
@@ -86,7 +99,7 @@ body {
   position: relative;
   background: linear-gradient(to right, #fff, #fff);
   padding: 0px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--elevation-background);
   top: 0px;
   margin: 0px 8px 0px 0px;
   transform: rotateZ(0deg);
@@ -217,7 +230,7 @@ body {
   width: 40px;
   height: 20px;
   border-radius: 25px;
-  background-color: #eee;
+  background-color: var(--elevation-background);
 }
 
 .switch-toggle input {
@@ -238,7 +251,7 @@ body {
 
 .switch-toggle input:checked+div {
   left: 50%;
-  background-color: var(--color-primary);
+  background-color: var(--primary);
 }
 
 .switch-toggle.rect {
@@ -299,12 +312,13 @@ body {
   display: inline-block;
   margin: 10px 5px;
   text-align: center;
-  background-color: #fff;
+  background-color: var(--elevation-background);
+  color: var(--font-color-primary);
   padding: 10px;
   width: 130px;
   overflow: hidden;
   height: 170px;
-  box-shadow: 4px 3px 16px -3px #777;
+  box-shadow: 4px 3px 16px -3px #0009;
 }
 
 img.contributor-avatar {
@@ -313,7 +327,7 @@ img.contributor-avatar {
 
 .contributor-profile a {
   text-decoration: none;
-  color: #333;
+  color: var(--font-color-primary);
   font-weight: bold;
   font-size: 10pt;
 }
