@@ -79,7 +79,10 @@
           </div>
           <div class="customization-col">    
             <!-- Handwriting Font -->
-            <div style="padding: 5px 0px 14px 0px;"><b>Customizations</b> <small>(Optional)</small></div>
+            <div style="padding: 5px 0px 5px 0px;">
+              <b>Customizations</b> <small>(Optional)</small>
+              <p style="font-size: .8rem"><em>Note: Few changes may reflect only in the generated image and not in the preview</em></p>
+            </div>
             <div class="padding-up-down responsive-flex display-flex">
               <div> 
                 <label class="block" for="handwriting-font">Handwriting Font</label>
@@ -178,11 +181,18 @@
             <!-- GENERATE IMAGE BUTTONS -->
             <hr style="border: .3px solid var(--elevation-background); width: 80%;"/>
             <div style="text-align: center;padding: 30px 0px;">
-              <button class="generate-image">Generate Image</button>
+              <button type="submit" class="generate-image">Generate Image</button>
             </div>
           </div>
         </div>
       </form>
+    </section>
+
+    <!-- OUTPUT -->
+    <section>
+      <div id="output" class="output">
+
+      </div>
     </section>
   </main>
 

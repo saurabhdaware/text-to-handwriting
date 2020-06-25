@@ -1,8 +1,91 @@
-import { initiateEvents } from './utils/events.mjs';
-
-
+import { addFontFromFile } from './utils/helpers.mjs';
+import { generateImages } from './generate-images.mjs';
+const pageEl = document.querySelector(".page-a");
 
 /** 
- * Initiates all the field event listeners, comes from file ./utils/events.mjs
+ * Initiates all the input and other event listeners
  */ 
-initiateEvents();
+
+const setTextareaStyle = (attrib, v) => pageEl.style[attrib] = v;
+
+/**
+ * Add event listeners here, they will be automatically mapped with addEventListener later
+ */
+const EVENT_MAP = {
+  "#generate-image-form": {
+    on: "submit",
+    action: (e) => {
+      e.preventDefault();
+      generateImages();
+    },
+  },
+  "#handwriting-font": {
+    on: "change",
+    action: (e) => document.body.style.setProperty('--handwriting-font', e.target.value)
+  },
+  "#font-size": {
+    on: "change",
+    action: (e) => setTextareaStyle("fontSize", e.target.value + "pt"),
+  },
+  "#letter-spacing": {
+    on: "change",
+    action: (e) => setTextareaStyle("letterSpacing", e.target.value + "pt"),
+  },
+  "#word-spacing": {
+    on: "change",
+    action: (e) => setTextareaStyle("wordSpacing", e.target.value + "px"),
+  },
+  "#top-padding": {
+    on: "change",
+    action: (e) => {
+      document.querySelector('.page-a .paper-content').style.paddingTop = e.target.value + 'px'
+    }
+  },
+  "#font-file": {
+    on: "change",
+    action: (e) => addFontFromFile(e.target.files[0]),
+  },
+  "#ink-color": {
+    on: "change",
+    action: (e) => {
+      document.body.style.setProperty('--ink-color', e.target.value);
+    }
+  },
+  "#paper-margin-toggle": {
+    on: "change",
+    action: () => {
+      if (pageEl.classList.contains('margined')) {
+        pageEl.classList.remove('margined');
+      } else {
+        pageEl.classList.add("margined");
+      }
+    },
+  },
+  "#paper-line-toggle": {
+    on: "change",
+    action: () => pageEl.classList.toggle("lines"),
+  }
+};
+
+
+for (const event in EVENT_MAP) {
+  document
+    .querySelector(event)
+    .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
+}
+
+
+document.querySelectorAll('.switch-toggle input')
+  .forEach(toggleInput => {
+    toggleInput.addEventListener('change', e => {
+      if (toggleInput.checked) {
+        document.querySelector(`label[for="${toggleInput.id}"] .status`)
+          .textContent = 'on'
+        toggleInput.setAttribute('aria-pressed', true);
+      } else {
+        toggleInput.setAttribute('aria-pressed', false);
+        document.querySelector(`label[for="${toggleInput.id}"] .status`)
+          .textContent = 'off'
+      }
+    })
+  })

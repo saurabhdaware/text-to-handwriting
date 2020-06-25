@@ -91,7 +91,7 @@ body.dark select {
 }
 .flex-1 {flex: 1;}
 .padding-around {padding-right: 30px; padding-left: 30px;}
-.padding-up-down {padding-top: 10px; padding-bottom: 10px;}
+.padding-up-down {padding-top: 6px; padding-bottom: 7px;}
 
 .px-after {
   position: absolute;
