@@ -190,7 +190,7 @@ body.dark .github-corner {
 }
 
 .left-margin-and-content {
-  height: 100%;
+  min-height: 100%;
 }
 
 .page-a {
@@ -198,17 +198,18 @@ body.dark .github-corner {
   height: calc(11.7 * 400px / 8.3); /* A4 Ratio */
   background: #fff;
   border: 1px solid var(--elevation-background);
-  overflow-y: hidden;
   font-size: 10pt;
   position: relative;
+  top: 0px;
   font-family: var(--handwriting-font);
   color: var(--ink-color);
+  line-height: 1.5em;
+  overflow: hidden;
 }
 .paper-content {
   margin: 10px;
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
   background-color: unset !important;
-  line-height: 1.5em;
   background-size: 100% 1.5em;
 }
 
@@ -236,79 +237,8 @@ body.dark .github-corner {
   left: 0;
 }
 
-.page {
-  padding: 10px;
-  position: relative;
-  background: linear-gradient(to right, #fff, #fff);
-  padding: 0px;
-  border: 1px solid #ccc;
-  top: 0px;
-  margin: 0px 8px 0px 0px;
-  transform: rotateZ(0deg);
-  width: 400px;
-  display: inline-block;
-  height: 565px;
-  box-sizing: border-box;
-  overflow: hidden;
-}
-
-.paper {
-  background-color: unset !important;
-  line-height: 1.5em;
-  background-size: 100% 1.5em;
-  padding: unset;
-}
-
-.paper.lines {
-  background-image: linear-gradient(#999 0.05em, transparent 0.1em);
-  background-color: unset !important;
-  line-height: 1.5em;
-  background-size: 100% 1.5em;
-  padding: unset;
-}
-
-.textarea {
-  background-color: #fff;
-  min-height: 100%;
-  top: 0;
-  left: 0;
-  outline: none;
-  font-family: "Homemade Apple", cursive;
-  color: #000f55;
-  padding-top: 0px;
-  font-size: 12pt;
-  line-height: 1.5em;
-  box-sizing: border-box;
-  word-spacing: 3px;
-  position: relative;
-}
-
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  display: none;
-  background-image: linear-gradient(10deg, #0008, #0000);
-}
-
-.page:not(.margined-page) {
-  padding: 15px;
-}
-
-.paper-content {
-  width: 100%;
-}
-
-.page:not(.margined-page) .paper-content {
-  padding: 0px;
-}
-
 /* Page with margin */
 .margined-page {
-  width: 400;
-  min-height: 567;
   font-size: 6pt !important;
   overflow: hidden;
 }
