@@ -371,6 +371,7 @@ body.dark .github-corner {
   padding: 30px;
   white-space: nowrap;
   overflow-x: scroll;
+  border: 1px solid var(--elevation-background);
 }
 .output > img {
   width: 300px;
