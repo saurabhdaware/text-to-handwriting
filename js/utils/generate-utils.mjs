@@ -1,5 +1,7 @@
 const pageEl = document.querySelector('.page-a');
 const paperContentEl = document.querySelector('.page-a .paper-content');
+const overlayEl = document.querySelector('.overlay');
+
 let paperContentPadding;
 
 function isFontErrory() {
@@ -10,6 +12,8 @@ function isFontErrory() {
 
 function applyPaperStyles() {
   pageEl.style.border = 'none';
+  console.log(document.querySelector('#page-effects').value)
+  overlayEl.classList.add(document.querySelector('#page-effects').value);
   if (isFontErrory()) {
     paperContentPadding = paperContentEl.style.paddingTop.replace(/px/g, '') || 5;
     let newPadding = Number(paperContentPadding) - 5;
@@ -19,6 +23,7 @@ function applyPaperStyles() {
 
 function removePaperStyles() {
   pageEl.style.border = '1px solid var(--elevation-background)';
+  overlayEl.classList.remove(document.querySelector('#page-effects').value);
   if (isFontErrory()) {
     paperContentEl.style.paddingTop = `${paperContentPadding}px`;
   }

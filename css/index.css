@@ -190,7 +190,7 @@ body.dark .github-corner {
 }
 
 .left-margin-and-content {
-  min-height: 100%;
+  min-height: calc(100% - 50px);
 }
 
 .page-a {
@@ -204,10 +204,14 @@ body.dark .github-corner {
   font-family: var(--handwriting-font);
   color: var(--ink-color);
   line-height: 1.5em;
-  overflow: hidden;
+  overflow-y: auto;
+  scrollbar-color: transparent;
+  scrollbar-width: thin;
 }
 .paper-content {
   margin: 10px;
+}
+.page-a.lines .paper-content {
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
   background-color: unset !important;
   background-size: 100% 1.5em;
@@ -227,7 +231,7 @@ body.dark .github-corner {
 
 .margined .left-margin {
   width: 50px;
-  height: calc(100% + 50px);
+  height: calc(100%);
   display: inline-block;
   border-right: 2px solid pink;
   top: 0px;
@@ -238,11 +242,6 @@ body.dark .github-corner {
 }
 
 /* Page with margin */
-.margined-page {
-  font-size: 6pt !important;
-  overflow: hidden;
-}
-
 .paper-margin-left-line {
   display: none;
 }
@@ -295,12 +294,26 @@ body.dark .github-corner {
   padding-left: 80px;
 }
 
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.overlay.shadows {
+  display: block;
+  background-image: linear-gradient(10deg, #000a, #0001);
+}
 /* OUTPUT */
 .output {
   width: 100%;
   padding: 30px;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: auto;
   border: 1px solid var(--elevation-background);
 }
 .output > img {

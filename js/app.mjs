@@ -63,7 +63,13 @@ const EVENT_MAP = {
   },
   "#paper-line-toggle": {
     on: "change",
-    action: () => pageEl.classList.toggle("lines"),
+    action: () => {
+      if (pageEl.classList.contains('lines')) {
+        pageEl.classList.remove('lines');
+      } else {
+        pageEl.classList.add("lines");
+      }    
+    }
   }
 };
 

@@ -66,7 +66,7 @@
         <div class="display-flex output-grid responsive-flex">
           <div class="flex-1 page-container">
             <label class="block" for="note">Type/Paste text here</label>
-            <div class="page-a margined">
+            <div class="page-a margined lines">
               <div contenteditable="true" class="top-margin"></div>
               <div class="display-flex left-margin-and-content">
                 <div contenteditable="true" class="left-margin"></div>
@@ -75,6 +75,7 @@
                   empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue. Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
                 </div>
               </div>
+              <div class="overlay"></div>
             </div>
           </div>
           <div class="customization-col">    
@@ -124,13 +125,20 @@
 
             <div class="padding-up-down display-flex padded-flex">
               <div style="padding-top: 10px;">
-                <button style="font-size: 0.9rem">Draw Diagram <small>(Beta)</small></button>
+                <button style="font-size: 0.9rem">Draw <small>(Beta)</small></button>
               </div>
               <div>
                 <label for="top-padding" class="block">Vertical Position</label>
                 <div style="position: relative;">
-                  <input id="top-padding" min="0" value="0" type="number" /> <span class="px-after">px</span>
+                  <input id="top-padding" min="0" value="5" type="number" /> <span class="px-after">px</span>
                 </div>
+              </div>
+              <div>
+                <label class="block" for="page-effects">Effects</label>
+                <select id="page-effects">
+                  <option default value="shadows">Shadows</option>
+                  <option value="no-effect">No Effect</option>
+                </select>
               </div>
             </div>
 
@@ -168,9 +176,9 @@
                 </label>
                 <br><br>
               </div>
-              <div class="flex-1">
+              <div class="flex-1 experimental" style="opacity: .8; cursor: not-allowed;">
                 <label for="paper-curve-toggle">Paper Curve: <span aria-label="paper curve status" class="status">off</span></label>
-                <label class="switch-toggle outer">
+                <label title="Paper Curve (Yet to be implemented)" class="switch-toggle outer" style="cursor: not-allowed !important;">
                   <input aria-pressed="false" aria-label="Paper Curve Button" id="paper-curve-toggle" type="checkbox" />
                   <div></div>
                 </label>
