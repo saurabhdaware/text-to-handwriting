@@ -79,8 +79,7 @@ body.dark select {
 /* global classes */
 
 .shadow {
-  box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2),
-  -12px -12px 24px 0 rgba(255, 255, 255, 0.5);
+  box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2)
 }
 .display-flex {display: flex;}
 .display-flex.padded-flex > div {
@@ -206,7 +205,6 @@ body.dark .github-corner {
   color: var(--ink-color);
 }
 .paper-content {
-  padding: 5px;
   margin: 10px;
   background-image: linear-gradient(#999 0.05em, transparent 0.1em);
   background-color: unset !important;
@@ -223,6 +221,7 @@ body.dark .github-corner {
   height: 50px;
   border-bottom: 2px solid pink;
   width: 100%;
+  overflow-y: hidden;
 }
 
 .margined .left-margin {
@@ -230,7 +229,9 @@ body.dark .github-corner {
   height: calc(100% + 50px);
   display: inline-block;
   border-right: 2px solid pink;
-  top: -50px;
+  top: 0px;
+  padding-top: 50px;
+  overflow-x: hidden;
   position: absolute;
   left: 0;
 }
@@ -362,6 +363,18 @@ body.dark .github-corner {
 .margined-page .textarea {
   min-height: 620px;
   padding-left: 80px;
+}
+
+/* OUTPUT */
+.output {
+  width: 100%;
+  padding: 30px;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+.output > img {
+  width: 300px;
+  margin: 0px 10px;
 }
 
 @media (max-width: 768px) {

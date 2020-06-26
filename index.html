@@ -67,9 +67,9 @@
           <div class="flex-1 page-container">
             <label class="block" for="note">Type/Paste text here</label>
             <div class="page-a margined">
-              <div class="top-margin"></div>
+              <div contenteditable="true" class="top-margin"></div>
               <div class="display-flex left-margin-and-content">
-                <div class="left-margin"></div>
+                <div contenteditable="true" class="left-margin"></div>
                 <div class="paper-content" id="note" contenteditable="true">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis. Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque sed tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu urna.
                   empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue. Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
@@ -111,7 +111,7 @@
               <div>
                 <label for="font-size" class="block">Font Size</label>
                 <div style="position: relative;">
-                  <input id="font-size" min="0" value="12" type="number" /> <span class="px-after">pt</span>
+                  <input id="font-size" min="0" step="0.1" value="10" type="number" /> <span class="px-after">pt</span>
                 </div>
               </div>
               <div>
@@ -138,7 +138,7 @@
               <div>
                 <label for="word-spacing" class="block">Word Spacing</label>
                 <div style="position: relative;">
-                  <input id="word-spacing" min="0" value="3" type="number" /> <span class="px-after">px</span>
+                  <input id="word-spacing" min="0" value="0" type="number" /> <span class="px-after">px</span>
                 </div>
               </div>
               <div>
@@ -189,15 +189,17 @@
     </section>
 
     <!-- OUTPUT -->
-    <section>
-      <div id="output" class="output">
-
+    <section style="padding: 40px 0px;">
+      <h2>Output</h2>
+      <div id="output" class="output" style="text-align: center;">
+        Click "Generate Image" Button to generate new image.
       </div>
     </section>
   </main>
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="./js/vendors/html2canvas.min.js" crossorigin="anonymous"></script>
   <script type="module" src="js/app.mjs"></script>
   <script>
     function toggleTheme(toggleButton) {
