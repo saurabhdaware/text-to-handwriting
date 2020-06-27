@@ -30,9 +30,12 @@ async function convertDIVToImage() {
 export async function generateImages() {
   applyPaperStyles();
   pageEl.scrollTo(0, 0);
-  const pageHeight = 564;
+  
   const paperContentEl = document.querySelector('.page-a .paper-content');
-  const totalPages = Math.ceil(paperContentEl.offsetHeight / pageHeight);
+  let scrollHeight = paperContentEl.scrollHeight;
+  const clientHeight = 514;
+
+  const totalPages = Math.ceil(scrollHeight / clientHeight);
 
   if (totalPages > 1) {
     // For multiple pages
@@ -49,7 +52,7 @@ export async function generateImages() {
       const wordArray = [];
       let wordString = '';
   
-      while (paperContentEl.offsetHeight <= pageHeight && wordCount <= splitContent.length) {
+      while (paperContentEl.scrollHeight <= clientHeight && wordCount <= splitContent.length) {
         wordString = wordArray.join(' ');
         wordArray.push(splitContent[wordCount]);
         paperContentEl.innerHTML = wordArray.join(' ');
