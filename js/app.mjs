@@ -2,11 +2,24 @@ import { addFontFromFile } from './utils/helpers.mjs';
 import { generateImages, downloadAsPDF } from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
 
+/**
+ * 
+ * Hi there! This is the entry file of the tool and deals with adding event listeners
+ * and some other functions. 
+ * 
+ * To contribute, you can follow the imports above and make changes in the file
+ * related to the issue you've choosen.
+ * 
+ * If you have any questions related to code, you can drop them in my Twitter DM @saurabhcodes
+ * or in my email at saurabhdaware99@gmail.com
+ * 
+ * Thanks! and Happy coding 🌻
+ * 
+ */
+
+ 
 const pageEl = document.querySelector(".page-a");
 
-/** 
- * Initiates all the input and other event listeners
- */ 
 
 const setTextareaStyle = (attrib, v) => pageEl.style[attrib] = v;
 
@@ -101,7 +114,9 @@ for (const eventSelector in EVENT_MAP) {
     .addEventListener(EVENT_MAP[eventSelector].on, EVENT_MAP[eventSelector].action);
 }
 
-
+/**
+ * This makes toggles, accessible.
+ */
 document.querySelectorAll('.switch-toggle input')
   .forEach(toggleInput => {
     toggleInput.addEventListener('change', e => {
