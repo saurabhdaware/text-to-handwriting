@@ -6,7 +6,8 @@
 </p>
 
 ## 🌠 Output
-![Sample image of output](sample.jpeg)
+
+<img width="400" alt="Sample image of output" src="sample.jpeg" />
 
 
 
