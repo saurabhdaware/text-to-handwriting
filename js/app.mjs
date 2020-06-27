@@ -1,212 +1,42 @@
-import {
-  isMobile,
-  applyPaperStyles,
-  removePaperStyles,
-  addFontFromFile,
-  createPDF,
-  smoothlyScrollTo,
-} from "./helpers.mjs";
-
-import { setInkColor, toggleDrawCanvas } from "./draw.mjs";
-
-import { warpVertically, warp_canvas } from "./curvature.mjs";
-
-const textareaEl = document.querySelector(".page > .textarea");
-const textareaInner = document.querySelector(
-  ".page > .textarea > .paper-content"
-);
-const page = document.querySelector(".page");
-const warpedImage = document.getElementById("warped-image");
-const output = document.querySelector(".output");
-const currentPageNo = document.querySelector("#current-page-no");
-const body = document.querySelector("body");
-
-var generatedImages = [];
-let currentPage = 0;
-
-function setDownloadSource(imageSource) {
-  document.querySelectorAll("a.download-button").forEach((a) => {
-    a.href = imageSource;
-    a.download = "assignment";
-    a.classList.remove("disabled");
-  });
-  document.querySelector("#page-nav").style.display = "block";
-}
-
-function setOutputImage(imageEl) {
-  output.innerHTML = "";
-  output.appendChild(imageEl);
-  // Push image to generated images to create PDF
-  generatedImages.push(imageEl.src);
-  setDownloadSource(imageEl.src);
-  document.querySelector("#image-count").innerHTML = generatedImages.length;
-  document.querySelector("#total-page-count").innerHTML =
-    generatedImages.length;
-  currentPage = generatedImages.length;
-  currentPageNo.innerHTML = currentPage;
-}
-
-function setPDFPreviews() {
-  document.querySelector(".preview-holder").innerHTML = generatedImages
-    .map((imageb64, index) => {
-      return `
-    <div class="preview-image image-${index}">
-      <button data-removeindex="${index}" class="close-image">&times;</button>
-      <img src="${imageb64}">
-    </div>
-    `;
-    })
-    .join("");
-
-  document.querySelector("#image-count").innerHTML = generatedImages.length;
-  document.querySelector("#total-page-count").innerHTML =
-    generatedImages.length;
-
-  document
-    .querySelectorAll(".preview-holder .close-image")
-    .forEach((closeButton) =>
-      closeButton.addEventListener("click", (e) => {
-        generatedImages.splice(Number(closeButton.dataset.removeindex), 1);
-        setPDFPreviews();
-        setNavPage(generatedImages.length);
-      })
-    );
-}
-
-function togglePDFPreview() {
-  const pdfPreviewContainer = document.querySelector(".pdf-preview-container");
-  if (pdfPreviewContainer.classList.contains("show")) {
-    // draw canvas is currently shown
-    document.querySelector("main").style.display = "block";
-    document.querySelector("footer").style.display = "block";
-  } else {
-    document.querySelector("main").style.display = "none";
-    document.querySelector("footer").style.display = "none";
-    setPDFPreviews();
-  }
-
-  pdfPreviewContainer.classList.toggle("show");
-}
-
-function setNavPage(pageNo) {
-  output.innerHTML = "";
-  if (pageNo > 0) {
-    output.innerHTML = `<img alt="Output image" src="${
-      generatedImages[pageNo - 1]
-    }" />`;
-    setDownloadSource(generatedImages[pageNo - 1]);
-    currentPageNo.innerHTML = pageNo;
-  }
-}
+import { addFontFromFile, formatText } from './utils/helpers.mjs';
+import { generateImages, downloadAsPDF } from './generate-images.mjs';
+import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
 
 /**
- * @method generateImage()
- * @description
- *    1. Apply CSS Styles that make text field look like paper
- *    2. Use html2canvas library to turn the HTML DOM to Canvas
- *    3. Get image out of canvas and render new <img> tag
- *    4. Enable download image buttons
- *    5. Remove the previously applied CSS Styles.
+ * 
+ * Hi there! This is the entry file of the tool and deals with adding event listeners
+ * and some other functions. 
+ * 
+ * To contribute, you can follow the imports above and make changes in the file
+ * related to the issue you've choosen.
+ * 
+ * If you have any questions related to code, you can drop them in my Twitter DM @saurabhcodes
+ * or in my email at saurabhdaware99@gmail.com
+ * 
+ * Thanks! and Happy coding 🌻
+ * 
  */
-async function generateImage() {
-  // apply extra styles to textarea to make it look like paper
-  applyPaperStyles();
-  let pageHeight = 570;
-  if (page.classList.contains("margined-page")) {
-    pageHeight = 622;
-  }
-  let totalPages = Math.ceil(textareaInner.offsetHeight / pageHeight);
-  try {
-    let originalString = textareaInner.innerText;
-    let fullString = originalString.split(/(\s+)/);
-    let wordNo = 0;
-    for (let i = 0; i < totalPages; i++) {
-      textareaInner.innerText = "";
-      let pageStringList = [];
-      let pageString = "";
-      while (
-        textareaInner.offsetHeight <= pageHeight &&
-        wordNo <= fullString.length
-      ) {
-        pageString = pageStringList.join(" ");
-        pageStringList.push(fullString[wordNo]);
-        textareaInner.innerText = pageStringList.join(" ");
-        wordNo++;
-      }
-      textareaInner.innerText = pageString;
-      wordNo--;
 
-      const canvas = await html2canvas(page, {
-        scrollX: 0,
-        scrollY: -window.scrollY,
-      });
 
-      const img = new Image();
-      if (document.querySelector("#paper-curve-toggle").checked) {
-        img.onload = function () {
-          warpVertically(img, 0);
-          warpedImage.src = warp_canvas.toDataURL("image/png");
-          setOutputImage(warpedImage);
-        };
-        img.src = canvas.toDataURL("image/jpeg");
-      } else {
-        img.src = canvas.toDataURL("image/jpeg");
-        setOutputImage(img);
-      }
-    }
-    textareaInner.innerText = originalString;
-  } catch (err) {
-    alert("Something went wrong :(");
-    console.error(err);
-  }
+const pageEl = document.querySelector(".page-a");
 
-  // Now remove styles to get textarea back to normal
-  removePaperStyles();
 
-  if (isMobile) {
-    smoothlyScrollTo("#output");
-  }
-}
+const setTextareaStyle = (attrib, v) => pageEl.style[attrib] = v;
 
 /**
- * Event listeners preview page navigation buttons
+ * Add event listeners here, they will be automatically mapped with addEventListener later
  */
-
-document.querySelector("#page-nav-right").addEventListener("click", () => {
-  if (currentPage < generatedImages.length) {
-    currentPage++;
-  }
-  setNavPage(currentPage);
-});
-document.querySelector("#page-nav-left").addEventListener("click", () => {
-  if (currentPage > 1) {
-    currentPage--;
-  }
-  setNavPage(currentPage);
-});
-
-/**
- * Event listeners on input fields
- */
-
-/**
- *
- * @param {string} attrib
- * @param {any} value
- */
-const setTextareaStyle = (attrib, v) => {
-  textareaEl.style[attrib] = v;
-};
-
-const toggleMode = () => {
-  body.classList.toggle("dark-mode");
-};
-let popup = "";
-
 const EVENT_MAP = {
+  "#generate-image-form": {
+    on: "submit",
+    action: (e) => {
+      e.preventDefault();
+      generateImages();
+    },
+  },
   "#handwriting-font": {
     on: "change",
-    action: (e) => setTextareaStyle("fontFamily", e.target.value),
+    action: (e) => document.body.style.setProperty('--handwriting-font', e.target.value)
   },
   "#font-size": {
     on: "change",
@@ -222,7 +52,9 @@ const EVENT_MAP = {
   },
   "#top-padding": {
     on: "change",
-    action: (e) => setTextareaStyle("paddingTop", e.target.value + "px"),
+    action: (e) => {
+      document.querySelector('.page-a .paper-content').style.paddingTop = e.target.value + 'px'
+    }
   },
   "#font-file": {
     on: "change",
@@ -231,112 +63,84 @@ const EVENT_MAP = {
   "#ink-color": {
     on: "change",
     action: (e) => {
-      setTextareaStyle("color", e.target.value);
+      document.body.style.setProperty('--ink-color', e.target.value);
       setInkColor(e.target.value);
-    },
+    }
   },
   "#paper-margin-toggle": {
     on: "change",
-    action: () => page.classList.toggle("margined-page"),
+    action: () => {
+      if (pageEl.classList.contains('margined')) {
+        pageEl.classList.remove('margined');
+      } else {
+        pageEl.classList.add("margined");
+      }
+    },
   },
   "#paper-line-toggle": {
     on: "change",
-    action: () => textareaEl.classList.toggle("lines"),
+    action: () => {
+      if (pageEl.classList.contains('lines')) {
+        pageEl.classList.remove('lines');
+      } else {
+        pageEl.classList.add("lines");
+      }    
+    }
   },
   "#draw-diagram-button": {
     on: "click",
     action: () => {
       toggleDrawCanvas();
-      popup = "draw";
     },
   },
   ".draw-container .close-button": {
     on: "click",
     action: () => {
       toggleDrawCanvas();
-      popup = "";
-    },
+    }
   },
-  "#pdf-preview-button": {
-    on: "click",
+  "#download-as-pdf-button": {
+    on: 'click',
     action: () => {
-      togglePDFPreview();
-      popup = "pdfpreview";
-    },
+      downloadAsPDF();
+    }
   },
-  ".pdf-preview-container .close-button": {
-    on: "click",
-    action: () => {
-      togglePDFPreview();
-      popup = "";
-    },
-  },
-  "#generate-image-form": {
-    on: "submit",
-    action: (e) => {
-      e.preventDefault();
-      generateImage();
-    },
-  },
-  "#generate-pdf": {
-    on: "click",
-    action: (e) => {
-      if (generatedImages.length <= 0) {
-        alert("No generated images found.");
-        return;
-      }
-      createPDF(generatedImages);
-    },
-  },
-  "#toggle-body": {
-    on: "change",
-    action: () => {
-      toggleMode();
-    },
-  },
+  ".page-a .paper-content": {
+    on: 'paste',
+    action: formatText
+  }
 };
 
-for (const event in EVENT_MAP) {
+
+for (const eventSelector in EVENT_MAP) {
   document
-    .querySelector(event)
-    .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
+    .querySelector(eventSelector)
+    .addEventListener(EVENT_MAP[eventSelector].on, EVENT_MAP[eventSelector].action);
 }
-
-window.addEventListener("keyup", (e) => {
-  if (e.code === "Escape") {
-    if (popup === "pdfpreview") {
-      togglePDFPreview();
-    } else if (popup === "draw") {
-      toggleDrawCanvas();
-    }
-  }
-});
-
-// Set paper lines to true on init
-EVENT_MAP["#paper-line-toggle"].action();
-
-document.querySelector("#note").addEventListener("paste", (event) => {
-  event.preventDefault();
-  const text = event.clipboardData
-    .getData("text/plain")
-    .replace(/\n/g, "<br/>");
-  document.execCommand("insertHTML", false, text);
-});
 
 /**
- * i18n for China
+ * This makes toggles, accessible.
  */
-if (navigator.language.slice(0, 2) === "zh") {
-  const chineseSupportFont = "'Liu Jian Mao Cao', cursive";
-  setTextareaStyle("fontFamily", chineseSupportFont);
-  document.querySelector("#handwriting-font").value = chineseSupportFont;
+document.querySelectorAll('.switch-toggle input')
+  .forEach(toggleInput => {
+    toggleInput.addEventListener('change', e => {
+      if (toggleInput.checked) {
+        document.querySelector(`label[for="${toggleInput.id}"] .status`)
+          .textContent = 'on'
+        toggleInput.setAttribute('aria-pressed', true);
+      } else {
+        toggleInput.setAttribute('aria-pressed', false);
+        document.querySelector(`label[for="${toggleInput.id}"] .status`)
+          .textContent = 'off'
+      }
+    })
+  })
 
-  // set chinese lorem ipsum
-  document.querySelector("#note").innerText =
-    "嗨，您好！多谢您尝试文字转笔迹。该网站的流量一直很高，我很乐意让其他语言的人们可以访问该网站，因此，如果您有任何建议或可以帮助我使您所在国家的人们可以访问该网站。在GitHub上让我知道还是向我发送电子邮件（在GitHub中提到的电子邮件ID）";
-}
 
-// Fetch and set contributors
+/**
+ * Set GitHub Contributors
+ */
+
 fetch(
   "https://api.github.com/repos/saurabhdaware/text-to-handwriting/contributors"
 )
@@ -360,6 +164,3 @@ fetch(
       )
       .join("");
   });
-
-// Too lazy to change year in footer every year soo...
-document.querySelector("#year").innerHTML = new Date().getFullYear();

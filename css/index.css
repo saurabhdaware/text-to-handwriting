@@ -1,0 +1,331 @@
+/* CSS Variables */
+body {
+  --background-primary: #fff;
+  --font-color-primary: #333;
+  --elevation-background: #f3f3f3;
+  --link-color: #006EB8;
+  --font-family-primary: 'Roboto', cursive;
+  --handwriting-font: 'Homemade Apple', cursive;
+  --primary-color: #1a73e8;
+  --ink-color: #000f55;
+}
+body.dark {
+  --background-primary: #121212;
+  --font-color-primary: #ccc; 
+  --elevation-background: #1D1D1D;
+  --link-color: #09f;
+}
+
+/* Default CSS Changes */
+* {box-sizing: border-box;}
+body {
+  background-color: var(--background-primary);
+  color: var(--font-color-primary);
+  padding: 100px 100px;
+  font-size: 1.05rem;
+  font-family: var(--font-family-primary);
+}
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+section {
+  padding: 20px 0px;
+}
+button {
+  border: none;
+  background-color: var(--elevation-background);
+  color: var(--font-color-primary);
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 10px 20px;
+}
+h1 {font-size: 3rem;}
+label {
+  font-size: 0.85rem;
+}
+label.block {display: block;padding-bottom: 5px;}
+select {
+  background: #f3f3f3 url('../images/dropdown.svg') no-repeat;
+  background-position: calc(100% - 14px) center;
+  border: none;
+  color: #333;
+  padding: 8px 25px 8px 13px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: block;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+input {
+  padding: 8px 13px;
+  border-radius: 4px;
+  border: 1px solid var(--elevation-background);
+  color: var(--font-color-primary);
+  background-color: transparent;
+  display: block;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield !important;
+  -webkit-appearance: none;
+  width: 100%;
+}
+body.dark select {
+  filter: invert(100%);
+}
+
+/* global classes */
+
+.shadow {
+  box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2)
+}
+.display-flex {display: flex;}
+.display-flex.padded-flex > div {
+  padding: 0px 10px;
+}
+.display-flex.padded-flex > div:first-child {
+  padding-left: unset;
+}
+.flex-1 {flex: 1;}
+.padding-around {padding-right: 30px; padding-left: 30px;}
+.padding-up-down {padding-top: 6px; padding-bottom: 7px;}
+
+.px-after {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  font-size: 0.9rem;
+  z-index: -1;
+  opacity: .7;
+}
+
+/* DARK MODE SWITCH */
+.dark-mode-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 100px;
+  right: 150px;
+  border:none;
+  background:transparent;
+}
+body:not(.user-is-tabbing) .dark-mode-toggle:focus {
+  outline: none;
+}
+.dark-mode-toggle .moon {
+  padding: 10px;
+}
+.dark-mode-toggle .sun {
+  padding: 5px;
+}
+body .dark-mode-toggle .moon {display: none}
+body .dark-mode-toggle .sun {display: inline-block}
+body.dark .dark-mode-toggle .moon {display: inline-block;}
+body.dark .dark-mode-toggle .sun {display: none;}
+
+/* Switch */
+.switch-toggle {
+  position: relative;
+  display: block;
+  margin-top: 6px;
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: var(--elevation-background);
+}
+
+.switch-toggle input {
+  position: relative;
+  top: 4px;
+  left: 4px;
+  z-index: -1;
+}
+
+.switch-toggle div {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #9994;
+  transition: 0.1s ease;
+}
+
+.switch-toggle input:focus + div {
+  outline: 1;
+}
+
+.switch-toggle input:checked + div {
+  left: 28px;
+  background-color: #999f;
+}
+
+.switch-toggle.outer div {
+  width: 16px;
+  height: 16px;
+  top: 4px;
+  left: 5px;
+}
+
+/* Other Styles */
+
+
+.generate-image-section {
+  padding: 10px 10px;
+  font-size: 1.2rem;
+}
+.github-corner {
+  position: absolute;
+  top: 0;
+  z-index: 99999;
+  right: 0px;
+}
+body.dark .github-corner {
+  filter: invert(100%);
+}
+.imp-button {
+  color: var(--font-color-primary);
+  border: 1px solid var(--font-color-primary);
+}
+.customization-col {
+  padding: 0px 50px !important;
+}
+
+.left-margin-and-content {
+  min-height: calc(100% - 50px);
+}
+
+.page-a {
+  width: 400px;
+  height: calc(11.7 * 400px / 8.3); /* A4 Ratio */
+  background: #fff;
+  border: 1px solid var(--elevation-background);
+  font-size: 10pt;
+  position: relative;
+  top: 0px;
+  font-family: var(--handwriting-font);
+  color: var(--ink-color);
+  line-height: 1.5em;
+  overflow-y: auto;
+  scrollbar-color: transparent;
+  scrollbar-width: thin;
+}
+.paper-content {
+  margin: 10px;
+  width: 100%;
+}
+.page-a.lines .paper-content {
+  background-image: linear-gradient(#999 0.05em, transparent 0.1em);
+  background-color: unset !important;
+  background-size: 100% 1.5em;
+}
+
+.margined .paper-content {
+  padding: 5px;
+  margin: 0px;
+  padding-left: 55px;
+}
+
+.left-margin, .top-margin {
+  display: none;
+}
+
+.margined .top-margin {
+  height: 50px;
+  border-bottom: 2px solid pink;
+  width: 100%;
+  display: block;
+  overflow-y: hidden;
+}
+
+.margined .left-margin {
+  width: 50px;
+  height: calc(100%);
+  display: inline-block;
+  border-right: 2px solid pink;
+  top: 0px;
+  padding-top: 50px;
+  overflow-x: hidden;
+  position: absolute;
+  left: 0;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: none;
+}
+
+.overlay.shadows {
+  display: block;
+  /* background-image: linear-gradient(10deg, #000a, #0001); */
+}
+/* OUTPUT */
+.output {
+  width: 100%;
+  padding: 30px;
+  white-space: nowrap;
+  overflow-x: auto;
+  border: 1px solid var(--elevation-background);
+}
+.output .close-button {
+  position: absolute;
+  right: -3px;
+  top: -11px;
+  border-radius: 100%;
+  padding: 4px 10px;
+  background-color: #333;
+  color:#fff;
+  font-size: 15pt;
+  font-weight: bold;
+}
+.output-image-container .download-image-button {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #1d1d1d;
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+#download-as-pdf-button {display: none;}
+#download-as-pdf-button.show {display: inline-block;}
+.output img {
+  width: 300px;
+  margin: 0px 10px;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 100px 5px;
+  }
+  h1 { 
+    margin-top: 20px;
+    font-size: 3rem; 
+  }
+  .dark-mode-toggle {
+    right: 10px;
+  }
+  .padding-around {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .display-flex.responsive-flex {
+    display: block;
+  }
+  .customization-col {
+    padding: 100px 5px !important;
+  }
+  .page-container {
+    width: 100%;
+    overflow-x: scroll;
+  }
+}

@@ -1,0 +1,70 @@
+
+/* POPUP, DRAW AND PDF-PREVIEW  */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #000;
+  z-index: 999999;
+  color: #ddd;
+  padding: 100px;
+  display: none;
+}
+
+.popup-container.show {
+  display: block;
+}
+
+.popup-container .close-button {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  padding: 20px 30px;
+  cursor: pointer;
+  color: #ddd;
+  background-color: transparent;
+  border: none;
+  font-size: 50pt;
+  font-weight: bold;
+}
+
+.popup-container .close-button:hover {
+  color: #fff;
+  transition: color 0.5s ease;
+}
+
+#diagram-canvas {
+  cursor: url("../images/favicon-32x32.png"), crosshair;
+}
+
+.contributor-profile {
+  display: inline-block;
+  margin: 10px 5px;
+  text-align: center;
+  background-color: var(--elevation-background);
+  color: var(--font-color-primary);
+  padding: 10px;
+  width: 130px;
+  overflow: hidden;
+  border-radius: 4px;
+  height: 170px;
+  box-shadow: 4px 3px 16px -3px #0009;
+}
+
+img.contributor-avatar {
+  width: 100%;
+}
+
+.contributor-profile a {
+  text-decoration: none;
+  color: var(--font-color-primary);
+  font-weight: bold;
+  display: block;
+  font-size: 10pt;
+}
+
+.contributor-username {
+  margin-top: 7px;
+}

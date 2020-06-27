@@ -1,5 +1,9 @@
 import { isMobile } from './helpers.mjs';
 
+/**
+ * This file deals with what happens when you click "Draw" button text to handwriting.
+ */
+
 let inkColor = '#000f55';
 let pointSize = isMobile ? .5 : 1;
 var lastX, lastY;
@@ -67,10 +71,8 @@ function toggleDrawCanvas() {
   if(drawContainer.classList.contains('show')) {
     // draw canvas is currently shown
     document.querySelector('main').style.display = 'block';
-    document.querySelector('footer').style.display = 'block';
   } else {
     document.querySelector('main').style.display = 'none';
-    document.querySelector('footer').style.display = 'none';
   }
 
   drawContainer.classList.toggle('show');
