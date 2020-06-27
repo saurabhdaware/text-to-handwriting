@@ -127,9 +127,9 @@ document.querySelectorAll('.switch-toggle input')
       if (toggleInput.checked) {
         document.querySelector(`label[for="${toggleInput.id}"] .status`)
           .textContent = 'on'
-        toggleInput.setAttribute('aria-pressed', true);
+        toggleInput.setAttribute('aria-checked', true);
       } else {
-        toggleInput.setAttribute('aria-pressed', false);
+        toggleInput.setAttribute('aria-checked', false);
         document.querySelector(`label[for="${toggleInput.id}"] .status`)
           .textContent = 'off'
       }
