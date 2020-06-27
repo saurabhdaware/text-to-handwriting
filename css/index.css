@@ -223,10 +223,16 @@ body.dark .github-corner {
   margin: 0px;
   padding-left: 55px;
 }
+
+.left-margin, .top-margin {
+  display: none;
+}
+
 .margined .top-margin {
   height: 50px;
   border-bottom: 2px solid pink;
   width: 100%;
+  display: block;
   overflow-y: hidden;
 }
 
@@ -240,59 +246,6 @@ body.dark .github-corner {
   overflow-x: hidden;
   position: absolute;
   left: 0;
-}
-
-/* Page with margin */
-.paper-margin-left-line {
-  display: none;
-}
-
-.paper-margin-top-line {
-  display: none;
-}
-
-.margined-page .paper-margin-left-line {
-  display: inline-block;
-  width: 80px;
-  border-right: 2px solid pink;
-  height: 700px;
-  top: -80px;
-  position: absolute;
-  left: 0;
-}
-
-.margined-page .paper-margin-top-line {
-  display: block;
-  color: #000f55;
-  font-family: "Homemade Apple", cursive;
-  width: 100%;
-  border-bottom: 2px solid pink;
-  height: 80px;
-}
-
-.date-container {
-  padding: 10px;
-  border: 1px solid #d68f9b;
-  border-radius: 10px;
-  display: inline-block;
-  font-size: 10pt;
-  margin-top: 20px;
-  margin-right: 20px;
-}
-
-.margined-page .paper-content {
-  position: relative;
-  top: 0px;
-  left: 0px;
-  flex: 1;
-  padding-left: 10px;
-  display: inline-block;
-  top: 0px;
-}
-
-.margined-page .textarea {
-  min-height: 620px;
-  padding-left: 80px;
 }
 
 
