@@ -38,3 +38,33 @@
 #diagram-canvas {
   cursor: url("../images/favicon-32x32.png"), crosshair;
 }
+
+.contributor-profile {
+  display: inline-block;
+  margin: 10px 5px;
+  text-align: center;
+  background-color: var(--elevation-background);
+  color: var(--font-color-primary);
+  padding: 10px;
+  width: 130px;
+  overflow: hidden;
+  border-radius: 4px;
+  height: 170px;
+  box-shadow: 4px 3px 16px -3px #0009;
+}
+
+img.contributor-avatar {
+  width: 100%;
+}
+
+.contributor-profile a {
+  text-decoration: none;
+  color: var(--font-color-primary);
+  font-weight: bold;
+  display: block;
+  font-size: 10pt;
+}
+
+.contributor-username {
+  margin-top: 7px;
+}

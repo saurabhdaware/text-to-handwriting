@@ -52,10 +52,12 @@
       <span class="moon"><img alt="moon icon to represent dark mode " width="25px" src="images/moon.svg" /></span>
     </button>
     <h1>Text to Handwriting</h1>
-    <!-- <section>
-      Place this tag where you want the button to render.
-      <a class="github-button" href="https://github.com/saurabhdaware/text-to-handwriting" data-color-scheme="no-preference: light; light: light; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star saurabhdaware/text-to-handwriting on GitHub">Star</a>
-    </section> -->
+    <section style="font-size: 1rem;padding: 20px 0px;">
+      <p>
+        Hello There! I hope you all are doing good, If you've visited this site before, you would notice that WE HAVE A NEW UI NOW 🎉 <br/><br/>
+        If you have any half complete assignment that requires old page size, you can use old website from <a href="https://5ef4fa628869820007c63219--text-to-handwriting.netlify.app/">Our Netlify History</a> <br/><br/><br/>
+      </p>
+    </section>
     <section class="generate-image-section">
       <form id="generate-image-form">
         <!-- Generate Image Section -->
@@ -193,7 +195,7 @@
     </section>
 
     <!-- OUTPUT -->
-    <section style="padding: 40px 0px;">
+    <section>
       <h2>Output</h2>
       <div id="output" class="output" style="text-align: center;">
         Click "Generate Image" Button to generate new image.
@@ -202,7 +204,46 @@
         <button class="imp-button" id="download-as-pdf-button">Download All Images as PDF</button>
       </div>
     </section>
+
+
+    <section id="how-to-add-handwriting">
+      <h2>🤓 Guide to add your own handwriting</h2>
+      <p>
+        <ul>
+          <li>To use your handwriting, you will have to generate font of your handwriting.</li>
+          <li>There are websites like <a target="_blank" rel="noopener noreferrer" href="https://www.calligraphr.com/en/">Calligraphr</a> that let you do that.</li>
+          <li>Once you get .ttf file of your handwriting, upload it from 'Upload your handwriting font' button in customizations sections</li>
+        </ul>
+      </p>
+    </section>
+
+    <section id="sponsors">
+      <h2>🤗 Sponsors</h2>
+      <p>This tool is completely free and neither stores any of your data for money so maybe you can consider being patron or making an one time payment with buy me a coffee to help sustain 🤗</p>
+      <p>
+        <a href="https://www.patreon.com/bePatron?u=31891872"><img loading="lazy" style="border-radius: 4px;" alt="Buy me a Coffee Button" width=200 src="https://c5.patreon.com/external/logo/become_a_patron_button.png"></a> &nbsp; 
+        <a href="https://www.buymeacoffee.com/saurabhdaware"><img loading="lazy" style="border-radius: 4px;" alt="Buy me a Coffee Button" width=200 src="https://cdn.buymeacoffee.com/buttons/default-yellow.png"></a>
+      </p>
+    </section>
+
+    <section id="github-contributors">
+      <h2>👫 GitHub Contributors</h2>
+      <div class="project-contributors" id="project-contributors">
+
+      </div>
+      <div style="padding: 20px 5px;">
+        Text-to-Handwriting is an open-source tool built with HTML, CSS, and JavaScript! <br/>You can check out <a href="https://github.com/saurabhdaware/text-to-handwriting/blob/master/CONTRIBUTING.md">CONTRIBUTING.md on GitHub</a>, if you want to contribute.
+      </div>
+    </section>
+
   </main>
+  <footer style="padding: 40px 0px 10px 0px;">
+    Thank you for using Text to Handwriting! If you have any questions/suggestions/feedback, you can drop me a message on <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a> or drop an email at <a href="mailto:saurabhdaware99@gmail.com">saurabhdaware99@gmail.com</a>. 
+    <br/><br/>Do star the <a href="https://github.com/saurabhdaware/text-to-handwriting">Text-to-Handwriting GitHub Repository</a> and If you're using it for writing assignments, make sure you use it at your own risk and If it fails and your teacher catch this tool, ask them to star my GitHub as well :D <br/>
+    <br/>byeeee!
+    <br/><br/>
+    ~ Saurabh (<a href="https://saurabhdaware.in">https://saurabhdaware.in</a>)
+  </footer>
 
   <!-- Fixed Elements -->
   <section class="draw-container popup-container">
@@ -219,15 +260,12 @@
         <button id="clear-draw-canvas" class="blue-button" style="background-color: #f30; color: #fff;">Clear Canvas</button>
       </div>
     </div>
-  </section>  
-
+  </section>
   <!-- GitHub Corner logo -->
   <a tabindex="0" href="https://github.com/saurabhdaware/text-to-handwriting" rel="noopener noreferrer" target="_blank" class="github-corner" aria-label="View source on GitHub">
     <svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg>
   </a>
 
-  <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./js/vendors/html2canvas.min.js" crossorigin="anonymous"></script>
   <script type="module" src="js/app.mjs"></script>
   <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>

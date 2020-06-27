@@ -22,12 +22,15 @@ body {
   background-color: var(--background-primary);
   color: var(--font-color-primary);
   padding: 100px 100px;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   font-family: var(--font-family-primary);
 }
 a {
   text-decoration: none;
   color: var(--link-color);
+}
+section {
+  padding: 20px 0px;
 }
 button {
   border: none;
@@ -171,6 +174,7 @@ body.dark .dark-mode-toggle .sun {display: none;}
 
 .generate-image-section {
   padding: 10px 10px;
+  font-size: 1.2rem;
 }
 .github-corner {
   position: absolute;
@@ -260,7 +264,7 @@ body.dark .github-corner {
 
 .overlay.shadows {
   display: block;
-  background-image: linear-gradient(10deg, #000a, #0001);
+  /* background-image: linear-gradient(10deg, #000a, #0001); */
 }
 /* OUTPUT */
 .output {

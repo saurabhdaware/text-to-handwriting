@@ -13,8 +13,12 @@ function isFontErrory() {
 function applyPaperStyles() {
   pageEl.style.border = 'none';
   pageEl.style.overflowY = 'hidden';
-  console.log(document.querySelector('#page-effects').value)
   overlayEl.classList.add(document.querySelector('#page-effects').value);
+  if (document.querySelector('#page-effects').value === 'shadows') {
+    overlayEl.style.background = `linear-gradient(${
+      Math.random() * 360
+    }deg, #0008, #0000)`;
+  } 
   if (isFontErrory()) {
     paperContentPadding = paperContentEl.style.paddingTop.replace(/px/g, '') || 5;
     let newPadding = Number(paperContentPadding) - 5;

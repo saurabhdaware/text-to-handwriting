@@ -135,3 +135,32 @@ document.querySelectorAll('.switch-toggle input')
       }
     })
   })
+
+
+/**
+ * Set GitHub Contributors
+ */
+
+fetch(
+  "https://api.github.com/repos/saurabhdaware/text-to-handwriting/contributors"
+)
+  .then((res) => res.json())
+  .then((res) => {
+    document.querySelector("#project-contributors").innerHTML = res
+      .map(
+        (contributor) => /* html */ `
+        <div class="contributor-profile shadow">
+          <a href="${contributor.html_url}">
+            <img 
+              alt="GitHub avatar of contributor ${contributor.login}" 
+              class="contributor-avatar" 
+              loading="lazy" 
+              src="${contributor.avatar_url}" 
+            />
+            <div class="contributor-username">${contributor.login}</div>
+          </a>
+        </div>
+      `
+      )
+      .join("");
+  });
