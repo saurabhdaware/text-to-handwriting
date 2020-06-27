@@ -328,4 +328,25 @@ body.dark .github-corner {
     width: 100%;
     overflow-x: scroll;
   }
+
+  .output img {
+    width: 200px;
+    margin: 0px 10px;
+  }
+
+  .project-contributors {
+    width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .contributor-profile {
+    width: 7.5em;
+    height: 150px;
+  }
+
+  .contributor-username {
+    font-size: 9pt;
+  }
 }
