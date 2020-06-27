@@ -19,7 +19,7 @@ function applyPaperStyles() {
       Math.random() * 360
     }deg, #0008, #0000)`;
   } 
-  if (isFontErrory()) {
+  if (isFontErrory() && document.querySelector('#font-file').files.length < 1) {
     paperContentPadding = paperContentEl.style.paddingTop.replace(/px/g, '') || 5;
     let newPadding = Number(paperContentPadding) - 5;
     paperContentEl.style.paddingTop = `${newPadding}px`;
