@@ -3,10 +3,15 @@ import {
   removePaperStyles,
   renderOutput
 } from './utils/generate-utils.mjs'
+import { createPDF } from './utils/helpers.mjs';
 
 const pageEl = document.querySelector('.page-a');
 const outputImages = [];
 
+/**
+ * To generate image, we add styles to DIV and converts that HTML Element into Image. 
+ * This is the function that deals with it.
+ */
 async function convertDIVToImage() {
   const options = {
     scrollX: 0,
@@ -19,14 +24,15 @@ async function convertDIVToImage() {
   outputImages.push(canvas);
 }
 
+/**
+ * This is the function that gets called on clicking "Generate Image" button.
+ */
 export async function generateImages() {
   applyPaperStyles();
   pageEl.scrollTo(0, 0);
   const pageHeight = 564;
   const paperContentEl = document.querySelector('.page-a .paper-content');
   const totalPages = Math.ceil(paperContentEl.offsetHeight / pageHeight);
-  console.log(paperContentEl.offsetHeight / pageHeight);
-
 
   if (totalPages > 1) {
     // For multiple pages
@@ -63,4 +69,25 @@ export async function generateImages() {
 
   removePaperStyles();
   renderOutput(outputImages);
+  setRemoveImageListeners();
+}
+
+/**
+ * Downloads generated images as PDF
+ */
+export const downloadAsPDF = () => createPDF(outputImages);
+
+/**
+ * Sets event listeners for close button on output images.
+ */
+function setRemoveImageListeners() {
+  document.querySelectorAll('.output-image-container > .close-button')
+    .forEach(closeButton => {
+      closeButton.addEventListener('click', (e) => {
+        outputImages.splice(Number(e.target.dataset.index), 1);
+        renderOutput(outputImages);
+        // When output changes, we have to set remove listeners again
+        setRemoveImageListeners();
+      })
+    })
 }

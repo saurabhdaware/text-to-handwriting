@@ -181,7 +181,7 @@ body.dark .dark-mode-toggle .sun {display: none;}
 body.dark .github-corner {
   filter: invert(100%);
 }
-.generate-image {
+.imp-button {
   color: var(--font-color-primary);
   border: 1px solid var(--font-color-primary);
 }
@@ -317,7 +317,31 @@ body.dark .github-corner {
   overflow-x: auto;
   border: 1px solid var(--elevation-background);
 }
-.output > img {
+.output .close-button {
+  position: absolute;
+  right: -3px;
+  top: -11px;
+  border-radius: 100%;
+  padding: 4px 10px;
+  background-color: #333;
+  color:#fff;
+  font-size: 15pt;
+  font-weight: bold;
+}
+.output-image-container .download-image-button {
+  display: inline-block;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #1d1d1d;
+  color: #ccc;
+  font-weight: bold;
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+#download-as-pdf-button {display: none;}
+#download-as-pdf-button.show {display: inline-block;}
+.output img {
   width: 300px;
   margin: 0px 10px;
 }

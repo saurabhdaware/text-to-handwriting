@@ -185,7 +185,7 @@
             <!-- GENERATE IMAGE BUTTONS -->
             <hr style="border: .3px solid var(--elevation-background); width: 80%;"/>
             <div style="text-align: center;padding: 30px 0px;">
-              <button type="submit" class="generate-image">Generate Image</button>
+              <button type="submit" class="generate-image imp-button">Generate Image</button>
             </div>
           </div>
         </div>
@@ -197,6 +197,9 @@
       <h2>Output</h2>
       <div id="output" class="output" style="text-align: center;">
         Click "Generate Image" Button to generate new image.
+      </div>
+      <div style="text-align: center;padding: 30px;">
+        <button class="imp-button" id="download-as-pdf-button">Download All Images as PDF</button>
       </div>
     </section>
   </main>
@@ -227,6 +230,7 @@
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <script src="./js/vendors/html2canvas.min.js" crossorigin="anonymous"></script>
   <script type="module" src="js/app.mjs"></script>
+  <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
   <script>
     function toggleTheme(toggleButton) {
       if (document.body.classList.contains('dark')) {

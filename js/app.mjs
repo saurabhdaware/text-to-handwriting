@@ -1,5 +1,5 @@
 import { addFontFromFile } from './utils/helpers.mjs';
-import { generateImages } from './generate-images.mjs';
+import { generateImages, downloadAsPDF } from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
 
 const pageEl = document.querySelector(".page-a");
@@ -84,15 +84,21 @@ const EVENT_MAP = {
     on: "click",
     action: () => {
       toggleDrawCanvas();
-    },
+    }
   },
+  "#download-as-pdf-button": {
+    on: 'click',
+    action: () => {
+      downloadAsPDF();
+    }
+  }
 };
 
 
-for (const event in EVENT_MAP) {
+for (const eventSelector in EVENT_MAP) {
   document
-    .querySelector(event)
-    .addEventListener(EVENT_MAP[event].on, EVENT_MAP[event].action);
+    .querySelector(eventSelector)
+    .addEventListener(EVENT_MAP[eventSelector].on, EVENT_MAP[eventSelector].action);
 }
 
 
