@@ -37,8 +37,18 @@ function createPDF(imgs) {
 }
 
 
+function formatText(event) {
+  event.preventDefault();
+  const text = event.clipboardData
+    .getData("text/plain")
+    .replace(/\n/g, "<br/>");
+  document.execCommand("insertHTML", false, text);
+}
+
+
 export {
   isMobile,
   addFontFromFile,
-  createPDF
+  createPDF,
+  formatText
 };

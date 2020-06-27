@@ -1,4 +1,4 @@
-import { addFontFromFile } from './utils/helpers.mjs';
+import { addFontFromFile, formatText } from './utils/helpers.mjs';
 import { generateImages, downloadAsPDF } from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
 
@@ -17,7 +17,7 @@ import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
  * 
  */
 
- 
+
 const pageEl = document.querySelector(".page-a");
 
 
@@ -104,6 +104,10 @@ const EVENT_MAP = {
     action: () => {
       downloadAsPDF();
     }
+  },
+  ".page-a .paper-content": {
+    on: 'paste',
+    action: formatText
   }
 };
 
