@@ -1,5 +1,7 @@
 import { addFontFromFile } from './utils/helpers.mjs';
 import { generateImages } from './generate-images.mjs';
+import { setInkColor, toggleDrawCanvas } from "./utils/draw.mjs";
+
 const pageEl = document.querySelector(".page-a");
 
 /** 
@@ -49,6 +51,7 @@ const EVENT_MAP = {
     on: "change",
     action: (e) => {
       document.body.style.setProperty('--ink-color', e.target.value);
+      setInkColor(e.target.value);
     }
   },
   "#paper-margin-toggle": {
@@ -70,7 +73,19 @@ const EVENT_MAP = {
         pageEl.classList.add("lines");
       }    
     }
-  }
+  },
+  "#draw-diagram-button": {
+    on: "click",
+    action: () => {
+      toggleDrawCanvas();
+    },
+  },
+  ".draw-container .close-button": {
+    on: "click",
+    action: () => {
+      toggleDrawCanvas();
+    },
+  },
 };
 
 

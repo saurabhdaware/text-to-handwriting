@@ -12,6 +12,7 @@ function isFontErrory() {
 
 function applyPaperStyles() {
   pageEl.style.border = 'none';
+  pageEl.style.overflowY = 'hidden';
   console.log(document.querySelector('#page-effects').value)
   overlayEl.classList.add(document.querySelector('#page-effects').value);
   if (isFontErrory()) {
@@ -22,6 +23,7 @@ function applyPaperStyles() {
 }
 
 function removePaperStyles() {
+  pageEl.style.overflowY = 'auto';
   pageEl.style.border = '1px solid var(--elevation-background)';
   overlayEl.classList.remove(document.querySelector('#page-effects').value);
   if (isFontErrory()) {
