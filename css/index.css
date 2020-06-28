@@ -20,6 +20,8 @@ body.dark {
   --link-color: #09f;
   --label-color: #aaa;
   --field-borders: #222;
+  --primary-button-bg: #eee;
+  --primary-button-color: #111;
 }
 
 /* Default CSS Changes */
@@ -160,9 +162,7 @@ body.dark .github-corner {
   min-height: calc(100% - 50px);
 }
 
-.page-container {
-  padding: 30px 0px;
-}
+
 .page-a {
   width: 400px;
   height: calc(11.7 * 400px / 8.3); /* A4 Ratio */
@@ -320,10 +320,10 @@ body.dark .github-corner {
 }
 
 fieldset {
-  padding: 20px;
+  padding: 17px 20px;
   border-radius: 5px;
   border: 1px solid var(--field-borders);
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 legend {
