@@ -71,8 +71,14 @@ select {
   -moz-appearance: none;
   -webkit-appearance: none;
 }
+
 option {
   color: #333;
+}
+
+body.dark select {
+  background: url("../images/dropdown-white.svg") no-repeat;
+  background-position: calc(100% - 14px) center;
 }
 
 input {
