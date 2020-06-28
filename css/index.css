@@ -8,15 +8,16 @@ body {
   --handwriting-font: "Homemade Apple", cursive;
   --primary-color: #1a73e8;
   --ink-color: #000f55;
-  --gray: #e0e0e0;
-  --dark-gray: #4f4f4f;
+  --label-color: #333;
+  --field-borders: #e0e0e0;
 }
 body.dark {
   --background-primary: #121212;
   --font-color-primary: #ccc;
   --elevation-background: #1d1d1d;
   --link-color: #09f;
-  --dark-gray: #fff;
+  --label-color: #aaa;
+  --field-borders: #222;
 }
 
 /* Default CSS Changes */
@@ -51,7 +52,7 @@ h1 {
 }
 
 label {
-  color: #828282;
+  color: var(--label-color);
   font-size: 0.75rem;
 }
 
@@ -311,22 +312,23 @@ body.dark .github-corner {
 fieldset {
   padding: 20px;
   border-radius: 5px;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--field-borders);
   margin-top: 20px;
 }
 
 legend {
-  font-size: 14px;
-  color: var(--gray-dark);
+  font-size: 0.88rem;
+  padding: 0px 6px;
+  color: var(--font-color-primary);
 }
 
 select,
 input {
   width: 100%;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--field-borders);
   padding: 10px;
   padding-right: 30px;
-  color: var(--dark-gray);
+  color: var(--font-color-primary);
 }
 
 input[type="file"]::-webkit-file-upload-button {
