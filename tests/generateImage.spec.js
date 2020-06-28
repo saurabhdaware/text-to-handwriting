@@ -10,9 +10,9 @@ context('Generate Image', () => {
   })
 
   it('should generate multiple outputs and remove them if user clicks delete', () => {
-    cy.get('button.generate-image[type=submit]').click();
+    cy.get('button[data-testid=generate-image-button]').click();
     cy.get('#output').children().should('have.length', 1);
-    cy.get('button.generate-image[type=submit]').click();
+    cy.get('button[data-testid=generate-image-button]').click();
     cy.get('#output').children().should('have.length', 2);
 
     // remove images

@@ -1,3 +1,81 @@
+/* DARK MODE SWITCH */
+.dark-mode-toggle {
+  cursor: pointer;
+  position: absolute;
+  top: 100px;
+  right: 150px;
+  border: none;
+  background: transparent;
+}
+body:not(.user-is-tabbing) .dark-mode-toggle:focus {
+  outline: none;
+}
+.dark-mode-toggle .moon {
+  padding: 10px;
+}
+.dark-mode-toggle .sun {
+  padding: 5px;
+}
+body .dark-mode-toggle .moon {
+  display: none;
+}
+body .dark-mode-toggle .sun {
+  display: inline-block;
+}
+body.dark .dark-mode-toggle .moon {
+  display: inline-block;
+}
+body.dark .dark-mode-toggle .sun {
+  display: none;
+}
+
+/* Switch */
+.switch-toggle {
+  position: relative;
+  display: block;
+  margin-top: 6px;
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  border-radius: 25px;
+  background-color: var(--elevation-background);
+}
+
+.switch-toggle input {
+  position: relative;
+  top: 4px;
+  left: 4px;
+  z-index: -1;
+}
+
+.switch-toggle div {
+  position: absolute;
+  border-radius: 50%;
+  background-color: #9994;
+  transition: 0.1s ease;
+}
+
+.switch-toggle input:focus + div {
+  outline: 1;
+}
+
+.switch-toggle input:checked + div {
+  left: 28px;
+  background-color: #999f;
+}
+
+.switch-toggle.outer div {
+  width: 16px;
+  height: 16px;
+  top: 4px;
+  left: 5px;
+}
+
+@media (max-width: 768px) {
+  .dark-mode-toggle {
+    right: 10px;
+  }
+}
 
 /* POPUP, DRAW AND PDF-PREVIEW  */
 .popup-container {
