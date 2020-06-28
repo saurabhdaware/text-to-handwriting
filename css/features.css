@@ -71,6 +71,12 @@ body.dark .dark-mode-toggle .sun {
   left: 5px;
 }
 
+@media (max-width: 768px) {
+  .dark-mode-toggle {
+    right: 10px;
+  }
+}
+
 /* POPUP, DRAW AND PDF-PREVIEW  */
 .popup-container {
   position: fixed;
