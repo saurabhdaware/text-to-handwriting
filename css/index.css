@@ -10,6 +10,8 @@ body {
   --ink-color: #000f55;
   --label-color: #333;
   --field-borders: #e0e0e0;
+  --primary-button-bg: #1d1d1d;
+  --primary-button-color: #eee;
 }
 body.dark {
   --background-primary: #121212;
@@ -132,6 +134,11 @@ input[type="number"] {
   padding: 10px 10px;
   font-size: 1.2rem;
 }
+.generate-image-button {
+  background-color: var(--primary-button-bg);
+  color: var(--primary-button-color);
+  font-size: 1rem;
+}
 .github-corner {
   position: absolute;
   top: 0;
@@ -153,6 +160,9 @@ body.dark .github-corner {
   min-height: calc(100% - 50px);
 }
 
+.page-container {
+  padding: 30px 0px;
+}
 .page-a {
   width: 400px;
   height: calc(11.7 * 400px / 8.3); /* A4 Ratio */
