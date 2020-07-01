@@ -1,18 +1,19 @@
 # Contribution Guide 🌻
 
-The project is built with basic web setup (HTML, CSS, and JavaScript) without any bundlers.
+The project is built with basic web setup (HTML, CSS, and JavaScript).
 
 ## 🐨 Local Setup
 
 - [Fork](https://github.com/saurabhdaware/text-to-handwriting/fork) this repository.
-- Clone your fork `git clone https://github.com/:yourusername/text-to-handwriting`
-- Open folder `text-to-handwriting` and run `index.html` with a [static server](#-run-local-static-server).
 
-## 💻 Run Local Static Server
+*Note: You need NodeJS installed in your machine to run formatter and server*
 
-- There are npm packages like [serve] that help you in creating static server.
-- You can `npm install -g serve` to install serve
-- Then from project's directory, You can run `serve .` to run a static server.
+```
+git clone https://github.com/:your-github-username/text-to-handwriting
+cd text-to-handwriting
+npm install
+npm run dev
+```
 
 ## 🤗 Hello First-time Contributors
 
