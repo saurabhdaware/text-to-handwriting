@@ -4,8 +4,8 @@ body {
   --font-color-primary: #333;
   --elevation-background: #f3f3f3;
   --link-color: #006eb8;
-  --font-family-primary: "Roboto", cursive;
-  --handwriting-font: "Homemade Apple", cursive;
+  --font-family-primary: 'Roboto', cursive;
+  --handwriting-font: 'Homemade Apple', cursive;
   --primary-color: #1a73e8;
   --ink-color: #000f55;
   --label-color: #333;
@@ -66,7 +66,7 @@ label.block {
 }
 
 select {
-  background: url("../images/dropdown.svg") no-repeat;
+  background: url('../images/dropdown.svg') no-repeat;
   background-position: calc(100% - 14px) center;
   border: none;
   color: #333;
@@ -82,7 +82,7 @@ option {
 }
 
 body.dark select {
-  background: url("../images/dropdown-white.svg") no-repeat;
+  background: url('../images/dropdown-white.svg') no-repeat;
   background-position: calc(100% - 14px) center;
 }
 
@@ -94,12 +94,12 @@ input {
   background-color: transparent;
   display: block;
 }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield !important;
   -webkit-appearance: none;
   width: 100%;
@@ -161,7 +161,6 @@ body.dark .github-corner {
 .left-margin-and-content {
   min-height: calc(100% - 50px);
 }
-
 
 .page-a {
   width: 400px;
@@ -297,6 +296,11 @@ body.dark .github-corner {
     overflow-x: scroll;
   }
 
+  .page-container-super {
+    display: flex;
+    flex-direction: column;
+  }
+
   .output img {
     width: 200px;
     margin: 0px 10px;
@@ -341,11 +345,11 @@ input {
   color: var(--font-color-primary);
 }
 
-input[type="file"]::-webkit-file-upload-button {
+input[type='file']::-webkit-file-upload-button {
   display: none;
 }
-input[type="file"]::before {
-  content: "Choose File";
+input[type='file']::before {
+  content: 'Choose File';
   display: inline-block;
   background-color: var(--background-primary);
   white-space: nowrap;
