@@ -1,0 +1,6 @@
+tests/
+node_modules/
+images/
+.github/
+index.html
+js/vendors/
