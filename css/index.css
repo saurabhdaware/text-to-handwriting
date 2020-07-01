@@ -296,6 +296,11 @@ body.dark .github-corner {
     overflow-x: scroll;
   }
 
+  .page-container-super {
+    display: flex;
+    flex-direction: column;
+  }
+
   .output img {
     width: 200px;
     margin: 0px 10px;
