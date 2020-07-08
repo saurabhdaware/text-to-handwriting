@@ -9,7 +9,7 @@
   "scripts": {
     "test": "cypress run",
     "eslint": "eslint --fix \"js/**/**.mjs\"",
-    "prettier": "prettier --write \"js/**/**.mjs\" \"css/**.css\"",
+    "prettier": "prettier --write \"./index.html\" \"js/**/**.mjs\" \"css/**.css\"",
     "format": "npm run prettier",
     "cy": "cypress open",
     "dev": "serve ."

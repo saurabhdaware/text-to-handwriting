@@ -1,394 +1,590 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-125454191-4"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
 
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125454191-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+      gtag('config', 'UA-125454191-4');
+    </script>
 
-    gtag('config', 'UA-125454191-4');
-  </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09f" />
+    <meta
+      name="description"
+      content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting"
+    />
+    <meta
+      name="keywords"
+      content="text to handwriting, text-to-handwrting, saurabh text to handwriting, convert text to image, write assignment online"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="author" content="Saurabh Daware" />
+    <meta name="copyright" content="Saurabh Daware" />
+    <meta name="robots" content="follow" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Text to Handwriting" />
+    <meta
+      property="og:url"
+      content="https://saurabhdaware.github.io/text-to-handwriting"
+    />
+    <meta
+      property="og:description"
+      content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting"
+    />
+    <meta property="og:site_name" content="Text to Handwriting" />
 
-  <meta name="theme-color" content="#09f" />
-  <meta name="description"
-    content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
-  <meta name="keywords"
-    content="text to handwriting, text-to-handwrting, saurabh text to handwriting, convert text to image, write assignment online">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="author" content="Saurabh Daware" />
-  <meta name="copyright" content="Saurabh Daware" />
-  <meta name="robots" content="follow" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Text to Handwriting">
-  <meta property="og:url" content="https://saurabhdaware.github.io/text-to-handwriting" />
-  <meta property="og:description"
-    content="I hate writing assignments so I made this tool that converts text to an image that looks like handwriting. You can copy paste text content into the textbox and click generate image button to generate image. Text to Handwriting">
-  <meta property="og:site_name" content="Text to Handwriting">
+    <meta
+      property="og:image:secure_url"
+      itemprop="image"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
+    />
+    <meta
+      property="og:image"
+      itemprop="image"
+      content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png"
+    />
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="337" />
 
-  <meta property="og:image:secure_url" itemprop="image"
-    content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
-  <meta property="og:image" itemprop="image"
-    content="https://res.cloudinary.com/saurabhdaware/image/upload/v1585413874/saurabh2019/projects/text-to-handwriting.png">
-  <meta property="og:image:width" content="600" />
-  <meta property="og:image:height" content="337" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@saurabhcodes" />
 
-  <meta name=twitter:card content=summary_large_image />
-  <meta name=twitter:creator content=@saurabhcodes />
+    <title>Text to Handwriting</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="./manifest.json" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap"
+    />
+    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./css/features.css" />
+  </head>
 
-  <title>Text to Handwriting</title>
-  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png" />
-  <link rel="manifest" href="./manifest.json" />
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Homemade+Apple|Roboto|Caveat|Liu+Jian+Mao+Cao&display=swap" />
-  <link rel="stylesheet" href="./css/index.css" />
-  <link rel="stylesheet" href="./css/features.css" />
-</head>
-
-<body>
-  <main>
-    <button aria-label="Activate Dark Mode" title="Toggle Dark Mode" aria-pressed="false" onclick="toggleTheme(this)"
-      class="dark-mode-toggle">
-      <span class="sun"> <img alt="sun icon that represents light mode" width="35px" src="images/sun.svg" /></span>
-      <span class="moon"><img alt="moon icon to represent dark mode " width="25px" src="images/moon.svg" /></span>
-    </button>
-    <h1>Text to Handwriting</h1>
-    <section style="font-size: 1rem;padding: 20px 0px;">
-      <p>
-        Hello There! I hope you all are doing good, If you've visited this site before, you would notice that WE HAVE A
-        NEW UI NOW 🎉 <br /><br />
-        If you have any half complete assignment that requires old page size, you can use old website from <a
-          href="https://5ef4fa628869820007c63219--text-to-handwriting.netlify.app/">Our Netlify History</a>
-        <br /><br /><br />
-      </p>
-    </section>
-    <section class="generate-image-section">
-      <form id="generate-image-form">
-
-        <!-- Generate Image Section -->
-        <div class="display-flex output-grid responsive-flex">
-
-          <div class="flex-1 page-container-super">
-
-          <div>
-            <h2 style="margin-top: 0px;">Input</h2>
-            <label class="block" for="note">Type/Paste text here</label>
-          </div>
-          
-          
-          <div class="flex-1 page-container">
-            <div class="page-a margined lines">
-              <div contenteditable="true" class="top-margin"></div>
-              <div class="display-flex left-margin-and-content">
-                <div contenteditable="true" class="left-margin"></div>
-                <div class="paper-content" id="note" contenteditable="true">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut rhoncus dui eget tortor feugiat iaculis.
-                  Morbi et dolor in felis viverra efficitur. Integer id laoreet arcu. Mauris turpis nibh, scelerisque
-                  sed tristique non, hendrerit in erat. Duis interdum nisl risus, ac ultrices ipsum auctor at. Aliquam
-                  faucibus iaculis metus sit amet tincidunt. Vestibulum cursus urna vel nunc imperdiet suscipit. Ut eu
-                  augue egestas, porta orci lobortis, pharetra orci. Morbi eu tellus quis nisi tempor accumsan nec eu
-                  urna.
-                  empor, ullamcorper tortor. Mauris quis fermentum augue. Phasellus ac nisl hendrerit, fringilla enim
-                  aliquam, placerat odio. Ut tortor nisi, pellentesque sed nisi at, hendrerit imperdiet turpis. Proin
-                  interdum porttitor metus at hendrerit. Proin ipsum nisl, lacinia vitae purus ullamcorper, maximus
-                  convallis sem. Sed nec lacinia lorem. Duis arcu metus, cursus non odio quis, tincidunt tempor augue.
-                  Donec eget vestibulum risus. Nullam blandit quis est vitae feugiat.
-                </div>
+  <body>
+    <main>
+      <button
+        aria-label="Activate Dark Mode"
+        title="Toggle Dark Mode"
+        aria-pressed="false"
+        onclick="toggleTheme(this)"
+        class="dark-mode-toggle"
+      >
+        <span class="sun">
+          <img
+            alt="sun icon that represents light mode"
+            width="35px"
+            src="images/sun.svg"
+        /></span>
+        <span class="moon"
+          ><img
+            alt="moon icon to represent dark mode "
+            width="25px"
+            src="images/moon.svg"
+        /></span>
+      </button>
+      <h1>Text to Handwriting</h1>
+      <section style="font-size: 1rem; padding: 20px 0px;">
+        <p>
+          Hello There! I hope you all are doing good, If you've visited this
+          site before, you would notice that WE HAVE A NEW UI NOW 🎉
+          <br /><br />
+          If you have any half complete assignment that requires old page size,
+          you can use old website from
+          <a
+            href="https://5ef4fa628869820007c63219--text-to-handwriting.netlify.app/"
+            >Our Netlify History</a
+          >
+          <br /><br /><br />
+        </p>
+      </section>
+      <section class="generate-image-section">
+        <form id="generate-image-form">
+          <!-- Generate Image Section -->
+          <div class="display-flex output-grid responsive-flex">
+            <div class="flex-1 page-container-super">
+              <div>
+                <h2 style="margin-top: 0px;">Input</h2>
+                <label class="block" for="note">Type/Paste text here</label>
               </div>
-              <div class="overlay"></div>
+
+              <div class="flex-1 page-container">
+                <div class="page-a margined lines">
+                  <div contenteditable="true" class="top-margin"></div>
+                  <div class="display-flex left-margin-and-content">
+                    <div contenteditable="true" class="left-margin"></div>
+                    <div class="paper-content" id="note" contenteditable="true">
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      Ut rhoncus dui eget tortor feugiat iaculis. Morbi et dolor
+                      in felis viverra efficitur. Integer id laoreet arcu.
+                      Mauris turpis nibh, scelerisque sed tristique non,
+                      hendrerit in erat. Duis interdum nisl risus, ac ultrices
+                      ipsum auctor at. Aliquam faucibus iaculis metus sit amet
+                      tincidunt. Vestibulum cursus urna vel nunc imperdiet
+                      suscipit. Ut eu augue egestas, porta orci lobortis,
+                      pharetra orci. Morbi eu tellus quis nisi tempor accumsan
+                      nec eu urna. empor, ullamcorper tortor. Mauris quis
+                      fermentum augue. Phasellus ac nisl hendrerit, fringilla
+                      enim aliquam, placerat odio. Ut tortor nisi, pellentesque
+                      sed nisi at, hendrerit imperdiet turpis. Proin interdum
+                      porttitor metus at hendrerit. Proin ipsum nisl, lacinia
+                      vitae purus ullamcorper, maximus convallis sem. Sed nec
+                      lacinia lorem. Duis arcu metus, cursus non odio quis,
+                      tincidunt tempor augue. Donec eget vestibulum risus.
+                      Nullam blandit quis est vitae feugiat.
+                    </div>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+                <br />
+              </div>
+
+              <div>
+                <button
+                  id="draw-diagram-button"
+                  type="button"
+                  style="font-size: 0.9rem;"
+                  class="draw-button"
+                >
+                  Draw <small>(Beta)</small>
+                </button>
+              </div>
             </div>
-            <br />
+
+            <div class="customization-col">
+              <!-- Handwriting Font -->
+              <div style="padding: 5px 0px 5px 0px;">
+                <b>Customizations</b> <small>(Optional)</small>
+                <p style="font-size: 0.8rem;">
+                  <em
+                    >Note: Few changes may reflect only in the generated image
+                    and not in the preview</em
+                  >
+                </p>
+              </div>
+              <fieldset>
+                <legend>Handwriting Options</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label class="block" for="handwriting-font"
+                      >Handwriting Font</label
+                    >
+                    <select id="handwriting-font">
+                      <option
+                        selected
+                        style="font-family: 'Homemade Apple';"
+                        value="'Homemade Apple', cursive"
+                      >
+                        Homemade Apple
+                      </option>
+                      <option
+                        style="font-family: 'Caveat', cursive; font-size: 13pt;"
+                        value="'Caveat', cursive"
+                      >
+                        Caveat
+                      </option>
+                      <option
+                        style="
+                          font-family: 'Liu Jian Mao Cao';
+                          font-size: 13pt;
+                        "
+                        value="'Liu Jian Mao Cao', cursive"
+                      >
+                        Liu Jian Mao Cao
+                      </option>
+                    </select>
+                  </div>
+                  <div class="upload-handwriting-container">
+                    <label class="block" for="font-file"
+                      >Upload your handwriting font <small>(Beta)</small>&nbsp;
+                      <a
+                        style="font-size: 1.1rem;"
+                        title="How to add your own handwriting"
+                        href="#how-to-add-handwriting"
+                      >
+                        &#9432;
+                      </a>
+                    </label>
+                    <input accept=".ttf, .otf" type="file" id="font-file" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Pen ink color, Font size, Vertical position text, Word Spacing -->
+              <fieldset>
+                <legend>Page & Text Options</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="font-size">Font Size</label>
+                    <input
+                      id="font-size"
+                      min="0"
+                      step="0.5"
+                      value="10"
+                      type="number"
+                    />
+                  </div>
+                  <div>
+                    <label class="block" for="ink-color">Ink Color</label>
+                    <select id="ink-color">
+                      <option default value="#000f55">Blue</option>
+                      <option value="black">Black</option>
+                      <option value="#ba3807">Red</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-size">Page Size</label>
+                    <select id="page-size">
+                      <option default value="a4">A4 &nbsp;</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="page-effects">Effects</label>
+                    <select id="page-effects">
+                      <option default value="shadows">Shadows</option>
+                      <option value="no-effect">No Effect</option>
+                    </select>
+                  </div>
+                </div>
+              </fieldset>
+
+              <fieldset>
+                <legend>Spacing Options</legend>
+
+                <div class="category-grid">
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="top-padding">Vertical Position</label>
+                    <input id="top-padding" min="0" value="5" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="px">
+                    <label for="word-spacing">Word Spacing</label>
+                    <input id="word-spacing" min="0" value="0" type="number" />
+                  </div>
+                  <div class="postfix-input" data-postfix="pt">
+                    <label for="letter-spacing">Letter Spacing</label>
+                    <input id="letter-spacing" value="0" type="number" />
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- Letter spacing, Paper Margin, Paper Lines, Paper Curvature -->
+              <fieldset>
+                <legend>Margin & Line Options</legend>
+
+                <div class="category-grid">
+                  <div>
+                    <label for="paper-margin-toggle"
+                      >Paper Margin:
+                      <span aria-label="paper margin status" class="status"
+                        >on</span
+                      >
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input
+                        aria-checked="true"
+                        checked
+                        aria-label="Paper Margin Button"
+                        id="paper-margin-toggle"
+                        type="checkbox"
+                      />
+                      <div></div>
+                    </label>
+                  </div>
+
+                  <div>
+                    <label for="paper-line-toggle"
+                      >Paper Lines:
+                      <span aria-label="paper line status" class="status"
+                        >on</span
+                      >
+                    </label>
+                    <label class="switch-toggle outer">
+                      <input
+                        aria-checked="true"
+                        checked
+                        aria-label="Paper Line Button"
+                        id="paper-line-toggle"
+                        type="checkbox"
+                      />
+                      <div></div>
+                    </label>
+                  </div>
+                  <div class="experimental">
+                    <label for="paper-curve-toggle"
+                      >Paper Curve:
+                      <span aria-label="paper curve status" class="status"
+                        >off</span
+                      >
+                    </label>
+                    <label
+                      title="Paper Curve (Yet to be implemented)"
+                      class="switch-toggle outer"
+                      style="cursor: not-allowed !important;"
+                    >
+                      <input
+                        aria-checked="false"
+                        aria-label="Paper Curve Button"
+                        id="paper-curve-toggle"
+                        type="checkbox"
+                      />
+                      <div></div>
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
+
+              <!-- GENERATE IMAGE BUTTONS -->
+              <hr
+                style="
+                  border: 0.3px solid var(--elevation-background);
+                  width: 80%;
+                "
+              />
+              <div style="text-align: center; padding: 30px 0px;">
+                <button
+                  type="submit"
+                  data-testid="generate-image-button"
+                  class="button generate-image-button"
+                >
+                  Generate Image
+                </button>
+              </div>
+            </div>
           </div>
-         
-         
-          <div> 
-            <button id="draw-diagram-button" type="button" style="font-size: 0.9rem" class="draw-button">
-              Draw <small>(Beta)</small>
-            </button>
-          </div>
-         
+        </form>
+      </section>
+
+      <!-- OUTPUT -->
+      <section>
+        <h2>Output</h2>
+        <div id="output" class="output" style="text-align: center;">
+          Click "Generate Image" Button to generate new image.
         </div>
-         
-          <div class="customization-col">
-            <!-- Handwriting Font -->
-            <div style="padding: 5px 0px 5px 0px;">
-              <b>Customizations</b> <small>(Optional)</small>
-              <p style="font-size: .8rem"><em>Note: Few changes may reflect only in the generated image and not in the
-                  preview</em></p>
-            </div>
-            <fieldset>
-              <legend>Handwriting Options</legend>
-
-              <div class="category-grid">
-                <div>
-                  <label class="block" for="handwriting-font">Handwriting Font</label>
-                  <select id="handwriting-font">
-                    <option selected style="font-family: 'Homemade Apple'" value="'Homemade Apple', cursive">
-                      Homemade Apple
-                    </option>
-                    <option style="font-family: 'Caveat', cursive; font-size: 13pt;" value="'Caveat', cursive">
-                      Caveat
-                    </option>
-                    <option style="font-family: 'Liu Jian Mao Cao'; font-size: 13pt;"
-                      value="'Liu Jian Mao Cao', cursive">
-                      Liu Jian Mao Cao
-                    </option>
-                  </select>
-                </div>
-                <div class="upload-handwriting-container">
-                  <label class="block" for="font-file">Upload your handwriting font <small>(Beta)</small>&nbsp;
-                    <a style="font-size: 1.1rem;" title="How to add your own handwriting"
-                      href="#how-to-add-handwriting">
-                      &#9432;
-                    </a>
-                  </label>
-                  <input accept=".ttf, .otf" type="file" id="font-file" />
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- Pen ink color, Font size, Vertical position text, Word Spacing -->
-            <fieldset>
-              <legend>Page & Text Options</legend>
-
-              <div class="category-grid">
-                <div class="postfix-input" data-postfix="pt">
-                  <label for="font-size">Font Size</label>
-                  <input id="font-size" min="0" step="0.5" value="10" type="number" />
-                </div>
-                <div>
-                  <label class="block" for="ink-color">Ink Color</label>
-                  <select id="ink-color">
-                    <option default value="#000f55">Blue</option>
-                    <option value="black">Black</option>
-                    <option value="#ba3807">Red</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block" for="page-size">Page Size</label>
-                  <select id="page-size">
-                    <option default value="a4">A4 &nbsp;</option>
-                  </select>
-                </div>
-                <div>
-                  <label class="block" for="page-effects">Effects</label>
-                  <select id="page-effects">
-                    <option default value="shadows">Shadows</option>
-                    <option value="no-effect">No Effect</option>
-                  </select>
-                </div>
-              </div>
-            </fieldset>
-
-            <fieldset>
-              <legend>Spacing Options</legend>
-
-              <div class="category-grid">
-                <div class="postfix-input" data-postfix="px">
-                  <label for="top-padding">Vertical Position</label>
-                  <input id="top-padding" min="0" value="5" type="number" />
-                </div>
-                <div class="postfix-input" data-postfix="px">
-                  <label for="word-spacing">Word Spacing</label>
-                  <input id="word-spacing" min="0" value="0" type="number" />
-                </div>
-                <div class="postfix-input" data-postfix="pt">
-                  <label for="letter-spacing">Letter Spacing</label>
-                  <input id="letter-spacing" value="0" type="number" />
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- Letter spacing, Paper Margin, Paper Lines, Paper Curvature -->
-            <fieldset>
-              <legend>Margin & Line Options</legend>
-
-              <div class="category-grid">
-                <div>
-                  <label for="paper-margin-toggle">Paper Margin:
-                    <span aria-label="paper margin status" class="status">on</span>
-                  </label>
-                  <label class="switch-toggle outer">
-                    <input aria-checked="true" checked aria-label="Paper Margin Button" id="paper-margin-toggle"
-                      type="checkbox" />
-                    <div></div>
-                  </label>
-                </div>
-
-                <div>
-                  <label for="paper-line-toggle">Paper Lines:
-                    <span aria-label="paper line status" class="status">on</span>
-                  </label>
-                  <label class="switch-toggle outer">
-                    <input aria-checked="true" checked aria-label="Paper Line Button" id="paper-line-toggle"
-                      type="checkbox" />
-                    <div></div>
-                  </label>
-                </div>
-                <div class="experimental">
-                  <label for="paper-curve-toggle">Paper Curve:
-                    <span aria-label="paper curve status" class="status">off</span>
-                  </label>
-                  <label title="Paper Curve (Yet to be implemented)" class="switch-toggle outer"
-                    style="cursor: not-allowed !important;">
-                    <input aria-checked="false" aria-label="Paper Curve Button" id="paper-curve-toggle"
-                      type="checkbox" />
-                    <div></div>
-                  </label>
-                </div>
-              </div>
-            </fieldset>
-
-            <!-- GENERATE IMAGE BUTTONS -->
-            <hr style="border: .3px solid var(--elevation-background); width: 80%;" />
-            <div style="text-align: center;padding: 30px 0px;">
-              <button type="submit" data-testid="generate-image-button" class="button generate-image-button">
-                Generate Image
-              </button>
-            </div>
-          </div>
+        <div style="text-align: center; padding: 30px;">
+          <button class="imp-button" id="download-as-pdf-button">
+            Download All Images as PDF
+          </button>
         </div>
-      </form>
-    </section>
+      </section>
 
-    <!-- OUTPUT -->
-    <section>
-      <h2>Output</h2>
-      <div id="output" class="output" style="text-align: center;">
-        Click "Generate Image" Button to generate new image.
+      <section id="how-to-add-handwriting">
+        <h2>🤓 Guide to add your own handwriting</h2>
+        <div>
+          <ul>
+            <li>
+              To use your handwriting, you will have to generate font of your
+              handwriting.
+            </li>
+            <li>
+              There are websites like
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.calligraphr.com/en/"
+                >Calligraphr</a
+              >
+              that let you do that.
+            </li>
+            <li>
+              Once you get .ttf file of your handwriting, upload it from 'Upload
+              your handwriting font' button in customizations sections
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="sponsors">
+        <h2>🤗 Sponsors</h2>
+        <p>
+          This tool is completely free and neither stores any of your data for
+          money so maybe you can consider being patron or making an one time
+          payment with buy me a coffee to help sustain 🤗
+        </p>
+        <p>
+          <a href="https://www.patreon.com/bePatron?u=31891872">
+            <img
+              loading="lazy"
+              style="border-radius: 4px;"
+              alt="Buy me a Coffee Button"
+              width="200"
+              src="https://c5.patreon.com/external/logo/become_a_patron_button.png"
+            />
+          </a>
+          &nbsp;
+          <a href="https://www.buymeacoffee.com/saurabhdaware">
+            <img
+              loading="lazy"
+              style="border-radius: 4px;"
+              alt="Buy me a Coffee Button"
+              width="200"
+              src="https://cdn.buymeacoffee.com/buttons/default-yellow.png"
+            />
+          </a>
+        </p>
+      </section>
+
+      <section id="github-contributors">
+        <h2>👫 GitHub Contributors</h2>
+        <div class="project-contributors" id="project-contributors"></div>
+        <div style="padding: 20px 5px;">
+          Text-to-Handwriting is an open-source tool built with HTML, CSS, and
+          JavaScript! <br />You can check out
+          <a
+            href="https://github.com/saurabhdaware/text-to-handwriting/blob/master/CONTRIBUTING.md"
+            >CONTRIBUTING.md on GitHub</a
+          >, if you want to contribute.
+        </div>
+      </section>
+    </main>
+    <footer style="padding: 40px 0px 10px 0px;">
+      Thank you for using Text to Handwriting! If you have any
+      questions/suggestions/feedback, you can drop me a message on
+      <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a> or
+      drop an email at
+      <a href="mailto:saurabhdaware99@gmail.com">saurabhdaware99@gmail.com</a>.
+      <br /><br />Do star the
+      <a href="https://github.com/saurabhdaware/text-to-handwriting"
+        >Text-to-Handwriting GitHub Repository</a
+      >
+      and If you're using it for writing assignments, make sure you use it at
+      your own risk and If it fails and your teacher catch this tool, ask them
+      to star my GitHub as well :D <br />
+      <br />byeeee! <br /><br />
+      ~ Saurabh (<a href="https://saurabhdaware.in">https://saurabhdaware.in</a
+      >)
+    </footer>
+
+    <!-- Fixed Elements -->
+    <section class="draw-container popup-container">
+      <button class="close-button">&times;</button>
+      <div class="display-flex responsive-flex">
+        <canvas
+          id="diagram-canvas"
+          style="background-color: #fff;"
+          height="300px"
+          width="600px"
+        ></canvas>
+        <div class="flex-1 buttons-container padding-around">
+          <button id="add-to-paper-button">Add to Paper</button>
+          <button id="draw-download-button">Download Image</button>
+          <br /><br />
+          <input
+            type="file"
+            id="image-to-add-in-canvas"
+            accept="image/x-png,image/jpeg"
+            hidden="hidden"
+          />
+          <br /><br /><button id="add-new-image-button">Add bg image</button>
+          <br /><br />
+          <button
+            id="clear-draw-canvas"
+            class="blue-button"
+            style="background-color: #f30; color: #fff;"
+          >
+            Clear Canvas
+          </button>
+        </div>
       </div>
-      <div style="text-align: center;padding: 30px;">
-        <button class="imp-button" id="download-as-pdf-button">Download All Images as PDF</button>
-      </div>
     </section>
+    <!-- GitHub Corner logo -->
+    <a
+      tabindex="0"
+      href="https://github.com/saurabhdaware/text-to-handwriting"
+      rel="noopener noreferrer"
+      target="_blank"
+      class="github-corner"
+      aria-label="View source on GitHub"
+    >
+      <svg
+        width="80"
+        height="80"
+        viewBox="0 0 250 250"
+        style="
+          fill: #151513;
+          color: #fff;
+          position: absolute;
+          top: 0;
+          border: 0;
+          right: 0;
+        "
+        aria-hidden="true"
+      >
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path
+          d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+          fill="currentColor"
+          style="transform-origin: 130px 106px;"
+          class="octo-arm"
+        ></path>
+        <path
+          d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+          fill="currentColor"
+          class="octo-body"
+        ></path>
+      </svg>
+    </a>
 
-
-    <section id="how-to-add-handwriting">
-      <h2>🤓 Guide to add your own handwriting</h2>
-      <p>
-        <ul>
-          <li>To use your handwriting, you will have to generate font of your handwriting.</li>
-          <li>There are websites like <a target="_blank" rel="noopener noreferrer"
-              href="https://www.calligraphr.com/en/">Calligraphr</a> that let you do that.</li>
-          <li>Once you get .ttf file of your handwriting, upload it from 'Upload your handwriting font' button in
-            customizations sections</li>
-        </ul>
-      </p>
-    </section>
-
-    <section id="sponsors">
-      <h2>🤗 Sponsors</h2>
-      <p>This tool is completely free and neither stores any of your data for money so maybe you can consider being
-        patron or making an one time payment with buy me a coffee to help sustain 🤗</p>
-      <p>
-        <a href="https://www.patreon.com/bePatron?u=31891872">
-          <img loading="lazy" style="border-radius: 4px;" alt="Buy me a Coffee Button" width="200"
-            src="https://c5.patreon.com/external/logo/become_a_patron_button.png" />
-        </a> &nbsp;
-        <a href="https://www.buymeacoffee.com/saurabhdaware">
-          <img loading="lazy" style="border-radius: 4px;" alt="Buy me a Coffee Button" width="200"
-            src="https://cdn.buymeacoffee.com/buttons/default-yellow.png" />
-        </a>
-      </p>
-    </section>
-
-    <section id="github-contributors">
-      <h2>👫 GitHub Contributors</h2>
-      <div class="project-contributors" id="project-contributors">
-
-      </div>
-      <div style="padding: 20px 5px;">
-        Text-to-Handwriting is an open-source tool built with HTML, CSS, and JavaScript! <br />You can check out <a
-          href="https://github.com/saurabhdaware/text-to-handwriting/blob/master/CONTRIBUTING.md">CONTRIBUTING.md on
-          GitHub</a>, if you want to contribute.
-      </div>
-    </section>
-
-  </main>
-  <footer style="padding: 40px 0px 10px 0px;">
-    Thank you for using Text to Handwriting! If you have any questions/suggestions/feedback, you can drop me a message
-    on <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a> or drop an email at <a
-      href="mailto:saurabhdaware99@gmail.com">saurabhdaware99@gmail.com</a>.
-    <br /><br />Do star the <a href="https://github.com/saurabhdaware/text-to-handwriting">Text-to-Handwriting GitHub
-      Repository</a> and If you're using it for writing assignments, make sure you use it at your own risk and If it
-    fails and your teacher catch this tool, ask them to star my GitHub as well :D <br />
-    <br />byeeee!
-    <br /><br />
-    ~ Saurabh (<a href="https://saurabhdaware.in">https://saurabhdaware.in</a>)
-  </footer>
-
-  <!-- Fixed Elements -->
-  <section class="draw-container popup-container">
-    <button class="close-button">&times;</button>
-    <div class="display-flex responsive-flex">
-      <canvas id="diagram-canvas" style="background-color: #fff;" height="300px" width="600px"></canvas>
-      <div class="flex-1 buttons-container padding-around">
-        <button id="add-to-paper-button">Add to Paper</button>
-        <button id="draw-download-button">Download Image</button>
-        <br><br />
-        <input type="file" id="image-to-add-in-canvas" accept="image/x-png,image/jpeg" hidden="hidden">
-        <br /><br /><button id="add-new-image-button">Add bg image</button>
-        <br /><br />
-        <button id="clear-draw-canvas" class="blue-button" style="background-color: #f30; color: #fff;">Clear
-          Canvas</button>
-      </div>
-    </div>
-  </section>
-  <!-- GitHub Corner logo -->
-  <a tabindex="0" href="https://github.com/saurabhdaware/text-to-handwriting" rel="noopener noreferrer" target="_blank"
-    class="github-corner" aria-label="View source on GitHub">
-    <svg width="80" height="80" viewBox="0 0 250 250"
-      style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-      <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-      <path
-        d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
-        fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-      <path
-        d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
-        fill="currentColor" class="octo-body"></path>
-    </svg>
-  </a>
-
-  <script src="./js/vendors/html2canvas.min.js" crossorigin="anonymous"></script>
-  <script type="module" src="js/app.mjs"></script>
-  <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
-  <script>
-    function toggleTheme(toggleButton) {
-      if (document.body.classList.contains('dark')) {
-        document.body.classList.remove('dark');
-        window.localStorage.setItem('prefers-theme', 'light');
-        if (toggleButton) {
-          toggleButton.setAttribute('aria-pressed', false);
-          toggleButton.setAttribute('aria-label', 'Activate Dark Mode');
-        }
-      } else {
-        document.body.classList.add('dark');
-        window.localStorage.setItem('prefers-theme', 'dark');
-        if (toggleButton) {
-          toggleButton.setAttribute('aria-pressed', true);
-          toggleButton.setAttribute('aria-label', 'Activate Light Mode');
+    <script
+      src="./js/vendors/html2canvas.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="js/app.mjs"></script>
+    <script defer src="https://unpkg.com/jspdf@^1/dist/jspdf.min.js"></script>
+    <script>
+      function toggleTheme(toggleButton) {
+        if (document.body.classList.contains('dark')) {
+          document.body.classList.remove('dark');
+          window.localStorage.setItem('prefers-theme', 'light');
+          if (toggleButton) {
+            toggleButton.setAttribute('aria-pressed', false);
+            toggleButton.setAttribute('aria-label', 'Activate Dark Mode');
+          }
+        } else {
+          document.body.classList.add('dark');
+          window.localStorage.setItem('prefers-theme', 'dark');
+          if (toggleButton) {
+            toggleButton.setAttribute('aria-pressed', true);
+            toggleButton.setAttribute('aria-label', 'Activate Light Mode');
+          }
         }
       }
-    }
 
-    const localPreference = window.localStorage.getItem('prefers-theme');
-    if (localPreference) {
-      if (localPreference === 'light') document.body.classList.remove('dark');
-      else document.body.classList.add('dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.body.classList.add('dark');
-    }
-  </script>
-</body>
-
+      const localPreference = window.localStorage.getItem('prefers-theme');
+      if (localPreference) {
+        if (localPreference === 'light') document.body.classList.remove('dark');
+        else document.body.classList.add('dark');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+      }
+    </script>
+  </body>
 </html>
