@@ -391,7 +391,7 @@ input[type='file']::before {
 
 .fade-in-dark,
 .fade-in-light {
-  transition: 0.5s linear;
+  transition: 0.3s ease;
 }
 
 @media (max-width: 768px) {
