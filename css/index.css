@@ -389,6 +389,11 @@ input[type='file']::before {
   grid-auto-columns: 1fr;
 }
 
+.fade-in-dark,
+.fade-in-light {
+  transition: 0.3s ease;
+}
+
 @media (max-width: 768px) {
   .category-grid {
     grid-auto-flow: row;

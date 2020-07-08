@@ -170,7 +170,7 @@
                 <button
                   id="draw-diagram-button"
                   type="button"
-                  style="font-size: 0.9rem;"
+                  style="font-size: 0.9rem; margin-top: 5px;"
                   class="draw-button"
                 >
                   Draw <small>(Beta)</small>
@@ -494,8 +494,18 @@
           width="600px"
         ></canvas>
         <div class="flex-1 buttons-container padding-around">
-          <button id="add-to-paper-button">Add to Paper</button>
-          <button id="draw-download-button">Download Image</button>
+          <button
+            id="add-to-paper-button"
+            style="margin-top: 5px; margin-bottom: 5px;"
+          >
+            Add to Paper
+          </button>
+          <button
+            id="draw-download-button"
+            style="margin-top: 5px; margin-bottom: 5px;"
+          >
+            Download Image
+          </button>
           <br /><br />
           <input
             type="file"
@@ -562,14 +572,18 @@
     <script>
       function toggleTheme(toggleButton) {
         if (document.body.classList.contains('dark')) {
+          document.body.classList.add('fade-in-light');
           document.body.classList.remove('dark');
+          document.body.classList.remove('fade-in-dark');
           window.localStorage.setItem('prefers-theme', 'light');
           if (toggleButton) {
             toggleButton.setAttribute('aria-pressed', false);
             toggleButton.setAttribute('aria-label', 'Activate Dark Mode');
           }
         } else {
+          document.body.classList.add('fade-in-dark');
           document.body.classList.add('dark');
+          document.body.classList.remove('fade-in-light');
           window.localStorage.setItem('prefers-theme', 'dark');
           if (toggleButton) {
             toggleButton.setAttribute('aria-pressed', true);
