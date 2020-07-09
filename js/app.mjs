@@ -63,8 +63,8 @@ const EVENT_MAP = {
   '#page-effects': {
     on: 'change',
     action: (e) => {
-      if (document.querySelector('#page-effects').value === "scanner") {
-        window.altEffect = "scanner";
+      if (document.querySelector('#page-effects').value === 'scanner') {
+        window.altEffect = 'scanner';
       }
     }
   },

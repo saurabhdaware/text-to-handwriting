@@ -20,11 +20,14 @@ function applyPaperStyles() {
   pageEl.style.overflowY = 'hidden';
 
   /** Modifying the effects "value" to retain "shadows" & "page-ruling" in "scanner" */
-  if (window.altEffect === "scanner") {
-    document.querySelector('#page-effects').value = "shadows";
+  if (window.altEffect === 'scanner') {
+    document.querySelector('#page-effects').value = 'shadows';
   }
   overlayEl.classList.add(document.querySelector('#page-effects').value);
-  if (document.querySelector('#page-effects').value === 'shadows' || window.altEffect === "scanner") {
+  if (
+    document.querySelector('#page-effects').value === 'shadows' ||
+    window.altEffect === 'scanner'
+  ) {
     overlayEl.style.background = `linear-gradient(${
       Math.random() * 360
     }deg, #0008, #0000)`;
@@ -37,8 +40,8 @@ function applyPaperStyles() {
   }
 
   /** Reverting back to "scanner" to apply contrast */
-  if (window.altEffect === "scanner") {
-    document.querySelector('#page-effects').value = "scanner";
+  if (window.altEffect === 'scanner') {
+    document.querySelector('#page-effects').value = 'scanner';
   }
 }
 
