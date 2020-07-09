@@ -18,12 +18,23 @@ function isFontErrory() {
 function applyPaperStyles() {
   pageEl.style.border = 'none';
   pageEl.style.overflowY = 'hidden';
-  overlayEl.classList.add(document.querySelector('#page-effects').value);
-  if (document.querySelector('#page-effects').value === 'shadows') {
+
+  // Adding class shadows even if effect is scanner
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    overlayEl.classList.add('shadows');
+  } else {
+    overlayEl.classList.add(document.querySelector('#page-effects').value);
+  }
+
+  if (
+    document.querySelector('#page-effects').value === 'shadows' ||
+    document.querySelector('#page-effects').value === 'scanner'
+  ) {
     overlayEl.style.background = `linear-gradient(${
       Math.random() * 360
     }deg, #0008, #0000)`;
   }
+
   if (isFontErrory() && document.querySelector('#font-file').files.length < 1) {
     paperContentPadding =
       paperContentEl.style.paddingTop.replace(/px/g, '') || 5;
@@ -35,7 +46,13 @@ function applyPaperStyles() {
 function removePaperStyles() {
   pageEl.style.overflowY = 'auto';
   pageEl.style.border = '1px solid var(--elevation-background)';
-  overlayEl.classList.remove(document.querySelector('#page-effects').value);
+
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    overlayEl.classList.remove('shadows');
+  } else {
+    overlayEl.classList.remove(document.querySelector('#page-effects').value);
+  }
+
   if (isFontErrory()) {
     paperContentEl.style.paddingTop = `${paperContentPadding}px`;
   }

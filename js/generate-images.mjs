@@ -21,6 +21,15 @@ async function convertDIVToImage() {
 
   /** Function html2canvas comes from a library html2canvas which is included in the index.html */
   const canvas = await html2canvas(pageEl, options);
+
+  /** Send image data for modification if effect is scanner */
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    const context = canvas.getContext('2d');
+    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+    contrastImage(imageData, 0.55);
+    canvas.getContext('2d').putImageData(imageData, 0, 0);
+  }
+
   outputImages.push(canvas);
 }
 
@@ -98,4 +107,18 @@ function setRemoveImageListeners() {
         setRemoveImageListeners();
       });
     });
+}
+
+/** Modifies image data to add contrast */
+
+function contrastImage(imageData, contrast) {
+  const data = imageData.data;
+  contrast *= 255;
+  const factor = (contrast + 255) / (255.01 - contrast);
+  for (let i = 0; i < data.length; i += 4) {
+    data[i] = factor * (data[i] - 128) + 128;
+    data[i + 1] = factor * (data[i + 1] - 128) + 128;
+    data[i + 2] = factor * (data[i + 2] - 128) + 128;
+  }
+  return imageData;
 }
