@@ -60,14 +60,6 @@ const EVENT_MAP = {
     on: 'change',
     action: (e) => addFontFromFile(e.target.files[0])
   },
-  '#page-effects': {
-    on: 'change',
-    action: (e) => {
-      if (document.querySelector('#page-effects').value === 'scanner') {
-        window.altEffect = 'scanner';
-      }
-    }
-  },
   '#ink-color': {
     on: 'change',
     action: (e) => {

@@ -19,36 +19,40 @@ function applyPaperStyles() {
   pageEl.style.border = 'none';
   pageEl.style.overflowY = 'hidden';
 
-  /** Modifying the effects "value" to retain "shadows" & "page-ruling" in "scanner" */
-  if (window.altEffect === 'scanner') {
-    document.querySelector('#page-effects').value = 'shadows';
+  // Adding class shadows even if effect is scanner
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    overlayEl.classList.add('shadows');
+  } else {
+    overlayEl.classList.add(document.querySelector('#page-effects').value);
   }
-  overlayEl.classList.add(document.querySelector('#page-effects').value);
+
   if (
     document.querySelector('#page-effects').value === 'shadows' ||
-    window.altEffect === 'scanner'
+    document.querySelector('#page-effects').value === 'scanner'
   ) {
     overlayEl.style.background = `linear-gradient(${
       Math.random() * 360
     }deg, #0008, #0000)`;
   }
+
   if (isFontErrory() && document.querySelector('#font-file').files.length < 1) {
     paperContentPadding =
       paperContentEl.style.paddingTop.replace(/px/g, '') || 5;
     const newPadding = Number(paperContentPadding) - 5;
     paperContentEl.style.paddingTop = `${newPadding}px`;
   }
-
-  /** Reverting back to "scanner" to apply contrast */
-  if (window.altEffect === 'scanner') {
-    document.querySelector('#page-effects').value = 'scanner';
-  }
 }
 
 function removePaperStyles() {
   pageEl.style.overflowY = 'auto';
   pageEl.style.border = '1px solid var(--elevation-background)';
-  overlayEl.classList.remove(document.querySelector('#page-effects').value);
+
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    overlayEl.classList.remove('shadows');
+  } else {
+    overlayEl.classList.remove(document.querySelector('#page-effects').value);
+  }
+
   if (isFontErrory()) {
     paperContentEl.style.paddingTop = `${paperContentPadding}px`;
   }

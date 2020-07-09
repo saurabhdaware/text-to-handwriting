@@ -23,7 +23,7 @@ async function convertDIVToImage() {
   const canvas = await html2canvas(pageEl, options);
 
   /** Send image data for modification if effect is scanner */
-  if (window.altEffect === 'scanner') {
+  if (document.querySelector('#page-effects').value === 'scanner') {
     const context = canvas.getContext('2d');
     const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     contrastImage(imageData, 0.55);
