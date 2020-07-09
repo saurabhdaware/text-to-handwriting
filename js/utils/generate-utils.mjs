@@ -26,10 +26,13 @@ function applyPaperStyles() {
     overlayEl.classList.add(document.querySelector('#page-effects').value);
   }
 
-  if (
-    document.querySelector('#page-effects').value === 'shadows' ||
-    document.querySelector('#page-effects').value === 'scanner'
-  ) {
+  if (document.querySelector('#page-effects').value === 'scanner') {
+    // For scanner, we need shadow between 50deg to 120deg only
+    // Since If the lit part happens to be on margins, the margins get invisible
+    overlayEl.style.background = `linear-gradient(${
+      Math.floor(Math.random() * (120 - 50 + 1)) + 50
+    }deg, #0008, #0000)`;
+  } else if (document.querySelector('#page-effects').value === 'shadows') {
     overlayEl.style.background = `linear-gradient(${
       Math.random() * 360
     }deg, #0008, #0000)`;
