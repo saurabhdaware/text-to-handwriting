@@ -111,7 +111,7 @@ function setRemoveImageListeners() {
         if (outputImages.length >= 0) {
           document.querySelector('#output-header').textContent =
             'Output' +
-            (outputImages.length ? ' (' + outputImages.length + ')' : '');
+            (outputImages.length ? ' ( ' + outputImages.length + ' )' : '');
         }
         renderOutput(outputImages);
         // When output changes, we have to set remove listeners again
