@@ -33,8 +33,8 @@ async function convertDIVToImage() {
   outputImages.push(canvas);
   // Displaying no. of images on addition
   if (outputImages.length >= 1) {
-    document.querySelector('#output-header')
-    .textContent = "Output " + "( " + outputImages.length + " )";
+    document.querySelector('#output-header').textContent =
+      'Output ' + '( ' + outputImages.length + ' )';
   }
 }
 
@@ -109,8 +109,9 @@ function setRemoveImageListeners() {
         outputImages.splice(Number(e.target.dataset.index), 1);
         // Displaying no. of images on deletion
         if (outputImages.length >= 0) {
-          document.querySelector('#output-header')
-          .textContent = "Output" + ((outputImages.length) ? " (" + outputImages.length + ")" : "");
+          document.querySelector('#output-header').textContent =
+            'Output' +
+            (outputImages.length ? ' (' + outputImages.length + ')' : '');
         }
         renderOutput(outputImages);
         // When output changes, we have to set remove listeners again
