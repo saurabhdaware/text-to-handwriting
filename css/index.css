@@ -24,7 +24,7 @@ body.dark {
   --primary-button-color: #111;
 }
 @font-face {
-  font-family: 'Hindi Font';
+  font-family: 'Hindi_Font';
   src: url(fonts/Hindi_Type.ttf);
 }
 
