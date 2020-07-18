@@ -25,7 +25,7 @@ body.dark {
 }
 @font-face {
   font-family: 'Hindi_Font';
-  src: url(fonts/Hindi_Type.ttf);
+  src: url(../fonts/Hindi_Type.ttf);
 }
 
 /* Default CSS Changes */
