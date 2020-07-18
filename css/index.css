@@ -23,6 +23,10 @@ body.dark {
   --primary-button-bg: #eee;
   --primary-button-color: #111;
 }
+@font-face {
+  font-family: 'Hindi_Font';
+  src: url(../fonts/Hindi_Type.ttf);
+}
 
 /* Default CSS Changes */
 * {
