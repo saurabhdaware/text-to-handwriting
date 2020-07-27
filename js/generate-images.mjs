@@ -16,7 +16,7 @@ async function convertDIVToImage() {
   const options = {
     scrollX: 0,
     scrollY: -window.scrollY,
-    scale: 2
+    scale: document.querySelector('#resolution').value
   };
 
   /** Function html2canvas comes from a library html2canvas which is included in the index.html */
