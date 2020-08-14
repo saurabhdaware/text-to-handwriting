@@ -114,6 +114,10 @@ input[type='number'] {
 .shadow {
   box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2);
 }
+
+.shadow:hover{
+  box-shadow: 0px 0px 2px 0 rgba(240,245,249,1);
+}
 .display-flex {
   display: flex;
 }
