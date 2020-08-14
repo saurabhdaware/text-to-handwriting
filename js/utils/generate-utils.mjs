@@ -1,6 +1,6 @@
-const pageEl = document.querySelector('.page-a');
-const paperContentEl = document.querySelector('.page-a .paper-content');
-const overlayEl = document.querySelector('.overlay');
+// const pageEl = document.querySelector('.page-a');
+let paperContentEl;
+let overlayEl;
 
 let paperContentPadding;
 
@@ -15,10 +15,11 @@ function isFontErrory() {
   );
 }
 
-function applyPaperStyles() {
+async function applyPaperStyles(pageEl) {
   pageEl.style.border = 'none';
   pageEl.style.overflowY = 'hidden';
-
+  paperContentEl = pageEl.querySelector('.paper-content');
+  overlayEl = pageEl.querySelector('.overlay');
   // Adding class shadows even if effect is scanner
   if (document.querySelector('#page-effects').value === 'scanner') {
     overlayEl.classList.add('shadows');
@@ -46,10 +47,11 @@ function applyPaperStyles() {
   }
 }
 
-function removePaperStyles() {
+async function removePaperStyles(pageEl) {
   pageEl.style.overflowY = 'auto';
   pageEl.style.border = '1px solid var(--elevation-background)';
-
+  paperContentEl = pageEl.querySelector('.paper-content');
+  overlayEl = pageEl.querySelector('.overlay');
   if (document.querySelector('#page-effects').value === 'scanner') {
     overlayEl.classList.remove('shadows');
   } else {

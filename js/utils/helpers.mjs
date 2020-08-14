@@ -1,4 +1,7 @@
 const pageEl = document.querySelector('.page-a');
+const fixedPage = document.querySelector(
+  '.display-flex.left-margin-and-content'
+);
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function addFontFromFile(fileObj) {
@@ -50,4 +53,72 @@ function formatText(event) {
   document.execCommand('insertHTML', false, text);
 }
 
-export { isMobile, addFontFromFile, createPDF, formatText };
+function preventNewDiv(event) {
+  if (event.key === 'Enter') {
+    document.execCommand('insertLineBreak');
+    event.preventDefault();
+  }
+}
+
+function setEndOfContenteditable(contentEditableElement) {
+  let range;
+  let selection;
+  if (document.createRange) {
+    range = document.createRange();
+    range.selectNodeContents(contentEditableElement);
+    range.collapse(false);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    // IE 8 and lower
+    range = document.body.createTextRange();
+    range.moveToElementText(contentEditableElement);
+    range.collapse(false);
+    range.select();
+  }
+}
+
+function trimContent(event) {
+  const fixedHeight = fixedPage.clientHeight;
+  let flag = false;
+  const className = '.' + this.className;
+  const paddingTop = parseInt(
+    $(className).css('padding-top').replace('px', '')
+  );
+  while (fixedHeight < this.scrollHeight - paddingTop) {
+    flag = true;
+    let innerContent = this.innerHTML;
+    innerContent = innerContent.substring(0, innerContent.length - 1);
+    this.innerHTML = innerContent;
+  }
+  if (flag) setEndOfContenteditable(this);
+}
+
+function addPage() {
+  const pageList = document.querySelectorAll('.page-a');
+  const pageArr = [...pageList];
+  const lastNode = pageArr[pageArr.length - 1];
+  const newNode = lastNode.cloneNode(true);
+  newNode
+    .querySelectorAll('div[contenteditable=true]')
+    .forEach((node) => (node.innerHTML = ''));
+  lastNode.insertAdjacentElement('afterend', newNode);
+}
+
+function removePage() {
+  const pageList = document.querySelectorAll('.page-a');
+  const pageArr = [...pageList];
+  const lastNode = pageArr[pageArr.length - 1];
+  if (pageArr.length > 1) lastNode.remove();
+}
+export {
+  isMobile,
+  addFontFromFile,
+  createPDF,
+  formatText,
+  preventNewDiv,
+  trimContent,
+  addPage,
+  removePage
+};

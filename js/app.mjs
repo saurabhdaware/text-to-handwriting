@@ -1,4 +1,11 @@
-import { addFontFromFile, formatText } from './utils/helpers.mjs';
+import {
+  addFontFromFile,
+  formatText,
+  preventNewDiv,
+  trimContent,
+  addPage,
+  removePage
+} from './utils/helpers.mjs';
 import { generateImages, downloadAsPDF } from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from './utils/draw.mjs';
 
@@ -93,6 +100,18 @@ const EVENT_MAP = {
       toggleDrawCanvas();
     }
   },
+  '#add-page-button': {
+    on: 'click',
+    action: () => {
+      addPage();
+    }
+  },
+  '#remove-page-button': {
+    on: 'click',
+    action: () => {
+      removePage();
+    }
+  },
   '.draw-container .close-button': {
     on: 'click',
     action: () => {
@@ -104,20 +123,41 @@ const EVENT_MAP = {
     action: () => {
       downloadAsPDF();
     }
-  },
-  '.page-a .paper-content': {
-    on: 'paste',
-    action: formatText
   }
 };
 
+const DELEGATED_EVENT_MAP = [
+  {
+    on: 'paste',
+    action: formatText
+  },
+  {
+    on: 'keydown',
+    action: trimContent
+  },
+  {
+    on: 'keydown',
+    action: preventNewDiv
+  }
+];
+
 for (const eventSelector in EVENT_MAP) {
   document
-    .querySelector(eventSelector)
-    .addEventListener(
-      EVENT_MAP[eventSelector].on,
-      EVENT_MAP[eventSelector].action
+    .querySelectorAll(eventSelector)
+    .forEach((node) =>
+      node.addEventListener(
+        EVENT_MAP[eventSelector].on,
+        EVENT_MAP[eventSelector].action
+      )
     );
+}
+
+for (const childSelector of DELEGATED_EVENT_MAP) {
+  $('.page-container').on(
+    childSelector.on,
+    '.page-a div[contenteditable=true]',
+    childSelector.action
+  );
 }
 
 /**
