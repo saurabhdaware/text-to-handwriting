@@ -2,6 +2,7 @@ const pageEl = document.querySelector('.page-a');
 const fixedPage = document.querySelector(
   '.display-flex.left-margin-and-content'
 );
+const fixedHeight = fixedPage.clientHeight;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function addFontFromFile(fileObj) {
@@ -51,6 +52,7 @@ function formatText(event) {
     .getData('text/plain')
     .replace(/\n/g, '<br/>');
   document.execCommand('insertHTML', false, text);
+  adjustContent.call(this);
 }
 
 function preventNewDiv(event) {
@@ -79,20 +81,51 @@ function setEndOfContenteditable(contentEditableElement) {
   }
 }
 
-function trimContent(event) {
-  const fixedHeight = fixedPage.clientHeight;
-  let flag = false;
+function adjustContent(remainingContent = '') {
   const className = '.' + this.className;
   const paddingTop = parseInt(
     $(className).css('padding-top').replace('px', '')
   );
+  let extraContent = '';
+  const initialContent = this.innerHTML;
+  remainingContent += initialContent;
+  this.innerHTML = remainingContent;
   while (fixedHeight < this.scrollHeight - paddingTop) {
-    flag = true;
-    let innerContent = this.innerHTML;
-    innerContent = innerContent.substring(0, innerContent.length - 1);
-    this.innerHTML = innerContent;
+    extraContent = remainingContent.slice(-1) + extraContent;
+    remainingContent = remainingContent.substring(
+      0,
+      remainingContent.length - 1
+    );
+    this.innerHTML = remainingContent;
   }
-  if (flag) setEndOfContenteditable(this);
+  if (extraContent == '') setEndOfContenteditable(this);
+  else {
+    const pageList = document.querySelectorAll('.page-a');
+    const pageArr = [...pageList];
+    const lastNode = pageArr[pageArr.length - 1];
+    const pageContentArr = pageArr.map((page) => page.querySelector(className));
+    const lastContentNode = pageContentArr[pageContentArr.length - 1];
+    if (lastContentNode.isSameNode(this)) {
+      const newNode = lastNode.cloneNode(true);
+      newNode
+        .querySelectorAll('div[contenteditable=true]')
+        .forEach((node) => (node.innerHTML = ''));
+      lastNode.insertAdjacentElement('afterend', newNode);
+      const newContentNode = newNode.querySelector(className);
+      adjustContent.call(newContentNode, extraContent);
+    } else {
+      const currentNode = this;
+      const currentIndex = pageContentArr.findIndex((node) =>
+        node.isSameNode(currentNode)
+      );
+      const nextContentNode = pageContentArr[currentIndex + 1];
+      adjustContent.call(nextContentNode, extraContent);
+    }
+  }
+}
+
+function trimContent(event) {
+  adjustContent.call(this);
 }
 
 function addPage() {
@@ -104,6 +137,8 @@ function addPage() {
     .querySelectorAll('div[contenteditable=true]')
     .forEach((node) => (node.innerHTML = ''));
   lastNode.insertAdjacentElement('afterend', newNode);
+
+  return newNode;
 }
 
 function removePage() {

@@ -133,11 +133,11 @@ const DELEGATED_EVENT_MAP = [
   },
   {
     on: 'keydown',
-    action: trimContent
+    action: preventNewDiv
   },
   {
     on: 'keydown',
-    action: preventNewDiv
+    action: trimContent
   }
 ];
 
