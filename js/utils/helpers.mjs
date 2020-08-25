@@ -3,8 +3,13 @@ const fixedPage = document.querySelector(
   '.display-flex.left-margin-and-content'
 );
 const fixedHeight = fixedPage.clientHeight;
+
 const vKey = 86;
 const cKey = 67;
+const ctrlKey = 17;
+const cmdKey = 91;
+let ctrlDown = false;
+
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function addFontFromFile(fileObj) {
@@ -126,9 +131,18 @@ function adjustContent(remainingContent = '') {
   }
 }
 
+function setFalse(event) {
+  if (event.keyCode == ctrlKey || event.keyCode == cmdKey) ctrlDown = false;
+}
+
+function setTrue(event) {
+  if (event.keyCode == ctrlKey || event.keyCode == cmdKey) ctrlDown = true;
+}
+
 function trimContent(event) {
-  if (ctrlDown && (event.keyCode == vKey || event.keyCode == cKey)) return;
-  if (String.fromCharCode(event.keyCode).match(/(\w|\s|\n|\r|\t)/g))
+  if (ctrlDown && (event.keyCode == vKey || event.keyCode == cKey)) {
+    console.log("I'm here");
+  } else if (String.fromCharCode(event.keyCode).match(/(\w|\s|\n|\r|\t)/g))
     adjustContent.call(this);
 }
 
@@ -158,6 +172,8 @@ export {
   formatText,
   preventNewDiv,
   trimContent,
+  setFalse,
+  setTrue,
   addPage,
   removePage
 };
