@@ -125,7 +125,8 @@ function adjustContent(remainingContent = '') {
 }
 
 function trimContent(event) {
-  adjustContent.call(this);
+  if (String.fromCharCode(event.keyCode).match(/(\w|\s|\n|\r|\t)/g))
+    adjustContent.call(this);
 }
 
 function addPage() {
