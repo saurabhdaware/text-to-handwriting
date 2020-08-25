@@ -28,6 +28,11 @@ const pageEl = document.querySelector('.page-a');
 
 const setTextareaStyle = (attrib, v) => (pageEl.style[attrib] = v);
 
+// eslint-disable-next-line no-var
+var ctrlDown = false;
+const ctrlKey = 17;
+const cmdKey = 91;
+
 /**
  * Add event listeners here, they will be automatically mapped with addEventListener later
  */
@@ -127,6 +132,19 @@ const EVENT_MAP = {
 };
 
 const DELEGATED_EVENT_MAP = [
+  {
+    on: 'keydown',
+    action: (e) => {
+      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = true;
+    }
+  },
+  {
+    on: 'keyup',
+    action: (e) => {
+      // eslint-disable-next-line no-unused-vars
+      if (e.keyCode == ctrlKey || e.keyCode == cmdKey) ctrlDown = false;
+    }
+  },
   {
     on: 'paste',
     action: formatText

@@ -3,6 +3,8 @@ const fixedPage = document.querySelector(
   '.display-flex.left-margin-and-content'
 );
 const fixedHeight = fixedPage.clientHeight;
+const vKey = 86;
+const cKey = 67;
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function addFontFromFile(fileObj) {
@@ -125,6 +127,7 @@ function adjustContent(remainingContent = '') {
 }
 
 function trimContent(event) {
+  if (ctrlDown && (event.keyCode == vKey || event.keyCode == cKey)) return;
   if (String.fromCharCode(event.keyCode).match(/(\w|\s|\n|\r|\t)/g))
     adjustContent.call(this);
 }
