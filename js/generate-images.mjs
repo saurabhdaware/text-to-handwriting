@@ -5,14 +5,13 @@ import {
 } from './utils/generate-utils.mjs';
 import { createPDF } from './utils/helpers.mjs';
 
-const pageEl = document.querySelector('.page-a');
 const outputImages = [];
 
 /**
  * To generate image, we add styles to DIV and converts that HTML Element into Image.
  * This is the function that deals with it.
  */
-async function convertDIVToImage() {
+async function convertDIVToImage(pageEl) {
   const options = {
     scrollX: 0,
     scrollY: -window.scrollY,
@@ -29,72 +28,43 @@ async function convertDIVToImage() {
     contrastImage(imageData, 0.55);
     canvas.getContext('2d').putImageData(imageData, 0, 0);
   }
-
-  outputImages.push(canvas);
-  // Displaying no. of images on addition
-  if (outputImages.length >= 1) {
-    document.querySelector('#output-header').textContent =
-      'Output ' + '( ' + outputImages.length + ' )';
-  }
+  return canvas;
 }
 
 /**
  * This is the function that gets called on clicking "Generate Image" button.
  */
 export async function generateImages() {
-  applyPaperStyles();
-  pageEl.scrollTo(0, 0);
-
-  const paperContentEl = document.querySelector('.page-a .paper-content');
-  const scrollHeight = paperContentEl.scrollHeight;
-  const clientHeight = 514; // height of .paper-content when there is no content
-
-  const totalPages = Math.ceil(scrollHeight / clientHeight);
-
-  if (totalPages > 1) {
-    // For multiple pages
-    if (paperContentEl.innerHTML.includes('<img')) {
-      alert(
-        "You're trying to generate more than one page, Images and some formatting may not work correctly with multiple images" // eslint-disable-line max-len
-      );
-    }
-    const initialPaperContent = paperContentEl.innerHTML;
-    const splitContent = initialPaperContent.split(/(\s+)/);
-
-    // multiple images
-    let wordCount = 0;
-    for (let i = 0; i < totalPages; i++) {
-      paperContentEl.innerHTML = '';
-      const wordArray = [];
-      let wordString = '';
-
-      while (
-        paperContentEl.scrollHeight <= clientHeight &&
-        wordCount <= splitContent.length
-      ) {
-        wordString = wordArray.join(' ');
-        wordArray.push(splitContent[wordCount]);
-        paperContentEl.innerHTML = wordArray.join(' ');
-        wordCount++;
-      }
-      paperContentEl.innerHTML = wordString;
-      wordCount--;
-      pageEl.scrollTo(0, 0);
-      await convertDIVToImage();
-      paperContentEl.innerHTML = initialPaperContent;
-    }
-  } else {
-    // single image
-    await convertDIVToImage();
+  let pageEl;
+  const allPagePromises = [];
+  const allPaperStylePromises = [];
+  const allRemoveStylePromises = [];
+  const paperContentEl = document.querySelectorAll('.page-a');
+  const paperArr = [...paperContentEl];
+  const totalPages = paperArr.length;
+  for (let index = 0; index < totalPages; index++) {
+    pageEl = paperArr[index];
+    pageEl.scrollTo(0, 0);
+    allPaperStylePromises.push(applyPaperStyles(pageEl));
+    allPagePromises.push(convertDIVToImage(pageEl));
+    allRemoveStylePromises.push(removePaperStyles(pageEl));
   }
-
-  removePaperStyles();
+  await Promise.all(allPaperStylePromises);
+  const allPages = await Promise.all(allPagePromises);
+  await Promise.all(allRemoveStylePromises);
+  outputImages.push(...allPages);
+  // Displaying no. of images on addition
+  if (outputImages.length >= 1) {
+    document.querySelector('#output-header').textContent =
+      'Output ' + '( ' + outputImages.length + ' )';
+  }
   renderOutput(outputImages);
   setRemoveImageListeners();
 }
 
 /**
  * Downloads generated images as PDF
+ *
  */
 export const downloadAsPDF = () => createPDF(outputImages);
 

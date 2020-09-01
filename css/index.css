@@ -163,7 +163,7 @@ body.dark .github-corner {
 }
 
 .left-margin-and-content {
-  min-height: calc(100% - 50px);
+  height: calc(100% - 50px);
 }
 
 .page-a {
@@ -177,7 +177,7 @@ body.dark .github-corner {
   font-family: var(--handwriting-font);
   color: var(--ink-color);
   line-height: 1.5em;
-  overflow-y: auto;
+  overflow-y: hidden;
   scrollbar-color: transparent;
   scrollbar-width: thin;
 }
@@ -218,6 +218,7 @@ body.dark .github-corner {
   top: 0px;
   padding-top: 50px;
   overflow-x: hidden;
+  overflow-y: hidden;
   position: absolute;
   left: 0;
 }
@@ -236,6 +237,9 @@ body.dark .github-corner {
   /* background-image: linear-gradient(10deg, #000a, #0001); */
 }
 
+.draw-button {
+  display: inline-block;
+}
 /* OUTPUT */
 .output {
   width: 100%;

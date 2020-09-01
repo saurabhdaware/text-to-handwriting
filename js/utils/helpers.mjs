@@ -1,4 +1,15 @@
 const pageEl = document.querySelector('.page-a');
+const fixedPage = document.querySelector(
+  '.display-flex.left-margin-and-content'
+);
+const fixedHeight = fixedPage.clientHeight;
+
+const vKey = 86;
+const cKey = 67;
+const ctrlKey = 17;
+const cmdKey = 91;
+let ctrlDown = false;
+
 const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
 function addFontFromFile(fileObj) {
@@ -44,10 +55,125 @@ function createPDF(imgs) {
 
 function formatText(event) {
   event.preventDefault();
-  const text = event.clipboardData
+  const text = event.originalEvent.clipboardData
     .getData('text/plain')
     .replace(/\n/g, '<br/>');
   document.execCommand('insertHTML', false, text);
+  adjustContent.call(this);
 }
 
-export { isMobile, addFontFromFile, createPDF, formatText };
+function preventNewDiv(event) {
+  if (event.key === 'Enter') {
+    document.execCommand('insertLineBreak');
+    event.preventDefault();
+  }
+}
+
+function setEndOfContenteditable(contentEditableElement) {
+  let range;
+  let selection;
+  if (document.createRange) {
+    range = document.createRange();
+    range.selectNodeContents(contentEditableElement);
+    range.collapse(false);
+    selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+  } else if (document.selection) {
+    // IE 8 and lower
+    range = document.body.createTextRange();
+    range.moveToElementText(contentEditableElement);
+    range.collapse(false);
+    range.select();
+  }
+}
+
+function adjustContent(remainingContent = '') {
+  const className = '.' + this.className;
+  const paddingTop = parseInt(
+    $(className).css('padding-top').replace('px', '')
+  );
+  let extraContent = '';
+  const initialContent = this.innerHTML;
+  remainingContent += initialContent;
+  this.innerHTML = remainingContent;
+  while (fixedHeight < this.scrollHeight - paddingTop) {
+    extraContent = remainingContent.slice(-1) + extraContent;
+    remainingContent = remainingContent.substring(
+      0,
+      remainingContent.length - 1
+    );
+    this.innerHTML = remainingContent;
+  }
+  if (extraContent == '') setEndOfContenteditable(this);
+  else {
+    const pageList = document.querySelectorAll('.page-a');
+    const pageArr = [...pageList];
+    const lastNode = pageArr[pageArr.length - 1];
+    const pageContentArr = pageArr.map((page) => page.querySelector(className));
+    const lastContentNode = pageContentArr[pageContentArr.length - 1];
+    if (lastContentNode.isSameNode(this)) {
+      const newNode = lastNode.cloneNode(true);
+      newNode
+        .querySelectorAll('div[contenteditable=true]')
+        .forEach((node) => (node.innerHTML = ''));
+      lastNode.insertAdjacentElement('afterend', newNode);
+      const newContentNode = newNode.querySelector(className);
+      adjustContent.call(newContentNode, extraContent);
+    } else {
+      const currentNode = this;
+      const currentIndex = pageContentArr.findIndex((node) =>
+        node.isSameNode(currentNode)
+      );
+      const nextContentNode = pageContentArr[currentIndex + 1];
+      adjustContent.call(nextContentNode, extraContent);
+    }
+  }
+}
+
+function setFalse(event) {
+  if (event.keyCode == ctrlKey || event.keyCode == cmdKey) ctrlDown = false;
+}
+
+function setTrue(event) {
+  if (event.keyCode == ctrlKey || event.keyCode == cmdKey) ctrlDown = true;
+}
+
+function trimContent(event) {
+  if (ctrlDown && (event.keyCode == vKey || event.keyCode == cKey)) {
+    console.log("I'm here");
+  } else if (String.fromCharCode(event.keyCode).match(/(\w|\s|\n|\r|\t)/g))
+    adjustContent.call(this);
+}
+
+function addPage() {
+  const pageList = document.querySelectorAll('.page-a');
+  const pageArr = [...pageList];
+  const lastNode = pageArr[pageArr.length - 1];
+  const newNode = lastNode.cloneNode(true);
+  newNode
+    .querySelectorAll('div[contenteditable=true]')
+    .forEach((node) => (node.innerHTML = ''));
+  lastNode.insertAdjacentElement('afterend', newNode);
+
+  return newNode;
+}
+
+function removePage() {
+  const pageList = document.querySelectorAll('.page-a');
+  const pageArr = [...pageList];
+  const lastNode = pageArr[pageArr.length - 1];
+  if (pageArr.length > 1) lastNode.remove();
+}
+export {
+  isMobile,
+  addFontFromFile,
+  createPDF,
+  formatText,
+  preventNewDiv,
+  trimContent,
+  setFalse,
+  setTrue,
+  addPage,
+  removePage
+};
