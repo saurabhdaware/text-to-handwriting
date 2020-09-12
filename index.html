@@ -203,6 +203,9 @@
                       >
                         Homemade Apple
                       </option>
+                      <option value="Hindi_Font">
+                        Kruti-dev(Hindi)
+                      </option>
                       <option
                         style="font-family: 'Caveat', cursive; font-size: 13pt;"
                         value="'Caveat', cursive"
@@ -271,6 +274,16 @@
                       <option default value="shadows">Shadows</option>
                       <option value="scanner">Scanner</option>
                       <option value="no-effect">No Effect</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block" for="resolution">Resolution</label>
+                    <select id="resolution">
+                      <option value="0.8">Very Low</option>
+                      <option value="1">Low</option>
+                      <option selected value="2">Normal</option>
+                      <option value="3">High</option>
+                      <option value="4">Very High</option>
                     </select>
                   </div>
                 </div>
@@ -384,7 +397,7 @@
 
       <!-- OUTPUT -->
       <section>
-        <h2>Output</h2>
+        <h2 id="output-header">Output</h2>
         <div id="output" class="output" style="text-align: center;">
           Click "Generate Image" Button to generate new image.
         </div>
