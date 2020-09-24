@@ -31,7 +31,7 @@ function drawPoint(x, y) {
       return [eventX - canvasRect.left, eventY - canvasRect.top];
     }
 
-    return [eventX - canvasRect.left, eventY - canvasRect.top ];
+    return [eventX - canvasRect.left, eventY - canvasRect.top];
   }
 
   if (lastX && lastY && (x !== lastX || y !== lastY)) {
