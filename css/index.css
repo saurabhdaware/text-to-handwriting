@@ -110,6 +110,13 @@ input[type='number'] {
 }
 
 /* global classes */
+ul.info-ul {
+  padding-left: 20px;
+}
+
+ul.info-ul > li {
+  padding: 5px 5px;
+}
 
 .shadow {
   box-shadow: 12px 12px 24px 0 rgba(0, 0, 0, 0.2);
@@ -164,6 +171,20 @@ body.dark .github-corner {
 
 .left-margin-and-content {
   min-height: calc(100% - 50px);
+}
+
+.sponsor-name-section {
+  padding: 50px 0px;
+}
+.sponsor-container {
+  display: inline-block;
+  color: var(--font-color-primary);
+}
+.sponsor-title {
+  display: block;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 .page-a {
