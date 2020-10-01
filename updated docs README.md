@@ -12,6 +12,8 @@
 
 Checkout [Contribution Guide](CONTRIBUTING.md) for local setup and contribution guide.
 
+you really had done a great job sir. infact its too worthy for every college or university students . Thank you so much .
+
 ## 📚 Libraries used
 
 - [html2canvas](https://github.com/niklasvh/html2canvas) - Turns DOM into Canvas.
