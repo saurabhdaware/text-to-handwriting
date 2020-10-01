@@ -22,6 +22,16 @@ Checkout [Contribution Guide](CONTRIBUTING.md) for local setup and contribution 
 ---
 
 [<img alt="Buy me a Coffee Button" width=200 src="https://c5.patreon.com/external/logo/become_a_patron_button.png">](https://www.patreon.com/bePatron?u=31891872) &nbsp; [<img alt="Buy me a Coffee Button" width=200 src="https://cdn.buymeacoffee.com/buttons/default-yellow.png">](https://www.buymeacoffee.com/saurabhdaware)
+-----------------------------------------------------------------------
+For those who have came here to know that how to add your own font .
+1. Now you need a font,  either you can create one or you can simply download one available on internet 
+2. Pls look for the extension .otf or .ttf 
+Now to download a font you can search on internet for handwritten font 
+To create your own font you can visit caligraphr 
+
+After having a otf or ttf file all you need to do is visit back the text to handwriting site 
+go in handwriting option click on choose file and pick up your font . 
+
 
 Bye!
 Have fun 🦄
