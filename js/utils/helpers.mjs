@@ -50,4 +50,9 @@ function formatText(event) {
   document.execCommand('insertHTML', false, text);
 }
 
-export { isMobile, addFontFromFile, createPDF, formatText };
+function addPaperFromFile(file) {
+  var tmppath = URL.createObjectURL(file);
+  pageEl.style.backgroundImage = `url(${tmppath})`;
+}
+
+export { isMobile, addFontFromFile, createPDF, formatText, addPaperFromFile };
