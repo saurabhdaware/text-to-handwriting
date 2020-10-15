@@ -207,7 +207,7 @@ body.dark .github-corner {
   border-bottom: 2px solid pink;
   width: 100%;
   display: block;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .margined .left-margin {
