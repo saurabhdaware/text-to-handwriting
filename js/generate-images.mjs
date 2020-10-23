@@ -44,7 +44,7 @@ async function convertDIVToImage() {
  */
 export async function generateImages() {
   applyPaperStyles();
-  pageEl.scrollTo(0, 0);
+  pageEl.scroll(0, 0);
 
   const paperContentEl = document.querySelector('.page-a .paper-content');
   const scrollHeight = paperContentEl.scrollHeight;
