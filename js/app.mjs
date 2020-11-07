@@ -1,5 +1,5 @@
 import { addFontFromFile, formatText, addPaperFromFile } from './utils/helpers.mjs';
-import { generateImages, downloadAsPDF } from './generate-images.mjs';
+import { generateImages, downloadAsPDF,deleteAll } from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from './utils/draw.mjs';
 
 /**
@@ -103,6 +103,12 @@ const EVENT_MAP = {
     on: 'click',
     action: () => {
       downloadAsPDF();
+    }
+  },
+  '#delete-all-button': {
+    on: 'click',
+    action: () => {
+      deleteAll();
     }
   },
   '.page-a .paper-content': {
