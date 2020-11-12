@@ -12,7 +12,6 @@ body {
   --field-borders: #e0e0e0;
   --primary-button-bg: #1d1d1d;
   --primary-button-color: #eee;
-  --delete-button-background: #f3f3f3;
   --font-color-delete: #dc3545;
   --delete-button-borders: #dc3545;
 }
@@ -25,8 +24,8 @@ body.dark {
   --field-borders: #222;
   --primary-button-bg: #eee;
   --primary-button-color: #111;
-  --delete-button-background: #dc3545;
-  --font-color-delete: #ccc;
+  --delete-button-borders: #E76F7B;
+  --font-color-delete: #E76F7B;
 }
 @font-face {
   font-family: 'Hindi_Font';
@@ -173,7 +172,7 @@ body.dark .github-corner {
 .delete-button {
   color: var(--font-color-delete);
   border: 1px solid var(--delete-button-borders);
-  background-color: var(--delete-button-background);
+  background-color: var(--elevation-background);
 }
 .customization-col {
   padding: 0px 50px !important;
