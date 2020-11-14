@@ -12,6 +12,8 @@ body {
   --field-borders: #e0e0e0;
   --primary-button-bg: #1d1d1d;
   --primary-button-color: #eee;
+  --font-color-delete: #dc3545;
+  --delete-button-borders: #dc3545;
 }
 body.dark {
   --background-primary: #121212;
@@ -22,6 +24,8 @@ body.dark {
   --field-borders: #222;
   --primary-button-bg: #eee;
   --primary-button-color: #111;
+  --delete-button-borders: #E76F7B;
+  --font-color-delete: #E76F7B;
 }
 @font-face {
   font-family: 'Hindi_Font';
@@ -165,6 +169,11 @@ body.dark .github-corner {
   color: var(--font-color-primary);
   border: 1px solid var(--font-color-primary);
 }
+.delete-button {
+  color: var(--font-color-delete);
+  border: 1px solid var(--delete-button-borders);
+  background-color: var(--elevation-background);
+}
 .customization-col {
   padding: 0px 50px !important;
 }
@@ -291,6 +300,12 @@ body.dark .github-corner {
   display: none;
 }
 #download-as-pdf-button.show {
+  display: inline-block;
+}
+#delete-all-button {
+  display: none;
+}
+#delete-all-button.show {
   display: inline-block;
 }
 .output img {
@@ -423,5 +438,12 @@ input[type='file']::before {
   .category-grid {
     grid-auto-flow: row;
     grid-auto-rows: 1fr;
+  }
+}
+
+/*To generate margin between download as pdf and delete button in small screens*/ 
+@media (max-width: 430px) {
+  .delete-button {
+    margin-top: 10px;
   }
 }

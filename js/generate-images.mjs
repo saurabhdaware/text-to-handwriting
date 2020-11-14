@@ -95,6 +95,18 @@ export async function generateImages() {
 }
 
 /**
+ * Delete all generated images
+ */
+
+export const deleteAll = () => {
+  outputImages.splice(0, outputImages.length);
+  renderOutput(outputImages);
+  document.querySelector('#output-header').textContent =
+    'Output' +
+    (outputImages.length ? ' ( ' + outputImages.length + ' )' : '');
+};
+
+/**
  * Downloads generated images as PDF
  */
 export const downloadAsPDF = () => createPDF(outputImages);
