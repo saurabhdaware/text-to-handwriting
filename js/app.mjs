@@ -1,5 +1,13 @@
-import { addFontFromFile, formatText, addPaperFromFile } from './utils/helpers.mjs';
-import { generateImages, downloadAsPDF,deleteAll } from './generate-images.mjs';
+import {
+  addFontFromFile,
+  formatText,
+  addPaperFromFile
+} from './utils/helpers.mjs';
+import {
+  generateImages,
+  downloadAsPDF,
+  deleteAll
+} from './generate-images.mjs';
 import { setInkColor, toggleDrawCanvas } from './utils/draw.mjs';
 
 /**
