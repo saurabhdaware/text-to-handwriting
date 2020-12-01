@@ -1,0 +1,21 @@
+{
+  "name": "Text to Handwriting",
+  "short_name": "Text to Handwriting",
+  "icons": [
+    {
+      "src": "images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#09f",
+  "background_color": "#ddd",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "I hate writing assignments so I made this tool that converts text to an image that looks like handwriting😛"
+}
