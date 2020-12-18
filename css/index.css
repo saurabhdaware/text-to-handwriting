@@ -31,6 +31,165 @@ body.dark {
   font-family: 'Hindi_Font';
   src: url(../fonts/Hindi_Type.ttf);
 }
+/*@font-face {
+  font-family: 'test';
+  src: url(../fonts/test.ttf);
+}*/
+@font-face {
+  font-family: 'font2';
+  src: url(../fonts/QEBEV.ttf);
+}
+@font-face {
+  font-family: 'font3';
+  src: url(../fonts/QECarolineMutiboko.ttf);
+}
+
+@font-face {
+  font-family: 'font4';
+  src: url(../fonts/QEDaveMergens.ttf);
+}
+
+@font-face {
+  font-family: 'font5';
+  src: url(../fonts/QEDavidReid.ttf);
+}
+
+@font-face {
+  font-family: 'font6';
+  src: url(../fonts/QEDavidReidCAP.ttf);
+}
+
+@font-face {
+  font-family: 'font7';
+  src: url(../fonts/QEDonaldRoss.ttf);
+}
+
+@font-face {
+  font-family: 'font8';
+  src: url(../fonts/QEDSFont.ttf);
+}
+
+@font-face {
+  font-family: 'font9';
+  src: url(../fonts/QEGarrettWMoretz.ttf);
+}
+
+@font-face {
+  font-family: 'font10';
+  src: url(../fonts/QEgeeKzoid.ttf);
+}
+
+@font-face {
+  font-family: 'font11';
+  src: url(../fonts/QEGHHughes.ttf);
+}
+
+@font-face {
+  font-family: 'font12';
+  src: url(../fonts/QEHerbertCooper.ttf);
+}
+
+@font-face {
+  font-family: 'font13';
+  src: url(../fonts/QEJeffDungan.ttf);
+}
+
+@font-face {
+  font-family: 'font14';
+  src: url(../fonts/QEJER.ttf);
+}
+
+@font-face {
+  font-family: 'font15';
+  src: url(../fonts/QEJohnCaplin.ttf);
+}
+
+@font-face {
+  font-family: 'font16';
+  src: url(../fonts/QEJohnWilliams.ttf);
+}
+
+@font-face {
+  font-family: 'font17';
+  src: url(../fonts/QEKevinKnowles.ttf);
+}
+
+@font-face {
+  font-family: 'font18';
+  src: url(../fonts/QEKevinShirley.ttf);
+}
+
+@font-face {
+  font-family: 'font19';
+  src: url(../fonts/QEKunjarScript.ttf);
+}
+
+@font-face {
+  font-family: 'font20';
+  src: url(../fonts/QEMamasAndPapas.ttf);
+}
+
+@font-face {
+  font-family: 'font21';
+  src: url(../fonts/QEPamRosenberry.ttf);
+}
+
+@font-face {
+  font-family: 'font22';
+  src: url(../fonts/QEPhilipBean.ttf);
+}
+
+@font-face {
+  font-family: 'font23';
+  src: url(../fonts/QEPhillips.ttf);
+}
+
+@font-face {
+  font-family: 'font24';
+  src: url(../fonts/QERoystonSuch.ttf);
+}
+
+@font-face {
+  font-family: 'font25';
+  src: url(../fonts/QERoystonSuchCAP.ttf);
+}
+
+@font-face {
+  font-family: 'font26';
+  src: url(../fonts/QERufus.ttf);
+}
+
+@font-face {
+  font-family: 'font27';
+  src: url(../fonts/QERuthStafford.ttf);
+}
+
+@font-face {
+  font-family: 'font28';
+  src: url(../fonts/QESamRoberts.ttf);
+}
+
+@font-face {
+  font-family: 'font29';
+  src: url(../fonts/QESamRoberts2.ttf);
+}
+
+@font-face {
+  font-family: 'font30';
+  src: url(../fonts/QEScottWilliams.ttf);
+}
+
+@font-face {
+  font-family: 'font31';
+  src: url(../fonts/QETonyFlores.ttf);
+}
+
+@font-face {
+  font-family: 'font32';
+  src: url(../fonts/QEVReadttf);
+}
+
+
 
 /* Default CSS Changes */
 * {
