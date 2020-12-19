@@ -24,8 +24,8 @@ body.dark {
   --field-borders: #222;
   --primary-button-bg: #eee;
   --primary-button-color: #111;
-  --delete-button-borders: #E76F7B;
-  --font-color-delete: #E76F7B;
+  --delete-button-borders: #e76f7b;
+  --font-color-delete: #e76f7b;
 }
 @font-face {
   font-family: 'Hindi_Font';
@@ -35,6 +35,16 @@ body.dark {
   font-family: 'test';
   src: url(../fonts/test.ttf);
 }*/
+@font-face {
+  font-family: 'font0';
+  src: url(../fonts/Candia_Script.ttf);
+}
+
+@font-face {
+  font-family: 'font1';
+  src: url(../fonts/Premium_Ultra.ttf);
+}
+
 @font-face {
   font-family: 'font2';
   src: url(../fonts/QEBEV.ttf);
@@ -188,8 +198,6 @@ body.dark {
   font-family: 'font32';
   src: url(../fonts/QEVReadttf);
 }
-
-
 
 /* Default CSS Changes */
 * {
@@ -600,7 +608,7 @@ input[type='file']::before {
   }
 }
 
-/*To generate margin between download as pdf and delete button in small screens*/ 
+/*To generate margin between download as pdf and delete button in small screens*/
 @media (max-width: 430px) {
   .delete-button {
     margin-top: 10px;

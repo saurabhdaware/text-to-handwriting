@@ -102,8 +102,7 @@ export const deleteAll = () => {
   outputImages.splice(0, outputImages.length);
   renderOutput(outputImages);
   document.querySelector('#output-header').textContent =
-    'Output' +
-    (outputImages.length ? ' ( ' + outputImages.length + ' )' : '');
+    'Output' + (outputImages.length ? ' ( ' + outputImages.length + ' )' : '');
 };
 
 /**
