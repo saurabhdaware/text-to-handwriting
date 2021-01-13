@@ -95,6 +95,21 @@ function renderOutput(outputImages) {
           download 
           href="${outputImageCanvas.toDataURL('image/jpeg')}
         ">Download Image</a>
+        <br/>
+        <br/>
+
+        <button 
+          class="button move-left"
+          data-index="${index}" 
+        >
+          L 
+        </button>
+        <button 
+          class="button move-right"
+          data-index="${index}" 
+        >
+          R 
+        </button>
       </div>
     </div>
     `
