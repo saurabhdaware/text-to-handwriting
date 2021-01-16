@@ -123,7 +123,7 @@ export const moveLeft = (index) => {
 };
 
 export const moveRight = (index) => {
-  if (index + 1 > outputImages.length) return outputImages;
+  if (index + 1 === outputImages.length) return outputImages;
   outputImages = arrayMove(outputImages, index, index + 1);
   renderOutput(outputImages);
 };

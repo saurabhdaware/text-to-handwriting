@@ -102,13 +102,13 @@ function renderOutput(outputImages) {
           class="button move-left"
           data-index="${index}" 
         >
-          L 
+          Move Left
         </button>
         <button 
           class="button move-right"
           data-index="${index}" 
         >
-          R 
+          Move Right
         </button>
       </div>
     </div>
