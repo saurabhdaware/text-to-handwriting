@@ -47,15 +47,36 @@ const EVENT_MAP = {
   },
   '#font-size': {
     on: 'change',
-    action: (e) => setTextareaStyle('fontSize', e.target.value + 'pt')
+    action: (e) => {
+      if (e.target.value > 30) {
+        alert('Font-size is too big try upto 30');
+      } else {
+        setTextareaStyle('fontSize', e.target.value + 'pt');
+        e.preventDefault();
+      }
+    }
   },
   '#letter-spacing': {
     on: 'change',
-    action: (e) => setTextareaStyle('letterSpacing', e.target.value + 'pt')
+    action: (e) => {
+      if (e.target.value > 40) {
+        alert('Letter Spacing is too big try a number upto 40');
+      } else {
+        setTextareaStyle('letterSpacing', e.target.value + 'px');
+        e.preventDefault();
+      }
+    }
   },
   '#word-spacing': {
     on: 'change',
-    action: (e) => setTextareaStyle('wordSpacing', e.target.value + 'px')
+    action: (e) => {
+      if (e.target.value > 100) {
+        alert('Word Spacing is too big try a number upto hundred');
+      } else {
+        setTextareaStyle('wordSpacing', e.target.value + 'px');
+        e.preventDefault();
+      }
+    }
   },
   '#top-padding': {
     on: 'change',
