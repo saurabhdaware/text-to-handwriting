@@ -51,7 +51,7 @@ function formatText(event) {
 }
 
 function addPaperFromFile(file) {
-  var tmppath = URL.createObjectURL(file);
+  const tmppath = URL.createObjectURL(file);
   pageEl.style.backgroundImage = `url(${tmppath})`;
 }
 

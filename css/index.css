@@ -24,8 +24,8 @@ body.dark {
   --field-borders: #222;
   --primary-button-bg: #eee;
   --primary-button-color: #111;
-  --delete-button-borders: #E76F7B;
-  --font-color-delete: #E76F7B;
+  --delete-button-borders: #e76f7b;
+  --font-color-delete: #e76f7b;
 }
 @font-face {
   font-family: 'Hindi_Font';
@@ -441,7 +441,7 @@ input[type='file']::before {
   }
 }
 
-/*To generate margin between download as pdf and delete button in small screens*/ 
+/*To generate margin between download as pdf and delete button in small screens*/
 @media (max-width: 430px) {
   .delete-button {
     margin-top: 10px;
