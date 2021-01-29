@@ -81,7 +81,6 @@ const EVENT_MAP = {
   '#top-padding': {
     on: 'change',
     action: (e) => {
-      fontSize;
       document.querySelector('.page-a .paper-content').style.paddingTop =
         e.target.value + 'px';
     }
