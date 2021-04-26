@@ -313,6 +313,10 @@ body.dark .github-corner {
   margin: 0px 10px;
 }
 
+#covid-donations ul li {
+  padding: 5px 0px;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 100px 5px;
