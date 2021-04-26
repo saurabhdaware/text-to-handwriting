@@ -121,7 +121,7 @@
         /></span>
       </button>
       <h1>Text to Handwriting</h1>
-      <section style="font-size: 1rem; padding: 20px 0px;">
+      <section id="donations" style="font-size: 1rem; padding: 20px 0px;">
         <div id="covid-donations">
           <b>Important!</b><br />
           <br />
@@ -154,8 +154,8 @@
           <div class="flex-1">
             <br /><br />Also, This webpage has had 100k+ pageviews this April so
             far. <br />
-            <br />If you donate more than 10,000 ₹ to any of the covid
-            fundraisers, I will put up your company/project logo here
+            <br />If you donate more than 8,000 ₹ to any of the covid
+            fundraisers, I will put up your company/project logo or any image here for a month.
             <br /><br />
             DM me your receipts on
             <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a>
@@ -488,8 +488,8 @@
       <section id="sponsors">
         <h2>🤗 Sponsors</h2>
         <p>
-          Donate 10,000INR to any COVID Fundraisers/NGOs and get your logo at
-          the top! DM me receipt on
+          Donate 8,000INR to any COVID Fundraisers/NGOs and get your logo at
+          the top! DM me receipts on
           <a href="https://twitter.com/saurabhcodes/">Twitter @saurabhcodes</a>
         </p>
         <!-- <p>
@@ -557,8 +557,8 @@
         <div>
           <h3>4. Where can I request for features and report bugs?</h3>
           <p>
-            You can't. This is a read-only project and there will not be any improvements 
-            in the project
+            You can't. This is a read-only project and there will not be any
+            improvements in the project
           </p>
         </div>
       </section>
@@ -694,6 +694,15 @@
       } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.body.classList.add('dark');
       }
+
+      document.querySelector('#donations').addEventListener('click', e => {
+        if (e.target.nodeName === 'A') {
+          const tracker = ga.getAll()[0];
+          if (tracker) {
+            tracker.send('event', 'Donation Link', 'Click', e.target.href);
+          }
+        }
+      });
     </script>
   </body>
 </html>
