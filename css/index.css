@@ -1,4 +1,7 @@
 /* CSS Variables */
+html, body {
+  margin: 0px;
+}
 body {
   --background-primary: #fff;
   --font-color-primary: #333;
@@ -14,6 +17,9 @@ body {
   --primary-button-color: #eee;
   --font-color-delete: #dc3545;
   --delete-button-borders: #dc3545;
+
+  width: 100%;
+  overflow-x: hidden;
 }
 body.dark {
   --background-primary: #121212;
@@ -313,13 +319,19 @@ body.dark .github-corner {
   margin: 0px 10px;
 }
 
+#faq p {
+  overflow-wrap: break-word;
+  overflow: hidden;
+  width: 100%;
+}
+
 #covid-donations ul li {
   padding: 5px 0px;
 }
 
 @media (max-width: 768px) {
   body {
-    padding: 100px 5px;
+    padding: 100px 10px;
   }
   h1 {
     margin-top: 20px;
