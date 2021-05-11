@@ -122,36 +122,36 @@
       </button>
       <h1>Text to Handwriting</h1>
       <section id="donations" style="font-size: 1rem; padding: 20px 0px;">
-        <div id="covid-donations">
-          <b>Important!</b><br />
-          <br />
-          Hey, my country (India) is going through the second wave of covid and
-          our healthcare system has collapsed. I request you to donate any
-          amount you can to these NGOs that are helping people with oxygen,
-          food, and a lot of other resources.
-          <ul>
-            <li>
-              <a href="https://hemkuntfoundation.com/donate-now/"
-                >Hemkunt Foundation</a
-              >
-              (Helping people with oxygen)
-            </li>
-            <li>
-              <a href="https://indiafightscorona.giveindia.org/"
-                >indiafightscorona.giveindia.org</a
-              >
-              (Multiple fundraisers related to covid)
-            </li>
-            <li>
-              More at
-              <a href="https://donate.indiacovidresources.in/"
-                >https://donate.indiacovidresources.in/</a
-              >
-            </li>
-          </ul>
-        </div>
         <div class="display-flex responsive-flex">
           <div class="flex-1">
+            <div id="covid-donations">
+              <b>Important!</b><br />
+              <br />
+              Hey, my country (India) is going through the second wave of covid and
+              our healthcare system has collapsed. I request you to donate any
+              amount you can to these NGOs that are helping people with oxygen,
+              food, and a lot of other resources.
+              <ul>
+                <li>
+                  <a href="https://hemkuntfoundation.com/donate-now/"
+                    >Hemkunt Foundation</a
+                  >
+                  (Helping people with oxygen)
+                </li>
+                <li>
+                  <a href="https://indiafightscorona.giveindia.org/"
+                    >indiafightscorona.giveindia.org</a
+                  >
+                  (Multiple fundraisers related to covid)
+                </li>
+                <li>
+                  More at
+                  <a href="https://donate.indiacovidresources.in/"
+                    >https://donate.indiacovidresources.in/</a
+                  >
+                </li>
+              </ul>
+            </div>
             <br /><br />Also, This webpage has had 100k+ pageviews this April so
             far. <br />
             <br />If you donate more than 8,000 ₹ to any of the covid
@@ -160,13 +160,19 @@
             DM me your receipts on
             <a href="https://twitter.com/saurabhcodes">Twitter @saurabhcodes</a>
           </div>
-          <div style="padding: 0px 20px;">
+          <div style="padding: 40px 20px;">
             <br /><img
               width="200"
               src="https://res.cloudinary.com/saurabhdaware/image/upload/v1619450053/Screenshot_2021-04-26_at_8.43.00_PM_j4relg.png"
               alt="google analytics chart showing 109k pageviews in april"
             />
           </div>
+        </div>
+        <div class="donations-list">
+          <h2>Some Kind People Who Donated for The Covid Relief</h2>
+          <a href="https://indunitech.web.app/">
+            <img style="border-radius: 10px;" height="80" src="https://res.cloudinary.com/saurabhdaware/image/upload/c_scale,h_80/v1620744872/brands/logo-ind7.png" alt="Induni Technlogies" />
+          </a>
         </div>
       </section>
       <section class="generate-image-section">
@@ -695,14 +701,21 @@
         document.body.classList.add('dark');
       }
 
-      document.querySelector('#donations').addEventListener('click', (e) => {
-        if (e.target.nodeName === 'A') {
+      document.querySelectorAll('#donations a[href]').forEach((anchorEl) => {
+        anchorEl.addEventListener('click', (e) => {
           const tracker = ga.getAll()[0];
-          if (tracker) {
-            tracker.send('event', 'Donation Link', 'Click', e.target.href);
+          let label;
+          if (e.target.href) {
+            label = e.target.href;
+          } else {
+            label = e.target.parentElement.href;
           }
-        }
-      });
+
+          if (tracker) {
+            tracker.send('event', 'Donation Link', 'Click', label);
+          }
+        });
+      })
     </script>
   </body>
 </html>

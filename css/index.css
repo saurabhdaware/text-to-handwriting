@@ -330,6 +330,11 @@ body.dark .github-corner {
   padding: 5px 0px;
 }
 
+.donations-list {
+  padding: 58px 0px;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   body {
     padding: 100px 10px;
